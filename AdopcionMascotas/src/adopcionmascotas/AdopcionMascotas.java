@@ -9,7 +9,7 @@ package adopcionmascotas;
 public class AdopcionMascotas {
 
     /**
-     * @param args the command line arguments
+     * Metodo principal para programa de gestion de mascotas
      */
     public static void main(String[] args) {
         // TODO code application logic here
