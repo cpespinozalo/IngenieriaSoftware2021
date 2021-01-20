@@ -38,6 +38,16 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         inicioPanelPrincipal = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         inicioPanelLateral = new javax.swing.JPanel();
         inicioLblSeparador = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -53,10 +63,13 @@ public class Inicio extends javax.swing.JFrame {
         inicioLblTituloB = new javax.swing.JLabel();
         inicioLblTituloC = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         inicioPanelInferior = new javax.swing.JPanel();
         inicioLblLogoUtpl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -70,7 +83,45 @@ public class Inicio extends javax.swing.JFrame {
         inicioPanelPrincipal.setMaximumSize(new java.awt.Dimension(1900, 700));
         inicioPanelPrincipal.setMinimumSize(new java.awt.Dimension(1900, 1000));
         inicioPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(inicioPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 1645, 750));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utpl/adopcionmascotas/vista/imgMascota01.png"))); // NOI18N
+        inicioPanelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 100));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 54, 54));
+        jLabel5.setText("Negrito");
+        inicioPanelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 400, 30));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        inicioPanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 600, 60));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Fecha Publicación:  15/05/2020");
+        inicioPanelPrincipal.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 85, 200, 20));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Ciudad: Cuenca");
+        inicioPanelPrincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 200, 20));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Edad: 7 meses");
+        inicioPanelPrincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 135, 200, 20));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Acerca de la mascota:");
+        inicioPanelPrincipal.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 600, 20));
+
+        jButton7.setText("jButton7");
+        inicioPanelPrincipal.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 100, 60, 60));
+
+        jButton8.setText("jButton8");
+        inicioPanelPrincipal.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 100, 60, 60));
+
+        getContentPane().add(inicioPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 1645, 515));
 
         inicioPanelLateral.setBackground(new java.awt.Color(255, 54, 54));
         inicioPanelLateral.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -141,6 +192,14 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setText("Usuario Invitado");
         inicioPanelSuperior.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 110, 164, 20));
 
+        jButton6.setLabel("X");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        inicioPanelSuperior.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1630, 20, 20, 20));
+
         getContentPane().add(inicioPanelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 0, 1675, 150));
 
         inicioPanelInferior.setBackground(new java.awt.Color(41, 41, 41));
@@ -164,6 +223,15 @@ public class Inicio extends javax.swing.JFrame {
 
         getContentPane().add(inicioPanelInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 940, 1675, 100));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1040, 160));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 165, 1645, 230));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,6 +242,10 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +302,21 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
