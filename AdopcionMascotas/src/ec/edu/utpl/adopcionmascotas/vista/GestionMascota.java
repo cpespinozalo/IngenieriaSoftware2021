@@ -1,13 +1,6 @@
 package ec.edu.utpl.adopcionmascotas.vista;
 
-import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
-
-import java.util.List;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class GestionMascota extends javax.swing.JFrame {
     
@@ -73,7 +66,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         getContentPane().add(panTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 80));
 
-        panSubtitulo.setBackground(new java.awt.Color(48, 48, 112));
+        panSubtitulo.setBackground(new java.awt.Color(255, 54, 54));
         panSubtitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSubtituloUsuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -136,7 +129,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1000, 650));
 
-        panInferior.setBackground(new java.awt.Color(48, 48, 112));
+        panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAceptarEmpresa.setText("GUARDAR");
@@ -169,7 +162,7 @@ public class GestionMascota extends javax.swing.JFrame {
         try {
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane,"Error al gestionar el usuario.","Usuarios del Sistema",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Error al gestionar la Mascota.","Gestion de Macota",JOptionPane.ERROR_MESSAGE);
         }
         
         

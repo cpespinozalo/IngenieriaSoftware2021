@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 /**
  * Clase de utilitarios del sistema
  * 
- * @author Cristian Espinoza
- * @version 2.0
+ * @author Grupo 3 - Ingeniería de Software
+ * @version 1.0
  */
 public class Utilitarios {
     

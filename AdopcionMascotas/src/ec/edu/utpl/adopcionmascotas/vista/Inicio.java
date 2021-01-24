@@ -47,7 +47,7 @@ public class Inicio extends javax.swing.JFrame {
         panMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         
         JLabel fotoMascota = new JLabel();
-        fotoMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utpl/adopcionmascotas/vista/imgMascota01.png")));
+        fotoMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png")));
         panMascota.add(fotoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 100, 100));
         
         JLabel nombreMascota = new JLabel();
@@ -74,7 +74,7 @@ public class Inicio extends javax.swing.JFrame {
         
         JButton btnVerMascota = new JButton();
         btnVerMascota.setOpaque(false);
-        btnVerMascota.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnVer.png"));
+        btnVerMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVer.png")));
         btnVerMascota.setToolTipText("Ver la mascota.");
         btnVerMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
@@ -155,11 +155,11 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panInicioLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLogoPrincipal.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgLogoPrincipal.png")); // NOI18N
+        lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
         panInicioLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
 
         btnInicioMascotas.setBackground(new java.awt.Color(255, 54, 54));
-        btnInicioMascotas.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnNuestrasMascotas.png")); // NOI18N
+        btnInicioMascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnNuestrasMascotas.png"))); // NOI18N
         btnInicioMascotas.setToolTipText("Conoce las mascotas disponibles.");
         btnInicioMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioMascotas.setOpaque(false);
@@ -170,26 +170,26 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioLateral.add(btnInicioMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 185, 60));
 
-        btnInicioAdopciones.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnAdopciones.png")); // NOI18N
+        btnInicioAdopciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnAdopciones.png"))); // NOI18N
         btnInicioAdopciones.setToolTipText("Inicia una adopción.");
         btnInicioAdopciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioAdopciones.setOpaque(false);
         panInicioLateral.add(btnInicioAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 185, 60));
 
-        btnInicioUsuarios.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnUsuarios.png")); // NOI18N
+        btnInicioUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUsuarios.png"))); // NOI18N
         btnInicioUsuarios.setToolTipText("Conoce nuestros usuarios.");
         btnInicioUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioUsuarios.setOpaque(false);
         panInicioLateral.add(btnInicioUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 185, 60));
 
-        btnInicioVeterinaria.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnVeterinaria.png")); // NOI18N
+        btnInicioVeterinaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVeterinaria.png"))); // NOI18N
         btnInicioVeterinaria.setToolTipText("Visita la veterinaria.");
         btnInicioVeterinaria.setBorder(null);
         btnInicioVeterinaria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioVeterinaria.setOpaque(false);
         panInicioLateral.add(btnInicioVeterinaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 185, 60));
 
-        btnInicioNosotros.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnNosotros.png")); // NOI18N
+        btnInicioNosotros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnNosotros.png"))); // NOI18N
         btnInicioNosotros.setToolTipText("Información de los autores.");
         btnInicioNosotros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioNosotros.setOpaque(false);
@@ -206,7 +206,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioSuperior.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panInicioSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblInicioPortada.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgFotoPortada.png")); // NOI18N
+        lblInicioPortada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoPortada.png"))); // NOI18N
         panInicioSuperior.add(lblInicioPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 417, 130));
 
         lblInicioSubtitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -219,7 +219,7 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioTitulo.setText("adopción de mascotas");
         panInicioSuperior.add(lblInicioTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 800, 120));
 
-        btnInicioLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnLogin.png")); // NOI18N
+        btnInicioLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogin.png"))); // NOI18N
         btnInicioLogin.setToolTipText("Login de Usuario");
         btnInicioLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioLogin.setOpaque(false);
@@ -230,7 +230,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioSuperior.add(btnInicioLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1335, 90, 50, 50));
 
-        btnInicioRegistrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnCrear.png")); // NOI18N
+        btnInicioRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnCrear.png"))); // NOI18N
         btnInicioRegistrar.setToolTipText("Crear Usuario Nuevo");
         btnInicioRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioRegistrar.setOpaque(false);
@@ -241,7 +241,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioSuperior.add(btnInicioRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 90, 50, 50));
 
-        btnInicioSalir.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnSalir.png")); // NOI18N
+        btnInicioSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSalir.png"))); // NOI18N
         btnInicioSalir.setToolTipText("Salir de la Aplicación");
         btnInicioSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioSalir.setOpaque(false);
@@ -251,8 +251,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         panInicioSuperior.add(btnInicioSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1465, 90, 50, 50));
-
-        lblInicioAvatar.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgHombre.png")); // NOI18N
         panInicioSuperior.add(lblInicioAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1540, 15, 100, 125));
 
         lblInicioBienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -284,7 +282,7 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioAutores.setText("[ ESPINOZA - CONTRERAS - GÓMEZ - CEDEÑO - REA ]");
         panInicioInferior.add(lblInicioAutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 52, 400, 32));
 
-        lblIncioUtpl.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgLogoUtplGrande.png")); // NOI18N
+        lblIncioUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoUtplGrande.png"))); // NOI18N
         panInicioInferior.add(lblIncioUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1454, 20, 160, 64));
 
         getContentPane().add(panInicioInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 940, 1675, 100));
@@ -300,15 +298,15 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioTituloIntro.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         panInicioIntro.add(lblInicioTituloIntro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 650, 30));
 
-        lblFotoPortadaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/utpl/adopcionmascotas/vista/imgFotoGaleria1.png"))); // NOI18N
+        lblFotoPortadaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria1.png"))); // NOI18N
         lblFotoPortadaA.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 260, 140));
 
-        lblFotoPortadaB.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgFotoGaleria2.png")); // NOI18N
+        lblFotoPortadaB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria2.png"))); // NOI18N
         lblFotoPortadaB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 260, 140));
 
-        lblFotoPortadaC.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgFotoGaleria3.png")); // NOI18N
+        lblFotoPortadaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria3.png"))); // NOI18N
         lblFotoPortadaC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 260, 140));
 

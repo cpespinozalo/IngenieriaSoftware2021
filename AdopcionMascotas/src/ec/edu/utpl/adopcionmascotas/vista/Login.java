@@ -24,10 +24,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-            javax.swing.UIManager.put("OptionPane.background",new ColorUIResource(38,38,63));
-            javax.swing.UIManager.put("Panel.background",new ColorUIResource(38,38,63));
+            javax.swing.UIManager.put("OptionPane.background",new ColorUIResource(41,41,41));
+            javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
             javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
-            javax.swing.UIManager.put("Panel.background",new ColorUIResource(38,38,63));
+            javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
             
             initComponents();
             setLocationRelativeTo(null);
@@ -62,7 +62,7 @@ public class Login extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         lblOlvidoCon = new javax.swing.JLabel();
         lblLogoOracle = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panLoginLogo = new javax.swing.JPanel();
         lblLogoUtpl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,6 +103,7 @@ public class Login extends javax.swing.JFrame {
 
         btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgRefrescar.png"))); // NOI18N
         btnRefresh.setToolTipText("Cambiar Pregunta de Seguridad");
+        btnRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRefresh.setOpaque(false);
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +139,7 @@ public class Login extends javax.swing.JFrame {
         lblOlvidoCon.setForeground(new java.awt.Color(255, 255, 255));
         lblOlvidoCon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblOlvidoCon.setText("¿Olvidó su contraseña?");
+        lblOlvidoCon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblOlvidoCon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 linkRecuperacion(evt);
@@ -151,14 +153,14 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(panLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 460));
 
-        jPanel1.setBackground(new java.awt.Color(255, 54, 54));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panLoginLogo.setBackground(new java.awt.Color(255, 54, 54));
+        panLoginLogo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLogoUtpl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblLogoUtpl.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\imgLogoPrincipal.png")); // NOI18N
-        jPanel1.add(lblLogoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 245, 150));
+        lblLogoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
+        panLoginLogo.add(lblLogoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 245, 150));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 460));
+        getContentPane().add(panLoginLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,7 +223,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRefresh;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogoOracle;
     private javax.swing.JLabel lblLogoUtpl;
     private javax.swing.JLabel lblOlvidoCon;
@@ -229,6 +230,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblPregunta;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panLogin;
+    private javax.swing.JPanel panLoginLogo;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtRespuesta;
     private javax.swing.JTextField txtUsuario;
