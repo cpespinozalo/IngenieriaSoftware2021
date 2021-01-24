@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 /**
  * Clase de Gestion de Conecciones con la BD
  * 
- * @author Cristian Espinoza
- * @version 2.0
+ * @author Grupo 3 - Ingeniería de Software
+ * @version 1.0
  */
 public class Conexion {
     

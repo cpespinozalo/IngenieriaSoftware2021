@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 /**
  * Clase de Gestion de Operaciones en la BD
  * 
- * @author Cristian Espinoza
- * @version 2.0
+ * @author Grupo 3 - Ingeniería de Software
+ * @version 1.0
  */
 public class Cliente {
       
