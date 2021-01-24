@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.utpl.adopcionmascotas.vista;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.ColorUIResource;
 
 /**
- *
- * @author christtian
+ * Interfaz de Inicio de la aplicacion
+ * 
+ * @author Grupo 3 - Ingeniería de Software
+ * @version 1.0
  */
 public class Inicio extends javax.swing.JFrame {
 
@@ -117,6 +111,7 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         panInicioLateral = new javax.swing.JPanel();
         lblLogoPrincipal = new javax.swing.JLabel();
         btnInicioMascotas = new javax.swing.JButton();
@@ -228,6 +223,11 @@ public class Inicio extends javax.swing.JFrame {
         btnInicioLogin.setToolTipText("Login de Usuario");
         btnInicioLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioLogin.setOpaque(false);
+        btnInicioLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioLoginActionPerformed(evt);
+            }
+        });
         panInicioSuperior.add(btnInicioLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1335, 90, 50, 50));
 
         btnInicioRegistrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnCrear.png")); // NOI18N
@@ -242,7 +242,6 @@ public class Inicio extends javax.swing.JFrame {
         panInicioSuperior.add(btnInicioRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 90, 50, 50));
 
         btnInicioSalir.setIcon(new javax.swing.ImageIcon("C:\\Users\\christtian\\Fuentes\\IngenieriaSoftware2021\\AdopcionMascotas\\images\\btnSalir.png")); // NOI18N
-        btnInicioSalir.setText("");
         btnInicioSalir.setToolTipText("Salir de la Aplicación");
         btnInicioSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioSalir.setOpaque(false);
@@ -380,6 +379,13 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInicioRegistrarActionPerformed
 
+    private void btnInicioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioLoginActionPerformed
+        
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnInicioLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,6 +432,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnInicioSalir;
     private javax.swing.JButton btnInicioUsuarios;
     private javax.swing.JButton btnInicioVeterinaria;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel lblFotoPortadaA;
     private javax.swing.JLabel lblFotoPortadaB;
     private javax.swing.JLabel lblFotoPortadaC;
