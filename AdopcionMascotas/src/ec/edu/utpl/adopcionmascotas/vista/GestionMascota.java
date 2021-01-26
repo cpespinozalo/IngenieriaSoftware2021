@@ -1,13 +1,35 @@
 package ec.edu.utpl.adopcionmascotas.vista;
 
+import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.ColorUIResource;
 
 public class GestionMascota extends javax.swing.JFrame {
+    
+    private Sesion sesion;
     
     private static final String ACCION_NUEVO = "NUEVO";
     private static final String ACCION_EDITAR = "EDITAR";
     private static final String ACCION_ELIMINAR = "ELIMINAR";
     private static final String CLASS_NAME = GestionMascota.class.getName();
+
+    public GestionMascota(Sesion sesion){
+        
+        try {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            javax.swing.UIManager.put("OptionPane.background",new ColorUIResource(41,41,41));
+            javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
+            javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
+            javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
+            this.sesion = sesion;
+            initComponents();
+            setLocationRelativeTo(null);
+            
+        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
+            javax.swing.JOptionPane.showMessageDialog(this.rootPane,"Imposible modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     
     
@@ -43,26 +65,25 @@ public class GestionMascota extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1000, 860));
         setName("fraInterfazGrafica"); // NOI18N
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panTitulo.setBackground(new java.awt.Color(35, 35, 45));
         panTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgIconoUtpl.png"))); // NOI18N
-        panTitulo.add(lblIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 15, 50, 50));
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPequeño.png"))); // NOI18N
+        panTitulo.add(lblIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 15, 94, 50));
 
         lblSubTitulo.setBackground(new java.awt.Color(255, 153, 51));
         lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblSubTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubTitulo.setText("Sistema");
-        panTitulo.add(lblSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 15, 300, 20));
+        panTitulo.add(lblSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 15, 300, 20));
 
         lblTituloPrincipal.setBackground(new java.awt.Color(255, 153, 51));
         lblTituloPrincipal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTituloPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloPrincipal.setText("Adopción de mascotas UTPL");
-        panTitulo.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 35, 300, 30));
+        panTitulo.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 35, 300, 30));
 
         getContentPane().add(panTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 80));
 
@@ -78,7 +99,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         getContentPane().add(panSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1000, 40));
 
-        panCentral.setBackground(new java.awt.Color(35, 35, 45));
+        panCentral.setBackground(new java.awt.Color(41, 41, 41));
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDatoUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -91,7 +112,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblInfoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 20));
 
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMujer.png"))); // NOI18N
-        panCentral.add(lblFotoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 100, 125));
+        panCentral.add(lblFotoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 100, 125));
 
         lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,7 +190,13 @@ public class GestionMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarEmpresaActionPerformed
 
     private void btnRegresarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarEmpresaActionPerformed
-        
+
+        Inicio inicio = new Inicio();
+        inicio.setSesion(sesion);
+        inicio.setIsLogged(true);
+        inicio.setVisible(true);
+        inicio.disableLogin();
+        this.dispose();       
     }//GEN-LAST:event_btnRegresarEmpresaActionPerformed
 
     

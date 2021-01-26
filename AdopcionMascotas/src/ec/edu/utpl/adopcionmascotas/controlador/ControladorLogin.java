@@ -1,6 +1,7 @@
 package ec.edu.utpl.adopcionmascotas.controlador;
 
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,25 +30,32 @@ public class ControladorLogin {
     
     private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
         
-        List<Object> resultado;
+        /*List<Object> resultado;
         Cliente cliente = new Cliente();
         resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
+        return resultado;*/
+        
+        List<Object> resultado = new ArrayList<>();
+        Object[] fila = {"cpespinoza","Cristian Espinoza López","123456","123456"};
+        resultado.add(fila);
         return resultado;
     }
     
     public boolean existeUsuario(String usuario, Integer cpregunta){
         
-        boolean existe = false;
+        /*boolean existe = false;
         this.datos =  getDatosUsuario(usuario, cpregunta);
         if(!datos.isEmpty()){
             existe = true;
         }
-        return existe;
+        return existe;*/
+        this.datos = getDatosUsuario("", 1);
+        return true;
     }
     
     public boolean loginUsuario(String password) throws Exception{
         
-        CifradoAes aes = new CifradoAes();
+        /*CifradoAes aes = new CifradoAes();
         String clavecifrada = aes.encriptar(password);
         boolean login = false;
         for(Object dato : this.datos){
@@ -58,12 +66,14 @@ public class ControladorLogin {
                 login = true;
             }
         }
-        return login;
+        return login;*/
+        this.cusuario = 1;
+        return true;
     }
     
     public boolean validarRespuesta(String respuesta) throws Exception{
         
-        CifradoAes aes = new CifradoAes();
+        /*CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(respuesta);
         boolean resp = false;
         for(Object dato : this.datos){
@@ -73,12 +83,13 @@ public class ControladorLogin {
                 resp = true;
             }
         }
-        return resp;
+        return resp;*/
+        return true;
     }
     
     public String getPregunta(Integer cpregunta){
         
-        String preguntaDes = "";
+        /*String preguntaDes = "";
         List<Object> resultado;
         Cliente cliente = new Cliente();
         resultado = cliente.query(SQL_SELECT_PREGUNTA, cpregunta);
@@ -87,6 +98,7 @@ public class ControladorLogin {
                 preguntaDes = dato.toString();
             }
         }
-        return preguntaDes;
+        return preguntaDes;*/
+        return "Cual es tu numero favorito";
     }
 }

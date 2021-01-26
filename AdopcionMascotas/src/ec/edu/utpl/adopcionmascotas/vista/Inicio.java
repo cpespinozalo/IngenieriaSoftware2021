@@ -1,13 +1,18 @@
 package ec.edu.utpl.adopcionmascotas.vista;
 
+import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  * Interfaz de Inicio de la aplicacion
@@ -17,7 +22,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Inicio extends javax.swing.JFrame {
 
+    private Sesion sesion;
+    
     private List<JPanel> mascotas;
+    private boolean isLogged = false;
     private int reg;
     private int posX;
     private int posY;
@@ -28,7 +36,11 @@ public class Inicio extends javax.swing.JFrame {
         
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            javax.swing.UIManager.put("OptionPane.background",new ColorUIResource(41,41,41));
+            javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
+            javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
             initComponents();
+            
             reg = 1;
             posX = 10;
             posY = 68;
@@ -77,6 +89,7 @@ public class Inicio extends javax.swing.JFrame {
         btnVerMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVer.png")));
         btnVerMascota.setToolTipText("Ver la mascota.");
         btnVerMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerMascota.setEnabled(isLogged);
         panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
         
         
@@ -90,7 +103,7 @@ public class Inicio extends javax.swing.JFrame {
         observaciones.setEditable(false);
         observaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         observaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
-        observaciones.setText("Esta mas cota es muy juguetona y cariñosa, tiene todas sus vacunas al dia y está muy sana. Es obediente y tranquila cuando se lo pide. Le encanta salir al parque y...");
+        observaciones.setText("Esta mascota es muy juguetona y cariñosa, tiene todas sus vacunas al dia y está muy sana. Es obediente y tranquila cuando se lo pide. Le encanta salir al parque y...");
         observaciones.setAutoscrolls(false);
         observaciones.setCaretColor(new java.awt.Color(255, 255, 255));
         scrObservaciones.setViewportView(observaciones);
@@ -174,12 +187,22 @@ public class Inicio extends javax.swing.JFrame {
         btnInicioAdopciones.setToolTipText("Inicia una adopción.");
         btnInicioAdopciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioAdopciones.setOpaque(false);
+        btnInicioAdopciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioAdopcionesActionPerformed(evt);
+            }
+        });
         panInicioLateral.add(btnInicioAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 185, 60));
 
         btnInicioUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUsuarios.png"))); // NOI18N
         btnInicioUsuarios.setToolTipText("Conoce nuestros usuarios.");
         btnInicioUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioUsuarios.setOpaque(false);
+        btnInicioUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioUsuariosActionPerformed(evt);
+            }
+        });
         panInicioLateral.add(btnInicioUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 185, 60));
 
         btnInicioVeterinaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVeterinaria.png"))); // NOI18N
@@ -187,6 +210,11 @@ public class Inicio extends javax.swing.JFrame {
         btnInicioVeterinaria.setBorder(null);
         btnInicioVeterinaria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicioVeterinaria.setOpaque(false);
+        btnInicioVeterinaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioVeterinariaActionPerformed(evt);
+            }
+        });
         panInicioLateral.add(btnInicioVeterinaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 185, 60));
 
         btnInicioNosotros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnNosotros.png"))); // NOI18N
@@ -255,13 +283,12 @@ public class Inicio extends javax.swing.JFrame {
 
         lblInicioBienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblInicioBienvenida.setForeground(new java.awt.Color(255, 255, 255));
-        lblInicioBienvenida.setText("Bienvenido,");
-        panInicioSuperior.add(lblInicioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, -1, 20));
+        lblInicioBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        panInicioSuperior.add(lblInicioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 20, 180, 20));
 
         lblInicioNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblInicioNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblInicioNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblInicioNombre.setText("Cristian Paúl Espinoza");
         panInicioSuperior.add(lblInicioNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 40, 330, 20));
 
         getContentPane().add(panInicioSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 0, 1675, 150));
@@ -374,7 +401,13 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInicioSalirActionPerformed
 
     private void btnInicioRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioRegistrarActionPerformed
-        // TODO add your handling code here:
+        try {
+            GestionUsuario gestionUsuario = new GestionUsuario(sesion, null, "NUEVO");
+            gestionUsuario.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnInicioRegistrarActionPerformed
 
     private void btnInicioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioLoginActionPerformed
@@ -384,15 +417,38 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnInicioLoginActionPerformed
 
+    private void btnInicioVeterinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioVeterinariaActionPerformed
+        
+        if(isLogged){
+            
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para visualizar las veterinarias.","Veterinarias",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnInicioVeterinariaActionPerformed
+
+    private void btnInicioAdopcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAdopcionesActionPerformed
+        if(isLogged){
+            GestionMascota mascota = new GestionMascota(sesion);
+            mascota.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para gestionar las adopciones.","Adopciones",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnInicioAdopcionesActionPerformed
+
+    private void btnInicioUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioUsuariosActionPerformed
+        if(isLogged){
+            
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para gestionar los usuarios.","Usuarios",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnInicioUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -419,6 +475,27 @@ public class Inicio extends javax.swing.JFrame {
         });
         
         
+    }
+
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
+        lblInicioBienvenida.setText("Bienvenido,");
+        lblInicioNombre.setText(this.sesion.getNombreUsuario());
+        final String avatar = "H".equals(this.sesion.getGenero()) ? "Hombre" : "Mujer";    
+        lblInicioAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource(String.format("/images/img%s.png", avatar))));
+    }
+
+    public boolean isIsLogged() {
+        return isLogged;
+    }
+
+    public void setIsLogged(boolean isLogged) {
+        this.isLogged = isLogged;
+    }
+    
+    public void disableLogin(){
+        btnInicioRegistrar.setEnabled(false);
+        btnInicioLogin.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

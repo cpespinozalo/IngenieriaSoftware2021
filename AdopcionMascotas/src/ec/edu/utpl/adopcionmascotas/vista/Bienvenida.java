@@ -63,7 +63,7 @@ public class Bienvenida extends javax.swing.JFrame {
         panBienvenida.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbRol.setToolTipText("Rol asignado al usuario");
-        panBienvenida.add(cmbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 35, 220, -1));
+        panBienvenida.add(cmbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 35, 200, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.setToolTipText("Enviar al menu principal");
@@ -72,30 +72,30 @@ public class Bienvenida extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        panBienvenida.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 100, 30));
+        panBienvenida.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 100, 30));
 
         lblRol.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblRol.setForeground(new java.awt.Color(255, 255, 255));
         lblRol.setText("Rol:");
-        panBienvenida.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 35, 90, 20));
+        panBienvenida.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 35, 50, 20));
 
-        getContentPane().add(panBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 500, 230));
+        getContentPane().add(panBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 500, 130));
 
         panTituloBienvenida.setBackground(new java.awt.Color(255, 54, 54));
         panTituloBienvenida.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIconoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgIconoUtpl.png"))); // NOI18N
-        panTituloBienvenida.add(lblIconoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        lblIconoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPequeño.png"))); // NOI18N
+        panTituloBienvenida.add(lblIconoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 94, 50));
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Bienvenido,");
-        panTituloBienvenida.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 350, 20));
+        panTituloBienvenida.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 350, 20));
 
         lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreUsuario.setText("Nombre Usuario");
-        panTituloBienvenida.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 350, 30));
+        panTituloBienvenida.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 350, 30));
 
         getContentPane().add(panTituloBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 70));
 
@@ -103,7 +103,12 @@ public class Bienvenida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        Inicio inicio = new Inicio();
+        inicio.setSesion(sesion);
+        inicio.setIsLogged(true);
+        inicio.setVisible(true);
+        inicio.disableLogin();
+        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     

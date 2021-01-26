@@ -143,20 +143,20 @@ public class RecuperacionLogin extends javax.swing.JFrame {
         panencabezadoRec.setBackground(new java.awt.Color(41, 41, 41));
         panencabezadoRec.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIconoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgIconoUtpl.png"))); // NOI18N
-        panencabezadoRec.add(lblIconoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 15, -1, -1));
+        lblIconoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPequeño.png"))); // NOI18N
+        panencabezadoRec.add(lblIconoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 15, 94, 50));
 
         lblTituloRecuperacion1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTituloRecuperacion1.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloRecuperacion1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloRecuperacion1.setText("Sistema");
-        panencabezadoRec.add(lblTituloRecuperacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 15, 300, 20));
+        panencabezadoRec.add(lblTituloRecuperacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 15, 300, 20));
 
         lblTituloRecuperacion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTituloRecuperacion.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloRecuperacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTituloRecuperacion.setText("Adopción de Mascotas");
-        panencabezadoRec.add(lblTituloRecuperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 35, 300, 30));
+        panencabezadoRec.add(lblTituloRecuperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 35, 300, 30));
 
         getContentPane().add(panencabezadoRec, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 80));
         panencabezadoRec.getAccessibleContext().setAccessibleParent(this);

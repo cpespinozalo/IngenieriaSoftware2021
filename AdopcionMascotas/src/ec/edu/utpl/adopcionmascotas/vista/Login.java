@@ -18,6 +18,7 @@ public class Login extends javax.swing.JFrame {
     private ControladorLogin login;
     private Validacion validacion;
     private Integer cpregunta;
+    
     /**
      * Constructor
      */
@@ -175,6 +176,7 @@ public class Login extends javax.swing.JFrame {
             if(validacion.validarCamposVacios(user, password, respuesta)) {
                 if(login.existeUsuario(user, this.cpregunta)){
                     if(login.validarRespuesta(respuesta)){
+                        
                         if(login.loginUsuario(password)){
                             Bienvenida mensaje = new Bienvenida(login.cusuario, user);
                             mensaje.setVisible(true);
@@ -217,7 +219,7 @@ public class Login extends javax.swing.JFrame {
         this.cpregunta = (int) (Math.random()*4)+1;
         this.lblPregunta.setText(login.getPregunta(cpregunta));
     }//GEN-LAST:event_btnRefreshActionPerformed
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
