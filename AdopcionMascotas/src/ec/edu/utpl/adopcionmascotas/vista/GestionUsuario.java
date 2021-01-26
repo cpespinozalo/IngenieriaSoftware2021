@@ -12,6 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Interfaz de Gestión de Usuario
+ * 
+ * @author Grupo 3 - Ingeniería de Software
+ * @version 1.0
+ */
+
 public class GestionUsuario extends javax.swing.JFrame {
     
     private Sesion sesion;
@@ -147,7 +154,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblTituloPrincipal.setBackground(new java.awt.Color(255, 153, 51));
         lblTituloPrincipal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTituloPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloPrincipal.setText("Adopción de mascotas UTPL");
+        lblTituloPrincipal.setText("Adopción de Mascotas");
         panTitulo.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 35, 300, 30));
 
         getContentPane().add(panTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 80));
