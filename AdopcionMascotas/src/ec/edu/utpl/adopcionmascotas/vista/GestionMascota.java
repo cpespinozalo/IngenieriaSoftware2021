@@ -55,7 +55,7 @@ public class GestionMascota extends javax.swing.JFrame {
         lblCorreoUsuario1 = new javax.swing.JLabel();
         lblIngresarPass = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        txtPassword1 = new javax.swing.JPasswordField();
         panInferior = new javax.swing.JPanel();
         btnAceptarEmpresa = new javax.swing.JButton();
         btnRegresarEmpresa = new javax.swing.JButton();
@@ -143,10 +143,8 @@ public class GestionMascota extends javax.swing.JFrame {
         lblIngresarPass.setForeground(new java.awt.Color(255, 255, 255));
         lblIngresarPass.setText("Tipo:");
         panCentral.add(lblIngresarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 110, 30));
-        panCentral.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 220, 30));
-
-        cmbEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        panCentral.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 180, 30));
+        panCentral.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 220, 30));
+        panCentral.add(txtPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 220, 30));
 
         getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1000, 650));
 
@@ -204,7 +202,6 @@ public class GestionMascota extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarEmpresa;
     private javax.swing.JButton btnRegresarEmpresa;
-    private javax.swing.JComboBox<String> cmbEstadoUsuario;
     private javax.swing.JLabel lblApellidoUsuario;
     private javax.swing.JLabel lblCorreoUsuario1;
     private javax.swing.JLabel lblDatoUsuario;
@@ -224,5 +221,6 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidosUsuario;
     private javax.swing.JTextField txtNombreUsuario;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtPassword1;
     // End of variables declaration//GEN-END:variables
 }
