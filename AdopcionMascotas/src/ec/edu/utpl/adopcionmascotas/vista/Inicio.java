@@ -364,11 +364,9 @@ public class Inicio extends javax.swing.JFrame {
 
         lblInicioTituloMascotas.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblInicioTituloMascotas.setForeground(new java.awt.Color(255, 54, 54));
-        lblInicioTituloMascotas.setText("Conoce nuestras mascotas...");
         panInicioListadoMascotas.add(lblInicioTituloMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 5, 600, 30));
 
         lblInicioSubtituloMascotas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas disponibles para adopción, las cuales tienen todas sus vacunas y estan listas para ir contigo:");
         panInicioListadoMascotas.add(lblInicioSubtituloMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 690, 20));
 
         scrInicioMascotas.setViewportView(panInicioListadoMascotas);
@@ -380,6 +378,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnVerMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMascotasActionPerformed
         
+        lblInicioTituloMascotas.setText("Conoce nuestras mascotas...");
+        lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas disponibles para adopción, las cuales tienen todas sus vacunas y estan listas para ir contigo:");
         
         if(reg % 2 == 0) {
             posX = 810;
@@ -419,6 +419,8 @@ public class Inicio extends javax.swing.JFrame {
     private void btnMisAdopcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisAdopcionesActionPerformed
         
         if(isLogged){
+            lblInicioTituloMascotas.setText("Estas son tus adopciones...");
+            lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas adoptadas por tí:");
             
         } else {
             JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para visualizar las veterinarias.","Veterinarias",JOptionPane.WARNING_MESSAGE);
@@ -437,7 +439,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnMisMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisMascotasActionPerformed
         if(isLogged){
-            
+            lblInicioTituloMascotas.setText("Estas son tus mascotas publicadas...");
+            lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas publicadas por tí y que están en busca de un hogar:");
         } else {
             JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para gestionar los usuarios.","Usuarios",JOptionPane.WARNING_MESSAGE);
         }

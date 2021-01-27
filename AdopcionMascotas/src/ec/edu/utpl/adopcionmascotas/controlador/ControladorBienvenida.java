@@ -60,7 +60,7 @@ public class ControladorBienvenida implements Serializable {
     
     public void getDatosCombo(JComboBox<String> combo) {
        
-        /*List<Object> datos =  getRolUsuario(cusuario);
+        List<Object> datos =  getRolUsuario(cusuario);
         for(Object dato : datos){
             Object [] arreglo;
             arreglo = (Object [])dato;
@@ -68,19 +68,14 @@ public class ControladorBienvenida implements Serializable {
             sesion.setNombreRol(arreglo[1].toString());
             sesion.setDescripcionRol(arreglo[2].toString());
             combo.addItem(arreglo[2].toString());
-        }*/
-        combo.addItem("Uusario normal");
+        }
     }
     
     public List<Object> getDatosSesion(String usuario){
         
-        /*List<Object> resultado;
+        List<Object> resultado;
         Cliente cliente = new Cliente();
         resultado = cliente.query(SQL_SELECT_SESION, usuario);
-        return resultado;*/
-        List<Object> resultado = new ArrayList<>();
-        Object[] fila = {"Cristian Espinoza López","H"};
-        resultado.add(fila);
         return resultado;
     }
     

@@ -37,11 +37,13 @@ public class GestionMascota extends javax.swing.JFrame {
     }
     
     private void loadCatalogo(){
-        /*Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("CIUDADES", cmbCiudadEmpresa);
-        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaEmpresa);
-        catalogo.setComboCatalogo("PAISES", cmbPaisEmpresa);
-        getInfoMascota();*/
+        Catalogo catalogo = new Catalogo();
+        catalogo.setComboCatalogo("CIUDADES", cmbCiudadMascota);
+        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaMascota);
+        catalogo.setComboCatalogo("TIPOMASCOTA", cmbTipoMascota);
+        catalogo.setComboCatalogo("UNIDADES", cmbUnidadMascota);
+        catalogo.setComboCatalogo("ESTADOMASCOTA", cmbEstadoMascota);
+        getInfoMascota();
     }
     
     @SuppressWarnings("unchecked")
@@ -66,7 +68,7 @@ public class GestionMascota extends javax.swing.JFrame {
         txtPropietarioMascota = new javax.swing.JTextField();
         txtDireccionMascota = new javax.swing.JTextField();
         cmbCiudadMascota = new javax.swing.JComboBox<>();
-        cmbProvinciaMascota1 = new javax.swing.JComboBox<>();
+        cmbProvinciaMascota = new javax.swing.JComboBox<>();
         txtTelefonoMascota = new javax.swing.JTextField();
         txtCorreoMascota = new javax.swing.JTextField();
         cmbEstadoMascota = new javax.swing.JComboBox<>();
@@ -165,6 +167,11 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(txtEdadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
 
         cmbUnidadMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbUnidadMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbUnidadMascotaActionPerformed(evt);
+            }
+        });
         panCentral.add(cmbUnidadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 30));
 
         txtGeneroMascota.setBackground(new java.awt.Color(255, 255, 204));
@@ -193,8 +200,13 @@ public class GestionMascota extends javax.swing.JFrame {
         cmbCiudadMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         panCentral.add(cmbCiudadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 230, 30));
 
-        cmbProvinciaMascota1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        panCentral.add(cmbProvinciaMascota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
+        cmbProvinciaMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbProvinciaMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProvinciaMascotaActionPerformed(evt);
+            }
+        });
+        panCentral.add(cmbProvinciaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
 
         txtTelefonoMascota.setBackground(new java.awt.Color(255, 255, 204));
         txtTelefonoMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -354,8 +366,8 @@ public class GestionMascota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdoptarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptarMascotaActionPerformed
-           //setInfoMascota();
-           //mascota.newMascota();
+           setInfoMascota();
+           mascota.newMascota();
            JOptionPane.showMessageDialog(rootPane,"Se ha publicado correctamente la mascota.","Publicación de Mascotas",JOptionPane.INFORMATION_MESSAGE);
            volver(sesion);
     }//GEN-LAST:event_btnAdoptarMascotaActionPerformed
@@ -363,6 +375,14 @@ public class GestionMascota extends javax.swing.JFrame {
     private void btnRegresarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMascotaActionPerformed
         volver(sesion);
     }//GEN-LAST:event_btnRegresarMascotaActionPerformed
+
+    private void cmbProvinciaMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvinciaMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProvinciaMascotaActionPerformed
+
+    private void cmbUnidadMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUnidadMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbUnidadMascotaActionPerformed
 
     
     private void setInfoMascota(){
@@ -377,7 +397,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private void getInfoMascota(){
         if(this.mascota != null){
             txtCodigoMascota.setText(mascota.getCmascota().toString());
-            txtNombreMascota.setText(mascota.getIdentificacion());
+            txtNombreMascota.setText(mascota.getNombremascota());
             txtPropietarioMascota.setText(mascota.getNombremascota());
             txtDireccionMascota.setText(mascota.getDireccion());
             txtTelefonoMascota.setText(mascota.getTelefono());
@@ -388,7 +408,7 @@ public class GestionMascota extends javax.swing.JFrame {
         public void volver(Sesion sesion){
             Inicio inicio = new Inicio();
             inicio.setIsLogged(true);
-            //inicio.setSesion(sesion);
+            inicio.setSesion(sesion);
             inicio.disableLogin();
             inicio.setVisible(true);
             this.dispose();      
@@ -399,7 +419,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresarMascota;
     private javax.swing.JComboBox<String> cmbCiudadMascota;
     private javax.swing.JComboBox<String> cmbEstadoMascota;
-    private javax.swing.JComboBox<String> cmbProvinciaMascota1;
+    private javax.swing.JComboBox<String> cmbProvinciaMascota;
     private javax.swing.JComboBox<String> cmbTipoMascota;
     private javax.swing.JComboBox<String> cmbUnidadMascota;
     private javax.swing.JLabel lblCiudad;

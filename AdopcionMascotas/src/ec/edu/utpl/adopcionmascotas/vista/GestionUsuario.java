@@ -361,8 +361,8 @@ public class GestionUsuario extends javax.swing.JFrame {
        
         try {
             if(ACCION_NUEVO.equals(cambio)) {
-               //setInfoUsuario();
-               //usuario.newUsuario();
+               setInfoUsuario();
+               usuario.newUsuario();
                JOptionPane.showMessageDialog(rootPane,"Se ha creado correctamente el usuario.","Usuarios del Sistema",JOptionPane.INFORMATION_MESSAGE);
                volver(sesion, false);
            } else if(ACCION_EDITAR.equals(cambio)) {
@@ -482,7 +482,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         Integer coordenadaY = 445;
         List<Object> lista;
         Cliente cliente = new Cliente();
-        lista = cliente.query("SELECT NVL2(RU.CROL,1,0) ACTIVO, RO.DESCRIPCION, RO.NOMBRE FROM CONTABILIDAD.TROLUSUARIO RU, CONTABILIDAD.TROL RO WHERE RO.CROL=RU.CROL(+) AND RU.ACTIVO(+)=1 AND RO.ACTIVO=1 AND RU.CUSUARIO(+)=? ", cusuario);
+        lista = cliente.query("SELECT NVL2(RU.CROL,1,0) ACTIVO, RO.DESCRIPCION, RO.NOMBRE FROM MASCOTAS.TROLUSUARIO RU, MASCOTAS.TROL RO WHERE RO.CROL=RU.CROL(+) AND RU.ACTIVO(+)=1 AND RO.ACTIVO=1 AND RU.CUSUARIO(+)=? ", cusuario);
         for(Object dato : lista){
             Object [] arreglo;
             arreglo = (Object [])dato;

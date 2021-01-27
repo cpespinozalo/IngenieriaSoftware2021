@@ -37,11 +37,10 @@ public class AdopcionMascota extends javax.swing.JFrame {
     }
     
     private void loadCatalogo(){
-        /*Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("CIUDADES", cmbCiudadEmpresa);
-        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaEmpresa);
-        catalogo.setComboCatalogo("PAISES", cmbPaisEmpresa);
-        getInfoMascota();*/
+        Catalogo catalogo = new Catalogo();
+        catalogo.setComboCatalogo("CIUDADES", cmbCiudadMascota);
+        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaMascota);
+        getInfoMascota();
     }
     
     @SuppressWarnings("unchecked")
@@ -354,8 +353,8 @@ public class AdopcionMascota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdoptarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptarMascotaActionPerformed
-           //setInfoMascota();
-           //mascota.newMascota();
+           setInfoMascota();
+           mascota.newMascota();
            JOptionPane.showMessageDialog(rootPane,"Se ha adoptado correctamente la mascota.","Adopcion de Mascotas",JOptionPane.INFORMATION_MESSAGE);
            volver(sesion);
     }//GEN-LAST:event_btnAdoptarMascotaActionPerformed
