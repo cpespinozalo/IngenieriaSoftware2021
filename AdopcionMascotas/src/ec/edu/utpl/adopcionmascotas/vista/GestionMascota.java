@@ -4,8 +4,11 @@ import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -99,6 +102,8 @@ public class GestionMascota extends javax.swing.JFrame {
         panFotosMascota = new javax.swing.JPanel();
         lblLogoEmpresa1 = new javax.swing.JLabel();
         lblInfo1 = new javax.swing.JLabel();
+        panBoton = new javax.swing.JPanel();
+        btnAgregarFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -225,7 +230,8 @@ public class GestionMascota extends javax.swing.JFrame {
         lblDatosMascota.setText("Publicar una Mascota");
         panCentral.add(lblDatosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, 440, 25));
 
-        lblInfoMascota.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblInfoMascota.setForeground(new java.awt.Color(255, 204, 0));
         lblInfoMascota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblInfoMascota.setText("Información del propietario:");
         panCentral.add(lblInfoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 680, 20));
@@ -240,8 +246,8 @@ public class GestionMascota extends javax.swing.JFrame {
         lblPublicación.setText("Fecha Adopción:");
         panCentral.add(lblPublicación, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 110, 30));
 
-        lblFechaIngreso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblFechaIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaIngreso.setForeground(new java.awt.Color(255, 204, 0));
+        lblFechaIngreso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaIngreso.setText("01/06/2020 11:32:14");
         panCentral.add(lblFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 120, 30));
 
@@ -314,8 +320,8 @@ public class GestionMascota extends javax.swing.JFrame {
         lblPublicación1.setText("Fecha Publicación:");
         panCentral.add(lblPublicación1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 110, 30));
 
-        lblFechaIngreso1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblFechaIngreso1.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaIngreso1.setForeground(new java.awt.Color(255, 204, 0));
+        lblFechaIngreso1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaIngreso1.setText("15/05/2020 17:25:36");
         panCentral.add(lblFechaIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 120, 30));
 
@@ -360,7 +366,20 @@ public class GestionMascota extends javax.swing.JFrame {
 
         scrFotosMascota.setViewportView(panFotosMascota);
 
-        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 750, 170));
+        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 600, 170));
+
+        panBoton.setBackground(new java.awt.Color(41, 41, 41));
+        panBoton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAgregarFoto.setText("AGREGAR FOTOS");
+        btnAgregarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarFotoActionPerformed(evt);
+            }
+        });
+        panBoton.add(btnAgregarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 70, 120, 30));
+
+        getContentPane().add(panBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 150, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -383,6 +402,23 @@ public class GestionMascota extends javax.swing.JFrame {
     private void cmbUnidadMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUnidadMascotaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbUnidadMascotaActionPerformed
+
+    private void btnAgregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFotoActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter imgFilter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+        fileChooser.setFileFilter(imgFilter);
+        int result = fileChooser.showOpenDialog(this);
+        if (result != JFileChooser.CANCEL_OPTION) {
+            File fileName = fileChooser.getSelectedFile();
+            if ((fileName == null) || (fileName.getName().equals(""))) {
+                System.out.println("...");
+            } else {
+                System.out.println(fileName.getAbsolutePath());
+            }
+        }
+        
+    }//GEN-LAST:event_btnAgregarFotoActionPerformed
 
     
     private void setInfoMascota(){
@@ -416,6 +452,7 @@ public class GestionMascota extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdoptarMascota;
+    private javax.swing.JButton btnAgregarFoto;
     private javax.swing.JButton btnRegresarMascota;
     private javax.swing.JComboBox<String> cmbCiudadMascota;
     private javax.swing.JComboBox<String> cmbEstadoMascota;
@@ -448,6 +485,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono1;
     private javax.swing.JLabel lblTipoMascota;
     private javax.swing.JLabel lblTituloPrincipal;
+    private javax.swing.JPanel panBoton;
     private javax.swing.JPanel panCentral;
     private javax.swing.JPanel panFotosMascota;
     private javax.swing.JPanel panInferior;

@@ -2,6 +2,7 @@ package ec.edu.utpl.adopcionmascotas.vista;
 
 import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
+import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Estado;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
@@ -75,6 +76,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         
         setComboEstados(cmbEstadoUsuario);
         setComboActivo(cmbActivo);
+        setComboCiudadProvincia();
         if(ACCION_EDITAR.equals(cambio) || ACCION_ELIMINAR.equals(cambio)) {
            getInfoUsuario();
        } 
@@ -103,19 +105,29 @@ public class GestionUsuario extends javax.swing.JFrame {
         txtNombreUsuario = new javax.swing.JTextField();
         lblApellidoUsuario = new javax.swing.JLabel();
         txtApellidosUsuario = new javax.swing.JTextField();
+        lblDireccionUsuario = new javax.swing.JLabel();
+        txtDireccionUsuario = new javax.swing.JTextField();
+        lblProvinciaUsuario = new javax.swing.JLabel();
+        cmbProvinciaUsuario = new javax.swing.JComboBox<>();
+        lblCiudadUsuario = new javax.swing.JLabel();
+        cmbCiudadUsuario = new javax.swing.JComboBox<>();
         lblCorreoUsuario1 = new javax.swing.JLabel();
         txtEmailUsuario = new javax.swing.JTextField();
         lblGenero = new javax.swing.JLabel();
         radMujer = new javax.swing.JRadioButton();
         radHombre = new javax.swing.JRadioButton();
-        lblIngresarPass = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+        lblTelefonoUsuario = new javax.swing.JLabel();
+        txtTelefonoUsuario = new javax.swing.JTextField();
+        lblDatosUsuario = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        txtUsuarioUsuario = new javax.swing.JTextField();
         lblActivoUsuario = new javax.swing.JLabel();
         cmbActivo = new javax.swing.JComboBox<>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        lblIngresarPass = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         lblPasswordConf = new javax.swing.JLabel();
         txtPasswordConf = new javax.swing.JPasswordField();
-        lblEstadoUsuario = new javax.swing.JLabel();
-        cmbEstadoUsuario = new javax.swing.JComboBox<>();
         lblPreguntasSeguridad = new javax.swing.JLabel();
         lblPregunta1 = new javax.swing.JLabel();
         txtPregunta1 = new javax.swing.JPasswordField();
@@ -157,7 +169,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblTituloPrincipal.setText("Adopción de Mascotas");
         panTitulo.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 35, 300, 30));
 
-        getContentPane().add(panTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 80));
+        getContentPane().add(panTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 80));
 
         panSubtitulo.setBackground(new java.awt.Color(255, 54, 54));
         panSubtitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -167,9 +179,9 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblSubtituloUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSubtituloUsuario.setText("Creación de Usuario en el Sistema");
         lblSubtituloUsuario.setAlignmentX(0.5F);
-        panSubtitulo.add(lblSubtituloUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 390, -1));
+        panSubtitulo.add(lblSubtituloUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 390, -1));
 
-        getContentPane().add(panSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1000, 40));
+        getContentPane().add(panSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 930, 40));
 
         panCentral.setBackground(new java.awt.Color(41, 41, 41));
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -177,20 +189,21 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblDatoUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDatoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblDatoUsuario.setText("Nuevo Usuario");
-        panCentral.add(lblDatoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 440, 25));
+        panCentral.add(lblDatoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 440, 25));
 
         lblInfoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblInfoUsuario.setText("Ingrese la información del nuevo usuario:");
         panCentral.add(lblInfoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 20));
 
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMujer.png"))); // NOI18N
-        panCentral.add(lblFotoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 100, 125));
+        panCentral.add(lblFotoPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 25, 100, 125));
 
         lblCodigoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodigoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoUsuario.setText("Codigo Usuario:");
         panCentral.add(lblCodigoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 115, 30));
 
+        txtUsuario.setBackground(new java.awt.Color(255, 255, 204));
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setToolTipText("Nombre del Usuario");
@@ -200,47 +213,88 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblIdentficacionUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblIdentficacionUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblIdentficacionUsuario.setText("Identificación:");
-        panCentral.add(lblIdentficacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 115, 30));
+        panCentral.add(lblIdentficacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 135, 115, 30));
 
+        txtIdentificacionUsuario.setBackground(new java.awt.Color(255, 255, 204));
         txtIdentificacionUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtIdentificacionUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIdentificacionUsuario.setToolTipText("Nombre del Usuario");
-        panCentral.add(txtIdentificacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 320, 30));
+        panCentral.add(txtIdentificacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 135, 320, 30));
 
         lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreUsuario.setText("Nombres:");
-        panCentral.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 115, 30));
+        panCentral.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 115, 30));
 
+        txtNombreUsuario.setBackground(new java.awt.Color(255, 255, 204));
         txtNombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombreUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreUsuario.setToolTipText("Nombre del Usuario");
-        panCentral.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 320, 30));
+        panCentral.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 320, 30));
 
         lblApellidoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblApellidoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblApellidoUsuario.setText("Apellidos:");
-        panCentral.add(lblApellidoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 110, 30));
+        panCentral.add(lblApellidoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 70, 30));
 
+        txtApellidosUsuario.setBackground(new java.awt.Color(255, 255, 204));
         txtApellidosUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtApellidosUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidosUsuario.setToolTipText("Nombre del Usuario");
-        panCentral.add(txtApellidosUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 320, 30));
+        panCentral.add(txtApellidosUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 320, 30));
+
+        lblDireccionUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblDireccionUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblDireccionUsuario.setText("Dirección:");
+        panCentral.add(lblDireccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 205, 115, 30));
+
+        txtDireccionUsuario.setBackground(new java.awt.Color(255, 255, 204));
+        txtDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtDireccionUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtDireccionUsuario.setToolTipText("Nombre del Usuario");
+        panCentral.add(txtDireccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 205, 750, 30));
+
+        lblProvinciaUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblProvinciaUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblProvinciaUsuario.setText("Provincia:");
+        panCentral.add(lblProvinciaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 115, 30));
+
+        cmbProvinciaUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbProvinciaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProvinciaUsuarioActionPerformed(evt);
+            }
+        });
+        panCentral.add(cmbProvinciaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 220, 30));
+
+        lblCiudadUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCiudadUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblCiudadUsuario.setText("Ciudad:");
+        panCentral.add(lblCiudadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 70, 30));
+
+        cmbCiudadUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbCiudadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCiudadUsuarioActionPerformed(evt);
+            }
+        });
+        panCentral.add(cmbCiudadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 220, 30));
 
         lblCorreoUsuario1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCorreoUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         lblCorreoUsuario1.setText("Email:");
-        panCentral.add(lblCorreoUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 115, 30));
+        panCentral.add(lblCorreoUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 275, 115, 30));
 
+        txtEmailUsuario.setBackground(new java.awt.Color(255, 255, 204));
         txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtEmailUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtEmailUsuario.setToolTipText("Nombre del Usuario");
-        panCentral.add(txtEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 320, 30));
+        panCentral.add(txtEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 275, 320, 30));
 
         lblGenero.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblGenero.setForeground(new java.awt.Color(255, 255, 255));
         lblGenero.setText("Género:");
-        panCentral.add(lblGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 110, 30));
+        panCentral.add(lblGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 275, 70, 30));
 
         ragGenero.add(radMujer);
         radMujer.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,7 +306,7 @@ public class GestionUsuario extends javax.swing.JFrame {
                 radMujerActionPerformed(evt);
             }
         });
-        panCentral.add(radMujer, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, -1, 30));
+        panCentral.add(radMujer, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 275, -1, 30));
 
         ragGenero.add(radHombre);
         radHombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,18 +317,40 @@ public class GestionUsuario extends javax.swing.JFrame {
                 radHombreActionPerformed(evt);
             }
         });
-        panCentral.add(radHombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, -1, 30));
+        panCentral.add(radHombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 275, -1, 30));
 
-        lblIngresarPass.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblIngresarPass.setForeground(new java.awt.Color(255, 255, 255));
-        lblIngresarPass.setText("Ingresar/Modificar Contraseña:");
-        panCentral.add(lblIngresarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 210, 30));
-        panCentral.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 220, 30));
+        lblTelefonoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTelefonoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblTelefonoUsuario.setText("Teléfono:");
+        panCentral.add(lblTelefonoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 115, 30));
+
+        txtTelefonoUsuario.setBackground(new java.awt.Color(255, 255, 204));
+        txtTelefonoUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtTelefonoUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTelefonoUsuario.setToolTipText("Nombre del Usuario");
+        panCentral.add(txtTelefonoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 220, 30));
+
+        lblDatosUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblDatosUsuario.setForeground(new java.awt.Color(255, 204, 0));
+        lblDatosUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDatosUsuario.setText("Datos de Usuario:");
+        panCentral.add(lblDatosUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 355, 880, 30));
+
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setText("Usuario:");
+        panCentral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 115, 30));
+
+        txtUsuarioUsuario.setBackground(new java.awt.Color(255, 255, 204));
+        txtUsuarioUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtUsuarioUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtUsuarioUsuario.setToolTipText("Nombre del Usuario");
+        panCentral.add(txtUsuarioUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 220, 30));
 
         lblActivoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblActivoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblActivoUsuario.setText("Usuario Vigente:");
-        panCentral.add(lblActivoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 150, 30));
+        panCentral.add(lblActivoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 390, 150, 30));
 
         cmbActivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmbActivo.addActionListener(new java.awt.event.ActionListener() {
@@ -282,52 +358,66 @@ public class GestionUsuario extends javax.swing.JFrame {
                 cmbActivoActionPerformed(evt);
             }
         });
-        panCentral.add(cmbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 100, 30));
+        panCentral.add(cmbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 30));
+
+        cmbEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        panCentral.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 200, 30));
+
+        lblIngresarPass.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblIngresarPass.setForeground(new java.awt.Color(255, 255, 255));
+        lblIngresarPass.setText("Contraseña:");
+        panCentral.add(lblIngresarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 425, 115, 30));
+
+        txtPassword.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 425, 220, 30));
 
         lblPasswordConf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPasswordConf.setForeground(new java.awt.Color(255, 255, 255));
         lblPasswordConf.setText("Confirmar Contraseña:");
-        panCentral.add(lblPasswordConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 210, 30));
-        panCentral.add(txtPasswordConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 220, 30));
+        panCentral.add(lblPasswordConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 425, 150, 30));
 
-        lblEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblEstadoUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblEstadoUsuario.setText("Estado del Usuario:");
-        panCentral.add(lblEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 150, 30));
-
-        cmbEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        panCentral.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 180, 30));
+        txtPasswordConf.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPasswordConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 425, 220, 30));
 
         lblPreguntasSeguridad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblPreguntasSeguridad.setForeground(new java.awt.Color(255, 255, 255));
+        lblPreguntasSeguridad.setForeground(new java.awt.Color(255, 204, 0));
+        lblPreguntasSeguridad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPreguntasSeguridad.setText("Preguntas de Seguridad:");
-        panCentral.add(lblPreguntasSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 450, 30));
+        panCentral.add(lblPreguntasSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 880, 30));
 
         lblPregunta1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta1.setForeground(new java.awt.Color(255, 255, 255));
         lblPregunta1.setText("¿Cuál es el nombre de su abuela materna?");
-        panCentral.add(lblPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 240, 30));
-        panCentral.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 320, 30));
+        panCentral.add(lblPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 505, 240, 30));
+
+        txtPregunta1.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 505, 370, 30));
 
         lblPregunta2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta2.setForeground(new java.awt.Color(255, 255, 255));
         lblPregunta2.setText("¿Cuál fue la marca de su primer vehículo?");
-        panCentral.add(lblPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 240, 30));
-        panCentral.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 320, 30));
+        panCentral.add(lblPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 240, 30));
+
+        txtPregunta2.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 370, 30));
 
         lblPregunta3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta3.setForeground(new java.awt.Color(255, 255, 255));
         lblPregunta3.setText("¿Cuál es su color favorito?");
-        panCentral.add(lblPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 240, 30));
-        panCentral.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 320, 30));
+        panCentral.add(lblPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 575, 240, 30));
+
+        txtPregunta3.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 575, 370, 30));
 
         lblPregunta4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta4.setForeground(new java.awt.Color(255, 255, 255));
         lblPregunta4.setText("¿Cuál es su comida preferida?");
-        panCentral.add(lblPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 240, 30));
-        panCentral.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 320, 30));
+        panCentral.add(lblPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 240, 30));
 
-        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1000, 650));
+        txtPregunta4.setBackground(new java.awt.Color(255, 255, 204));
+        panCentral.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 370, 30));
+
+        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 930, 650));
 
         panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -352,7 +442,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panInferior.add(btnRegresarEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 15, 100, 40));
         btnRegresarEmpresa.getAccessibleContext().setAccessibleDescription("Editar");
 
-        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 1000, 70));
+        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 930, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -400,9 +490,17 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgHombre.png")));
     }//GEN-LAST:event_radHombreActionPerformed
 
+    private void cmbCiudadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCiudadUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCiudadUsuarioActionPerformed
+
     private void cmbActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbActivoActionPerformed
+
+    private void cmbProvinciaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvinciaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProvinciaUsuarioActionPerformed
 
     
     private void setInfoUsuario(){
@@ -414,14 +512,14 @@ public class GestionUsuario extends javax.swing.JFrame {
         usuario.setApellidos(txtApellidosUsuario.getText());
         usuario.setUsuario(txtUsuario.getText());
         usuario.setPassword(password);
-        usuario.setCorreo(txtEmailUsuario.getText());
+        usuario.setCorreo(txtUsuarioUsuario.getText());
         if(radMujer.isSelected()){
             usuario.setGenero("M");
         } else {
             usuario.setGenero("H");
         }
         estado = (Estado) cmbEstadoUsuario.getSelectedItem();
-        activo = (Estado) cmbActivo.getSelectedItem();
+        activo = (Estado) cmbCiudadUsuario.getSelectedItem();
         usuario.setCestado(estado.getCestado() != null ? estado.getCestado() : null);
         usuario.setActivo(activo.getCestado() != null ? activo.getCestado() : null);
         setIcon();
@@ -445,7 +543,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             usuario.getUsuario(this.cusuario);
             txtUsuario.setText(this.cusuario.toString());
             txtIdentificacionUsuario.setText(usuario.getIdentificacion());
-            txtEmailUsuario.setText(usuario.getCorreo());
+            txtUsuarioUsuario.setText(usuario.getCorreo());
             txtNombreUsuario.setText(usuario.getNombres());
             txtApellidosUsuario.setText(usuario.getApellidos());
             txtUsuario.setText(usuario.getUsuario());
@@ -459,7 +557,7 @@ public class GestionUsuario extends javax.swing.JFrame {
                 radHombre.setSelected(true);
             }  
             activo = new Estado(usuario.getActivo(),usuario.getDactivo());
-            cmbActivo.getModel().setSelectedItem(activo);
+            cmbCiudadUsuario.getModel().setSelectedItem(activo);
             estado = new Estado(usuario.getCestado(),usuario.getEstado());
             cmbEstadoUsuario.getModel().setSelectedItem(estado);
             setIcon();        
@@ -518,6 +616,12 @@ public class GestionUsuario extends javax.swing.JFrame {
         combo.addItem(new Estado("1","SI"));
         combo.addItem(new Estado("0","NO"));
     }
+     
+    private void setComboCiudadProvincia(){
+        Catalogo catalogo = new Catalogo();
+        catalogo.setComboCatalogo("CIUDADES", cmbCiudadUsuario);
+        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaUsuario);
+    }
     
     private void setIcon(){
         
@@ -545,13 +649,17 @@ public class GestionUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarEmpresa;
     private javax.swing.JButton btnRegresarEmpresa;
     private javax.swing.JComboBox<String> cmbActivo;
+    private javax.swing.JComboBox<String> cmbCiudadUsuario;
     private javax.swing.JComboBox<String> cmbEstadoUsuario;
+    private javax.swing.JComboBox<String> cmbProvinciaUsuario;
     private javax.swing.JLabel lblActivoUsuario;
     private javax.swing.JLabel lblApellidoUsuario;
+    private javax.swing.JLabel lblCiudadUsuario;
     private javax.swing.JLabel lblCodigoUsuario;
     private javax.swing.JLabel lblCorreoUsuario1;
     private javax.swing.JLabel lblDatoUsuario;
-    private javax.swing.JLabel lblEstadoUsuario;
+    private javax.swing.JLabel lblDatosUsuario;
+    private javax.swing.JLabel lblDireccionUsuario;
     private javax.swing.JLabel lblFotoPersona;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JLabel lblIcono;
@@ -565,9 +673,12 @@ public class GestionUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblPregunta3;
     private javax.swing.JLabel lblPregunta4;
     private javax.swing.JLabel lblPreguntasSeguridad;
+    private javax.swing.JLabel lblProvinciaUsuario;
     private javax.swing.JLabel lblSubTitulo;
     private javax.swing.JLabel lblSubtituloUsuario;
+    private javax.swing.JLabel lblTelefonoUsuario;
     private javax.swing.JLabel lblTituloPrincipal;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panCentral;
     private javax.swing.JPanel panInferior;
     private javax.swing.JPanel panSubtitulo;
@@ -576,6 +687,7 @@ public class GestionUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButton radMujer;
     private javax.swing.ButtonGroup ragGenero;
     private javax.swing.JTextField txtApellidosUsuario;
+    private javax.swing.JTextField txtDireccionUsuario;
     private javax.swing.JTextField txtEmailUsuario;
     private javax.swing.JTextField txtIdentificacionUsuario;
     private javax.swing.JTextField txtNombreUsuario;
@@ -585,6 +697,8 @@ public class GestionUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPregunta2;
     private javax.swing.JPasswordField txtPregunta3;
     private javax.swing.JPasswordField txtPregunta4;
+    private javax.swing.JTextField txtTelefonoUsuario;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtUsuarioUsuario;
     // End of variables declaration//GEN-END:variables
 }
