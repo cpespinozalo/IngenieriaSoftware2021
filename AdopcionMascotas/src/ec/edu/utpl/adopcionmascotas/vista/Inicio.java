@@ -26,6 +26,7 @@ import javax.swing.plaf.ColorUIResource;
 public class Inicio extends javax.swing.JFrame {
 
     private Sesion sesion;
+    private Mascota mascota;
     private Inicio ini;
     private List<JPanel> mascotas;
     private boolean isLogged = false;
@@ -426,8 +427,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnPublicarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarMascotaActionPerformed
         if(isLogged){
-            GestionMascota mascota = new GestionMascota(sesion);
-            mascota.setVisible(true);
+            GestionMascota gestionMascota = new GestionMascota(sesion, mascota);
+            gestionMascota.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para publicar una mascota.","Adopciones",JOptionPane.WARNING_MESSAGE);
