@@ -108,8 +108,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         
         panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
-        
-        
+            
         JScrollPane scrObservaciones = new JScrollPane();
         scrObservaciones.setBorder(null);
         scrObservaciones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -429,7 +428,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnPublicarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarMascotaActionPerformed
         if(isLogged){
-            GestionMascota gestionMascota = new GestionMascota(sesion, mascota);
+            mascota = null;
+            GestionMascota gestionMascota = new GestionMascota(sesion, mascota, "PUBLICAR");
             gestionMascota.setVisible(true);
             this.dispose();
         } else {
@@ -475,7 +475,6 @@ public class Inicio extends javax.swing.JFrame {
                 new Inicio().setVisible(true);
             }
         });
-        
         
     }
 

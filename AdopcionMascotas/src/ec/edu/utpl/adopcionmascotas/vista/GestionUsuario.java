@@ -602,31 +602,29 @@ public class GestionUsuario extends javax.swing.JFrame {
         }
     }
     
-    public void setComboEstados(JComboBox combo){
-        
+    public void setComboEstados(JComboBox combo){      
         combo.removeAllItems();       
-        combo.addItem(new Estado("ACT","ACTIVO"));
-        combo.addItem(new Estado("BLQ","BLOQUEADO"));
-        combo.addItem(new Estado("CER","CERRADO"));
+        Catalogo catalogo = new Catalogo();
+        catalogo.setComboCatalogo("ESTADOUSUARIO", null, combo);
     }
     
      public void setComboActivo(JComboBox combo){
         
         combo.removeAllItems();       
-        combo.addItem(new Estado("1","SI"));
-        combo.addItem(new Estado("0","NO"));
+        Catalogo catalogo = new Catalogo();
+        catalogo.setComboCatalogo("ACTIVO", null, combo);
     }
      
     private void setComboCiudadProvincia(){
         Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("CIUDADES", cmbCiudadUsuario);
-        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaUsuario);
+        catalogo.setComboCatalogo("PROVINCIAS", null, cmbProvinciaUsuario);
+        catalogo.setComboCatalogo("CIUDADES", "01", cmbCiudadUsuario);
     }
     
     private void setIcon(){
         
         String icon = "";
-        if("M".equals(usuario.getGenero())){
+        if("F".equals(usuario.getGenero())){
             icon = "/images/imgMujer.png";
         } else {
             icon = "/images/imgHombre.png";

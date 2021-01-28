@@ -163,15 +163,14 @@ public class Sesion  implements Serializable {
         
     public boolean newSesion(){
         
-        /*setIdeSesion();
+        setIdeSesion();
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_INSERT, idSesion, usuarioDes, resultado, sistema, codigoUsuario);
         if(registros > 0){
             return true;
         } else {
             return false;
-        }*/
-        return true;
+        }
     }
     
     public boolean updateSesion(){

@@ -117,7 +117,7 @@ public class Catalogo  implements Serializable {
         String detalle = String.format("ACTUALIZACION CATALOGO - %s:%s", codigoCatalogo, nombre);
         
         Cliente cliente = new Cliente();
-        int registros = cliente.execute(SQL_UPDATE, nombre, descripcion, estado, codigoCatalogo);
+        int registros = cliente.execute(SQL_UPDATE, nombre, descripcion, codigoCatalogo);
         if(registros > 0){
             auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
             return true;
@@ -144,12 +144,17 @@ public class Catalogo  implements Serializable {
         }
     }
     
-    public void setComboCatalogo(String catalogo, JComboBox combo){
+    public void setComboCatalogo(String catalogo, String padre, JComboBox combo){
         
         combo.removeAllItems();
         List<Object> resultado;
         Cliente cliente = new Cliente();
-        resultado = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TCATALOGO CA, MASCOTAS.TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? ", catalogo);
+        if(padre != null) {
+           resultado = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TCATALOGO CA, MASCOTAS.TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? AND IT.CODIGOPADRE=? ", catalogo, padre); 
+        } else {
+            resultado = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TCATALOGO CA, MASCOTAS.TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? " , catalogo);
+        }
+        
         for(Object dato : resultado){
             combo.addItem(dato != null ? dato.toString() : "");
         }

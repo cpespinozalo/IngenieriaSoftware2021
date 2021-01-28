@@ -37,9 +37,9 @@ public class AdopcionMascota extends javax.swing.JFrame {
     }
     
     private void loadCatalogo(){
-        Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("CIUDADES", cmbCiudadMascota);
-        catalogo.setComboCatalogo("PROVINCIAS", cmbProvinciaMascota);
+        Catalogo catalogo = new Catalogo();    
+        catalogo.setComboCatalogo("PROVINCIAS", null,cmbProvinciaMascota);
+        catalogo.setComboCatalogo("CIUDADES", "01", cmbCiudadMascota);
         getInfoMascota();
     }
     
@@ -354,9 +354,11 @@ public class AdopcionMascota extends javax.swing.JFrame {
 
     private void btnAdoptarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptarMascotaActionPerformed
            setInfoMascota();
-           mascota.newMascota();
-           JOptionPane.showMessageDialog(rootPane,"Se ha adoptado correctamente la mascota.","Adopcion de Mascotas",JOptionPane.INFORMATION_MESSAGE);
-           volver(sesion);
+           if(mascota.newAdopcionMascota()){
+               JOptionPane.showMessageDialog(rootPane,"Se ha adoptado correctamente la mascota.","Adopcion de Mascotas",JOptionPane.INFORMATION_MESSAGE);
+                volver(sesion);
+           }
+           
     }//GEN-LAST:event_btnAdoptarMascotaActionPerformed
 
     private void btnRegresarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMascotaActionPerformed
@@ -366,30 +368,33 @@ public class AdopcionMascota extends javax.swing.JFrame {
     
     private void setInfoMascota(){
 
-        mascota.setIdentificacion(txtNombreMascota.getText());
-        mascota.setNombremascota(txtPropietarioMascota.getText());
-        mascota.setDireccion(txtDireccionMascota.getText());
-        mascota.setWeb(txtTipoMascota.getText());
-        mascota.setTelefono(txtTelefonoMascota.getText());
-
+        mascota.setCusuarioadopcion(sesion.getUsuario());
+        mascota.setEstadoadopcion("ING");
     }
     
     private void getInfoMascota(){
         if(this.mascota != null){
             txtCodigoMascota.setText(mascota.getCmascota().toString());
-            txtNombreMascota.setText(mascota.getIdentificacion());
-            txtPropietarioMascota.setText(mascota.getNombremascota());
+            lblFechaIngreso.setText(mascota.getFpublicacion());
+            txtNombreMascota.setText(mascota.getNombremascota());
+            txtTipoMascota.setText(mascota.getTipomascota());
+            txtEdadMascota.setText(mascota.getEdad());
+            lblUnidadEdad.setText(mascota.getUnidadedad());
+            txtGeneroMascota.setText(mascota.getGenero());
+            txtObservacionesMascota.setText(mascota.getDescripcion());
+            txtPropietarioMascota.setText(mascota.getPropietario());
             txtDireccionMascota.setText(mascota.getDireccion());
-            txtTipoMascota.setText(mascota.getWeb());
+            cmbCiudadMascota.setSelectedItem(mascota.getCiudad());
+            cmbProvinciaMascota.setSelectedItem(mascota.getProvincia());
             txtTelefonoMascota.setText(mascota.getTelefono());
-
+            txtCorreoMascota.setText(mascota.getCorreo());
         } 
     }
     
         public void volver(Sesion sesion){
             Inicio inicio = new Inicio();
             inicio.setIsLogged(true);
-            //inicio.setSesion(sesion);
+            inicio.setSesion(sesion);
             inicio.disableLogin();
             inicio.setVisible(true);
             this.dispose();      
