@@ -23,13 +23,13 @@ public class Mascota implements Serializable{
     private String edad;
     private String unidadedad;
     private String genero;
+    private String propietario;
+    private String direccion;
+    private String provincia;
     private String descripcion;
     private String cusuariopublicacion;
     private String fpublicacion;
     private String estadomascota;
-    private String propietario;
-    private String direccion;
-    private String provincia;
     private String ciudad;
     private String telefono;
     private String correo;
