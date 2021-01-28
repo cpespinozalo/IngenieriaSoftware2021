@@ -51,6 +51,7 @@ public class GestionMascota extends javax.swing.JFrame {
     }
     
     private void loadCatalogo(){
+        
         Catalogo catalogo = new Catalogo();  
         catalogo.setComboCatalogo("PROVINCIAS", null, cmbProvinciaMascota);
         catalogo.setComboCatalogo("CIUDADES", "01", cmbCiudadMascota);
@@ -62,7 +63,7 @@ public class GestionMascota extends javax.swing.JFrame {
     
     private void setData(){
        
-        loadCatalogo();
+       loadCatalogo();
        if(ACCION_NUEVO.equals(accion)) {
            lblSubtituloAdopcion.setText("Publicar una Mascota");
            lblDatosMascota.setText("Nueva Mascota");
@@ -457,6 +458,7 @@ public class GestionMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMascotaActionPerformed
 
     private void btnAgregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFotoActionPerformed
+        
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         FileNameExtensionFilter imgFilter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
@@ -470,12 +472,11 @@ public class GestionMascota extends javax.swing.JFrame {
                 System.out.println(fileName.getAbsolutePath());
             }
         }
-        
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
 
     
     private void setInfoMascota(){
-
+        
         mascota.setFpublicacion(util.tiempoSistema("dd-MM-yyyy HH:mm:ss"));
         mascota.setNombremascota(txtNombreMascota.getText());
         mascota.setTipomascota(cmbTipoMascota.getSelectedItem().toString());
@@ -536,6 +537,7 @@ public class GestionMascota extends javax.swing.JFrame {
     }
     
     public void volver(Sesion sesion){
+        
         Inicio inicio = new Inicio();
         inicio.setIsLogged(true);
         inicio.setSesion(sesion);

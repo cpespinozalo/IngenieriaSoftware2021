@@ -28,7 +28,6 @@ public class Inicio extends javax.swing.JFrame {
     private Sesion sesion;
     private Mascota mascota;
     private Inicio ini;
-    private List<JPanel> mascotas;
     private boolean isLogged = false;
     private int reg;
     private int posX;
@@ -45,92 +44,12 @@ public class Inicio extends javax.swing.JFrame {
             javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
             initComponents();
             ini = this;
-            reg = 1;
-            posX = 10;
-            posY = 68;
-            mascotas = new ArrayList<>();
             setLocationRelativeTo(null);
         }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
             javax.swing.JOptionPane.showMessageDialog(this.rootPane,"Imposible modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void crearPanelMascota(String nombre, String fecha, String ciudad, Integer edad, Integer x, Integer y){
-        
-        Mascota mascota = new Mascota(1, nombre);
-        JPanel panMascota = new JPanel();
-        panMascota.setBackground(new java.awt.Color(255, 255, 255));
-        panMascota.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        
-        JLabel fotoMascota = new JLabel();
-        fotoMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png")));
-        panMascota.add(fotoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 100, 100));
-        
-        JLabel nombreMascota = new JLabel();
-        nombreMascota.setFont(new java.awt.Font("Tahoma", 1, 24));
-        nombreMascota.setForeground(new java.awt.Color(255, 54, 54));
-        nombreMascota.setText(nombre);
-        panMascota.add(nombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 15, 550, 30));
-        
-        JLabel fechaMascota = new JLabel();
-        fechaMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
-        fechaMascota.setForeground(new java.awt.Color(102, 102, 102));
-        fechaMascota.setText("Fecha Publicación: " + fecha);
-        panMascota.add(fechaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 55, 200, 20));
-        
-        JLabel ciudadMascota = new JLabel();
-        ciudadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
-        ciudadMascota.setText("Ciudad: " + ciudad);
-        panMascota.add(ciudadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 75, 200, 20));
-        
-        JLabel edadMascota = new JLabel();
-        edadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
-        edadMascota.setText("Edad: " + edad + " meses");
-        panMascota.add(edadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 95, 200, 20));
-        
-        JButton btnVerMascota = new JButton();
-        btnVerMascota.setOpaque(false);
-        btnVerMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVer.png")));
-        btnVerMascota.setToolTipText("Ver la mascota.");
-        btnVerMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVerMascota.setEnabled(isLogged);
-        
-
-        btnVerMascota.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AdopcionMascota adopcion = new AdopcionMascota(sesion, mascota);
-                adopcion.setAlwaysOnTop(true);
-                adopcion.setVisible(true);
-                ini.dispose();
-            }
-        });
-        
-        panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
-            
-        JScrollPane scrObservaciones = new JScrollPane();
-        scrObservaciones.setBorder(null);
-        scrObservaciones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrObservaciones.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrObservaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
-        
-        JTextPane observaciones = new JTextPane();       
-        observaciones.setEditable(false);
-        observaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        observaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
-        observaciones.setText("Esta mascota es muy juguetona y cariñosa, tiene todas sus vacunas al dia y está muy sana. Es obediente y tranquila cuando se lo pide. Le encanta salir al parque y...");
-        observaciones.setAutoscrolls(false);
-        observaciones.setCaretColor(new java.awt.Color(255, 255, 255));
-        scrObservaciones.setViewportView(observaciones);
-        panMascota.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 55, 340, 60));
-       
-        panInicioListadoMascotas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panInicioListadoMascotas.add(panMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 800, 130));
-        panInicioListadoMascotas.updateUI();
-        mascotas.add(panMascota);
-   
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -377,28 +296,112 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnVerMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMascotasActionPerformed
         
+        panInicioListadoMascotas.removeAll();
         lblInicioTituloMascotas.setText("Conoce nuestras mascotas...");
         lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas disponibles para adopción, las cuales tienen todas sus vacunas y estan listas para ir contigo:");
-        
-        if(reg % 2 == 0) {
-            posX = 810;
-        } else {
-            posX = 10;
+        panInicioListadoMascotas.updateUI();
+        this.reg = 1;
+        this.posX = 10;
+        this.posY = 68;
+        Integer id = sesion != null ? sesion.getIdSesion() : null;
+        mascota = new Mascota(id);
+        List<Mascota> listadomascotas = mascota.getListadoMascota(id, "D", null, 1);
+        for(Mascota mas : listadomascotas){
+            if(reg % 2 == 0) {
+                posX = 810;
+            } else {
+                posX = 10;
+            }
+            crearPanelMascota(mas.getNombremascota(), mas.getFpublicacion(), mas.getCiudad() + ", " + mas.getProvincia(), mas.getEdad() + " " + mas.getUnidadedad(), posX, posY);
+            if(reg >1 && reg % 2 == 0){
+                    posY = posY + 130; 
+            }
+            reg++;
         }
-        crearPanelMascota("Negrito", "20/12/2020", "Cuenca", 7, posX, posY);
-         if(reg >1 && reg % 2 == 0){
-                posY = posY + 130; 
-        }
-        reg++;
-        
-        
     }//GEN-LAST:event_btnVerMascotasActionPerformed
 
+    private void crearPanelMascota(String nombre, String fecha, String lugar, String edad, Integer x, Integer y){
+        
+        System.out.println(nombre + " - " + fecha + " - " + lugar + " - " + edad + " - " + x + " - " + y);
+        Mascota mascota = new Mascota(1, nombre);
+        JPanel panMascota = new JPanel();
+        panMascota.setBackground(new java.awt.Color(255, 255, 255));
+        panMascota.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        
+        JLabel fotoMascota = new JLabel();
+        fotoMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png")));
+        panMascota.add(fotoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 100, 100));
+        
+        JLabel nombreMascota = new JLabel();
+        nombreMascota.setFont(new java.awt.Font("Tahoma", 1, 24));
+        nombreMascota.setForeground(new java.awt.Color(255, 54, 54));
+        nombreMascota.setText(nombre);
+        panMascota.add(nombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 15, 550, 30));
+        
+        JLabel fechaMascota = new JLabel();
+        fechaMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
+        fechaMascota.setForeground(new java.awt.Color(102, 102, 102));
+        fechaMascota.setText("Publicación: " + fecha);
+        panMascota.add(fechaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 55, 220, 20));
+        
+        JLabel ciudadMascota = new JLabel();
+        ciudadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
+        ciudadMascota.setText("Lugar: " + lugar);
+        panMascota.add(ciudadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 75, 220, 20));
+        
+        JLabel edadMascota = new JLabel();
+        edadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
+        edadMascota.setText("Edad: " + edad);
+        panMascota.add(edadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 95, 220, 20));
+        
+        JButton btnVerMascota = new JButton();
+        btnVerMascota.setOpaque(false);
+        btnVerMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVer.png")));
+        btnVerMascota.setToolTipText("Ver la mascota.");
+        btnVerMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerMascota.setEnabled(isLogged);
+        
+        btnVerMascota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdopcionMascota adopcion = new AdopcionMascota(sesion, mascota);
+                adopcion.setAlwaysOnTop(true);
+                adopcion.setVisible(true);
+                ini.dispose();
+            }
+        });
+        
+        panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
+            
+        JScrollPane scrObservaciones = new JScrollPane();
+        scrObservaciones.setBorder(null);
+        scrObservaciones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrObservaciones.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrObservaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
+        
+        JTextPane observaciones = new JTextPane();       
+        observaciones.setEditable(false);
+        observaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        observaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
+        observaciones.setText("Esta mascota es muy juguetona y cariñosa, tiene todas sus vacunas al dia y está muy sana. Es obediente y tranquila cuando se lo pide. Le encanta salir al parque y...");
+        observaciones.setAutoscrolls(false);
+        observaciones.setCaretColor(new java.awt.Color(255, 255, 255));
+        scrObservaciones.setViewportView(observaciones);
+        panMascota.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 55, 340, 60));
+       
+        panInicioListadoMascotas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panInicioListadoMascotas.add(panMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 800, 130));
+        panInicioListadoMascotas.updateUI();
+    }
+    
     private void btnInicioSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioSalirActionPerformed
+        
         System.exit(0);
     }//GEN-LAST:event_btnInicioSalirActionPerformed
 
     private void btnInicioRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioRegistrarActionPerformed
+        
         try {
             GestionUsuario gestionUsuario = new GestionUsuario(sesion, null, "NUEVO");
             gestionUsuario.setVisible(true);
@@ -417,16 +420,36 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnMisAdopcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisAdopcionesActionPerformed
         
+        panInicioListadoMascotas.removeAll();
         if(isLogged){
             lblInicioTituloMascotas.setText("Estas son tus adopciones...");
             lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas adoptadas por tí:");
-            
+            panInicioListadoMascotas.updateUI();
+            this.reg = 1;
+            this.posX = 10;
+            this.posY = 68;
+            Integer id = sesion != null ? sesion.getIdSesion() : null;
+            mascota = new Mascota(id);
+            List<Mascota> listadomascotas = mascota.getListadoMascota(id, "A", sesion.getUsuario(), 2);
+            for(Mascota mas : listadomascotas){
+                if(reg % 2 == 0) {
+                    posX = 810;
+                } else {
+                    posX = 10;
+                }
+                crearPanelMascota(mas.getNombremascota(), mas.getFpublicacion(), mas.getCiudad() + ", " + mas.getProvincia(), mas.getEdad() + " " + mas.getUnidadedad(), posX, posY);
+                if(reg >1 && reg % 2 == 0){
+                        posY = posY + 130; 
+                }
+                reg++;
+            }          
         } else {
             JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para visualizar las veterinarias.","Veterinarias",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnMisAdopcionesActionPerformed
 
     private void btnPublicarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarMascotaActionPerformed
+        
         if(isLogged){
             mascota = null;
             GestionMascota gestionMascota = new GestionMascota(sesion, mascota, "PUBLICAR");
@@ -438,9 +461,30 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPublicarMascotaActionPerformed
 
     private void btnMisMascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisMascotasActionPerformed
+        
+        panInicioListadoMascotas.removeAll();
         if(isLogged){
             lblInicioTituloMascotas.setText("Estas son tus mascotas publicadas...");
             lblInicioSubtituloMascotas.setText("Puedes ver todas las mascotas publicadas por tí y que están en busca de un hogar:");
+            panInicioListadoMascotas.updateUI();
+            this.reg = 1;
+            this.posX = 10;
+            this.posY = 68;
+            Integer id = sesion != null ? sesion.getIdSesion() : null;
+            mascota = new Mascota(id);
+            List<Mascota> listadomascotas = mascota.getListadoMascota(id, null, sesion.getUsuario(), 3);
+            for(Mascota mas : listadomascotas){
+                if(reg % 2 == 0) {
+                    posX = 810;
+                } else {
+                    posX = 10;
+                }
+                crearPanelMascota(mas.getNombremascota(), mas.getFpublicacion(), mas.getCiudad() + ", " + mas.getProvincia(), mas.getEdad() + " " + mas.getUnidadedad(), posX, posY);
+                if(reg >1 && reg % 2 == 0){
+                        posY = posY + 130; 
+                }
+                reg++;
+            }
         } else {
             JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para gestionar los usuarios.","Usuarios",JOptionPane.WARNING_MESSAGE);
         }
@@ -479,6 +523,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     public void setSesion(Sesion sesion) {
+        
         this.sesion = sesion;
         lblInicioBienvenida.setText("Bienvenido,");
         lblInicioNombre.setText(this.sesion.getNombreUsuario());
@@ -487,14 +532,17 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     public boolean isIsLogged() {
+        
         return isLogged;
     }
 
     public void setIsLogged(boolean isLogged) {
+        
         this.isLogged = isLogged;
     }
     
     public void disableLogin(){
+        
         btnInicioRegistrar.setEnabled(false);
         btnInicioLogin.setEnabled(false);
     }
