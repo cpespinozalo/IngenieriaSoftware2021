@@ -2,6 +2,7 @@ package ec.edu.utpl.adopcionmascotas.vista;
 
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -373,6 +374,29 @@ public class Inicio extends javax.swing.JFrame {
         });
         
         panMascota.add(btnVerMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 55, 60, 60));
+        
+        JButton btnAdoptarMascota = new JButton("Adoptar");
+        btnVerMascota.setOpaque(false);
+        btnVerMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVer.png")));
+        btnVerMascota.setToolTipText("Adoptar la mascota.");
+        btnVerMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        //btnVerMascota.setEnabled(isLogged);
+        
+        btnAdoptarMascota.addActionListener(new ActionListener() {
+            private Component rootPane;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(isLogged){
+                   AdopcionMascota adopcionMascota = new AdopcionMascota(sesion, null);
+                   adopcionMascota.setVisible(true);
+                } else {
+                   JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para adoptar una mascota.","Adopciones",JOptionPane.WARNING_MESSAGE);
+                   
+                }
+            }
+        });
+        
+        panMascota.add(btnAdoptarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(380,120,120,50));
             
         JScrollPane scrObservaciones = new JScrollPane();
         scrObservaciones.setBorder(null);
@@ -391,7 +415,7 @@ public class Inicio extends javax.swing.JFrame {
         panMascota.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 55, 340, 60));
        
         panInicioListadoMascotas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panInicioListadoMascotas.add(panMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 800, 130));
+        panInicioListadoMascotas.add(panMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 800, 200));
         panInicioListadoMascotas.updateUI();
     }
     
