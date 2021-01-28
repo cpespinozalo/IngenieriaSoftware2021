@@ -22,6 +22,10 @@ public class Usuario implements Serializable {
     private String identificacion;
     private String nombres;
     private String apellidos;
+    private String direccion;
+    private String provincia;
+    private String ciudad;
+    private String telefono;
     private String usuario;
     private String password;
     private String cestado;
@@ -42,7 +46,8 @@ public class Usuario implements Serializable {
     private String pregunta3;
     private String pregunta4;
     
-    private static final String SQL_SELECT = "SELECT USU.CUSUARIO,USU.IDENTIFICACION,USU.NOMBRES,USU.APELLIDOS,USU.USUARIO,USU.PASSWORD,USU.CORREO,USU.GENERO,USU.ACTIVO,USU.ESTADO CESTADO, DECODE(USU.ESTADO,'ACT','ACTIVO','CER','CERRADO','BLQ','BLOQUEADO') ESTADO, DECODE(USU.ACTIVO,1,'SI',0,'NO') DACTIVO FROM MASCOTAS.TUSUARIO USU  WHERE USU.CUSUARIO=? ";
+    private static final String SQL_SELECT = "SELECT USU.CUSUARIO,USU.IDENTIFICACION,USU.NOMBRES,USU.APELLIDOS,USU.USUARIO,USU.PASSWORD,USU.CORREO,USU.GENERO,USU.ACTIVO,USU.ESTADO CESTADO, DECODE(USU.ESTADO,'ACT','ACTIVO','CER','CERRADO','BLQ','BLOQUEADO') ESTADO, DECODE(USU.ACTIVO,1,'SI',0,'NO') DACTIVO, USU.DIRECCION,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003) CIUDAD,USU.TELEFONO FROM MASCOTAS.TUSUARIO USU  WHERE USU.CUSUARIO=? ";
+    private static final String SQL_SELECTRESUMEN = "SELECT USU.CUSUARIO,USU.NOMBRES,USU.APELLIDOS,USU.DIRECCION,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003),USU.CORREO,USU.TELEFONO FROM MASCOTAS.TUSUARIO USU  WHERE USU.USUARIO=? ";
     private static final String SQL_INSERT = "INSERT INTO MASCOTAS.TUSUARIO (CUSUARIO,IDENTIFICACION,NOMBRES,APELLIDOS,USUARIO,PASSWORD,ESTADO,CORREO,GENERO,CEMPRESA,ACTIVO) VALUES ((SELECT NVL(MAX(CUSUARIO),0)+1 FROM MASCOTAS.TUSUARIO),?,?,?,?,?,?,?,?,?,?)) ";
     private static final String SQL_UPDATE = "UPDATE MASCOTAS.TUSUARIO SET IDENTIFICACION=?,NOMBRES=?,APELLIDOS=?,USUARIO=?,PASSWORD=?,ESTADO=?,CORREO=?,GENERO=?,ACTIVO=? WHERE CUSUARIO=? ";
     private static final String SQL_DELETE_DEP = "DELETE MASCOTAS.TROLUSUARIO WHERE CUSUARIO=? ";
@@ -92,6 +97,38 @@ public class Usuario implements Serializable {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
     
     public String getUsuario() {
@@ -245,7 +282,11 @@ public class Usuario implements Serializable {
             this.activo = arreglo[8] != null ?  arreglo[8].toString() : "";
             this.cestado = arreglo[9] != null ?  arreglo[9].toString() : ""; 
             this.estado = arreglo[10] != null ?  arreglo[10].toString() : "";
-            this.dactivo = arreglo[11] != null ?  arreglo[11].toString() : "";
+            this.dactivo = arreglo[11] != null ?  arreglo[11].toString() : ""; 
+            this.direccion = arreglo[12] != null ?  arreglo[12].toString() : "";
+            this.provincia = arreglo[13] != null ?  arreglo[13].toString() : "";
+            this.ciudad = arreglo[14] != null ?  arreglo[14].toString() : "";
+            this.telefono = arreglo[15] != null ?  arreglo[15].toString() : "";
         }
         Cliente clienteRes = new Cliente();
         resultadoRes = clienteRes.query(SQL_SELECT_PREGUNTASUSUARIO, codigo);
@@ -285,7 +326,26 @@ public class Usuario implements Serializable {
         String detalle = String.format("CONSULTA USUARIOS: %s REGISTROS CONSULTADOS", resultado.size());
         auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
     }
+      
+    public void getUsuario(String usuario) throws Exception{
         
+        List<Object> resultado;
+        Cliente cliente = new Cliente();
+        resultado = cliente.query(SQL_SELECTRESUMEN, usuario);
+        for(Object dato : resultado){
+            Object [] arreglo;
+            arreglo = (Object [])dato;
+            this.cusuario = arreglo[0] != null ?  Integer.parseInt(arreglo[0].toString()) : null;
+            this.nombres = arreglo[1] != null ?  arreglo[1].toString() : "";
+            this.apellidos = arreglo[2] != null ?  arreglo[2].toString() : "";
+            this.direccion = arreglo[3] != null ?  arreglo[3].toString() : "";
+            this.provincia = arreglo[4] != null ?  arreglo[4].toString() : "";
+            this.ciudad = arreglo[5] != null ?  arreglo[5].toString() : "";
+            this.correo = arreglo[6] != null ?  arreglo[6].toString() : "";
+            this.telefono = arreglo[7] != null ?  arreglo[7].toString() : "";
+        }
+    }
+    
     public boolean newUsuario() throws Exception{
         
         CifradoAes aes = new CifradoAes();

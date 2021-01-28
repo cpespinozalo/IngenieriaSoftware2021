@@ -5,7 +5,10 @@ import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
+import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -68,7 +71,8 @@ public class GestionMascota extends javax.swing.JFrame {
            lblFechaAdopcion.setText("");
            btnAceptarMascota.setText("PUBLICAR");
            cmbEstadoMascota.setSelectedItem("DISPONIBLE");
-           cmbEstadoMascota.setEnabled(false);      
+           cmbEstadoMascota.setEnabled(false);  
+           getInfoUsuario();
        } else if(ACCION_EDITAR.equals(accion)) {
            lblSubtituloAdopcion.setText("Gestionar una Mascota");
            lblDatosMascota.setText("Edición de Mascota");
@@ -283,6 +287,7 @@ public class GestionMascota extends javax.swing.JFrame {
         txtPropietarioMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPropietarioMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPropietarioMascota.setToolTipText("Nombre del Usuario");
+        txtPropietarioMascota.setEnabled(false);
         panCentral.add(txtPropietarioMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 320, 30));
 
         lblDireccion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -294,6 +299,7 @@ public class GestionMascota extends javax.swing.JFrame {
         txtDireccionMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtDireccionMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDireccionMascota.setToolTipText("Nombre del Usuario");
+        txtDireccionMascota.setEnabled(false);
         panCentral.add(txtDireccionMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 325, 560, 30));
 
         lblProvincia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -302,6 +308,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 60, 30));
 
         cmbProvinciaMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbProvinciaMascota.setEnabled(false);
         panCentral.add(cmbProvinciaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 230, 30));
 
         lblCiudad.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -310,6 +317,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 115, 30));
 
         cmbCiudadMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbCiudadMascota.setEnabled(false);
         panCentral.add(cmbCiudadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
 
         lblTelefono.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -321,6 +329,7 @@ public class GestionMascota extends javax.swing.JFrame {
         txtTelefonoMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTelefonoMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtTelefonoMascota.setToolTipText("Nombre del Usuario");
+        txtTelefonoMascota.setEnabled(false);
         panCentral.add(txtTelefonoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 395, 230, 30));
 
         lblCorreo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -329,6 +338,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 395, 60, 30));
 
         txtCorreoMascota.setBackground(new java.awt.Color(255, 255, 204));
+        txtCorreoMascota.setEnabled(false);
         panCentral.add(txtCorreoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 395, 230, 30));
 
         lblEstadoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -337,6 +347,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 115, 30));
 
         cmbEstadoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbEstadoMascota.setEnabled(false);
         panCentral.add(cmbEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 230, 30));
 
         lblAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -482,35 +493,56 @@ public class GestionMascota extends javax.swing.JFrame {
     }
     
     private void getInfoMascota(){
-        
-        if(this.mascota != null){
-            lblFechaIngreso.setText(mascota.getFpublicacion());
-            txtCodigoMascota.setText(mascota.getCmascota().toString());
-            txtNombreMascota.setText(mascota.getNombremascota());
-            cmbTipoMascota.setSelectedItem(mascota.getTipomascota());
-            txtEdadMascota.setText(mascota.getEdad());
-            cmbUnidadMascota.setSelectedItem(mascota.getUnidadedad());
-            cmbGenero.setSelectedItem(mascota.getGenero());
-            txtObservacionesMascota.setText(mascota.getDescripcion());
-            txtPropietarioMascota.setText(mascota.getNombremascota());
-            txtDireccionMascota.setText(mascota.getDireccion());
-            cmbCiudadMascota.setSelectedItem(mascota.getCiudad());
-            cmbProvinciaMascota.setSelectedItem(mascota.getProvincia());
-            txtTelefonoMascota.setText(mascota.getTelefono());
-            txtCorreoMascota.setText(mascota.getCorreo());
-            cmbEstadoMascota.setSelectedItem(mascota.getEstadomascota());
-            lblFechaAdopcion.setText(mascota.getFadopcion());
-        } 
+   
+        try {
+            if(this.mascota != null){
+                lblFechaIngreso.setText(mascota.getFpublicacion());
+                txtCodigoMascota.setText(mascota.getCmascota().toString());
+                txtNombreMascota.setText(mascota.getNombremascota());
+                cmbTipoMascota.setSelectedItem(mascota.getTipomascota());
+                txtEdadMascota.setText(mascota.getEdad());
+                cmbUnidadMascota.setSelectedItem(mascota.getUnidadedad());
+                cmbGenero.setSelectedItem(mascota.getGenero());
+                txtObservacionesMascota.setText(mascota.getDescripcion());
+                txtPropietarioMascota.setText(mascota.getNombremascota());
+                txtDireccionMascota.setText(mascota.getDireccion());
+                cmbCiudadMascota.setSelectedItem(mascota.getCiudad());
+                cmbProvinciaMascota.setSelectedItem(mascota.getProvincia());
+                txtTelefonoMascota.setText(mascota.getTelefono());
+                txtCorreoMascota.setText(mascota.getCorreo());
+                cmbEstadoMascota.setSelectedItem(mascota.getEstadomascota());
+                lblFechaAdopcion.setText(mascota.getFadopcion());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-        public void volver(Sesion sesion){
-            Inicio inicio = new Inicio();
-            inicio.setIsLogged(true);
-            inicio.setSesion(sesion);
-            inicio.disableLogin();
-            inicio.setVisible(true);
-            this.dispose();      
-       }
+    private void getInfoUsuario(){
+   
+        try {
+            Usuario usuario = new Usuario(sesion.getIdSesion());
+            usuario.getUsuario(sesion.getUsuario());
+                
+            txtPropietarioMascota.setText(usuario.getNombres() + " " + usuario.getApellidos());
+            txtDireccionMascota.setText(usuario.getDireccion());
+            cmbCiudadMascota.setSelectedItem(usuario.getCiudad());
+            cmbProvinciaMascota.setSelectedItem(usuario.getProvincia());
+            txtTelefonoMascota.setText(usuario.getTelefono());
+            txtCorreoMascota.setText(usuario.getCorreo());
+        } catch (Exception ex) {
+            Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void volver(Sesion sesion){
+        Inicio inicio = new Inicio();
+        inicio.setIsLogged(true);
+        inicio.setSesion(sesion);
+        inicio.disableLogin();
+        inicio.setVisible(true);
+        this.dispose();      
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarMascota;
