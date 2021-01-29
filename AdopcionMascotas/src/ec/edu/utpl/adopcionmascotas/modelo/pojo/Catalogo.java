@@ -25,11 +25,11 @@ public class Catalogo  implements Serializable {
     private String descripcion;
     private String estado;
     
-    private static final String SQL_SELECT = "SELECT CCATALOGO,NOMBRE,DESCRIPCION,ACTIVO FROM MASCOTAS.TCATALOGO WHERE CCATALOGO=? ";
-    private static final String SQL_INSERT = "INSERT INTO MASCOTAS.TCATALOGO (CCATALOGO,NOMBRE,DESCRIPCION,ACTIVO) VALUES ((SELECT NVL(MAX(CCATALOGO),0)+1 FROM MASCOTAS.TCATALOGO),?,?,?) ";
-    private static final String SQL_UPDATE = "UPDATE MASCOTAS.TCATALOGO SET NOMBRE=?,DESCRIPCION=?,ACTIVO=? WHERE CCATALOGO=? ";
-    private static final String SQL_DELETE = "DELETE MASCOTAS.TCATALOGO WHERE CCATALOGO=? ";
-    private static final String SQL_DELETE_ITEM = "DELETE MASCOTAS.TITEM WHERE CCATALOGO=? ";
+    private static final String SQL_SELECT = "SELECT CCATALOGO,NOMBRE,DESCRIPCION,ACTIVO FROM TCATALOGO WHERE CCATALOGO=? ";
+    private static final String SQL_INSERT = "INSERT INTO TCATALOGO (CCATALOGO,NOMBRE,DESCRIPCION,ACTIVO) VALUES ((SELECT NVL(MAX(CCATALOGO),0)+1 FROM TCATALOGO),?,?,?) ";
+    private static final String SQL_UPDATE = "UPDATE TCATALOGO SET NOMBRE=?,DESCRIPCION=?,ACTIVO=? WHERE CCATALOGO=? ";
+    private static final String SQL_DELETE = "DELETE TCATALOGO WHERE CCATALOGO=? ";
+    private static final String SQL_DELETE_ITEM = "DELETE TITEM WHERE CCATALOGO=? ";
     
     
     public Catalogo() {
@@ -150,9 +150,9 @@ public class Catalogo  implements Serializable {
         List<Object> resultado;
         Cliente cliente = new Cliente();
         if(padre != null) {
-           resultado = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TCATALOGO CA, MASCOTAS.TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? AND IT.CODIGOPADRE=? ", catalogo, padre); 
+           resultado = cliente.query("SELECT IT.NOMBRE FROM TCATALOGO CA, TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? AND IT.CODIGOPADRE=? ", catalogo, padre); 
         } else {
-            resultado = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TCATALOGO CA, MASCOTAS.TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? " , catalogo);
+            resultado = cliente.query("SELECT IT.NOMBRE FROM TCATALOGO CA, TITEM IT WHERE CA.CCATALOGO=IT.CCATALOGO AND CA.NOMBRE=? " , catalogo);
         }
         
         for(Object dato : resultado){
@@ -167,7 +167,7 @@ public class Catalogo  implements Serializable {
         
         List<Object> lista;
         Cliente cliente = new Cliente();
-        lista = cliente.query("SELECT IT.NOMBRE FROM MASCOTAS.TITEM IT WHERE IT.CCATALOGO=? ", ccatalogo);
+        lista = cliente.query("SELECT IT.NOMBRE FROM TITEM IT WHERE IT.CCATALOGO=? ", ccatalogo);
         for(Object dato : lista){
             modelo.addElement(dato.toString());
         }

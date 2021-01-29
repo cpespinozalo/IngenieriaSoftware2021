@@ -21,7 +21,7 @@ public class ControladorRecuperacion {
     public String respuesta;
     
     private static final String SQL_SELECT_USUARIO = "SELECT USU.IDENTIFICACION, USU.ESTADO, TPU.RESPUESTA, USU.CUSUARIO "
-            + "FROM MASCOTAS.TUSUARIO USU, MASCOTAS.TPREGUNTASUSUARIO TPU "
+            + "FROM TUSUARIO USU, TPREGUNTASUSUARIO TPU "
             + "WHERE USU.CUSUARIO=TPU.CUSUARIO "
             + "AND USU.USUARIO=? "
             + "AND TPU.CPREGUNTA=? "
@@ -29,11 +29,11 @@ public class ControladorRecuperacion {
             + "AND TPU.ACTIVO=1 ";
     
     private static final String SQL_SELECT_PREGUNTA = "SELECT PREGUNTA "
-            + "FROM MASCOTAS.TPREGUNTA "
+            + "FROM TPREGUNTA "
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
     
-    private static final String UPDATE_TUSUARIO = "UPDATE MASCOTAS.TUSUARIO "
+    private static final String UPDATE_TUSUARIO = "UPDATE TUSUARIO "
             + "SET PASSWORD=? "
             + "WHERE CUSUARIO=? "
             + "AND ACTIVO=1 ";

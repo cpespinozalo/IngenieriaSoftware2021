@@ -16,7 +16,7 @@ public class ControladorLogin {
     private List<Object> datos;
     
     private static final String SQL_SELECT_USUARIO = "SELECT USU.CUSUARIO, USU.USUARIO, USU.PASSWORD, TPU.RESPUESTA "
-            + "FROM MASCOTAS.TUSUARIO USU, MASCOTAS.TPREGUNTASUSUARIO TPU "
+            + "FROM TUSUARIO USU, TPREGUNTASUSUARIO TPU "
             + "WHERE USU.CUSUARIO=TPU.CUSUARIO "
             + "AND USU.USUARIO=? "
             + "AND USU.ACTIVO=1 "
@@ -24,7 +24,7 @@ public class ControladorLogin {
             + "AND TPU.ACTIVO=1 ";
     
     private static final String SQL_SELECT_PREGUNTA = "SELECT PREGUNTA "
-            + "FROM MASCOTAS.TPREGUNTA "
+            + "FROM TPREGUNTA "
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
     

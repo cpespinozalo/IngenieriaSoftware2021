@@ -46,20 +46,21 @@ public class Usuario implements Serializable {
     private String pregunta3;
     private String pregunta4;
     
-    private static final String SQL_SELECT = "SELECT USU.CUSUARIO,USU.IDENTIFICACION,USU.NOMBRES,USU.APELLIDOS,USU.USUARIO,USU.PASSWORD,USU.CORREO,USU.GENERO,USU.ACTIVO,USU.ESTADO CESTADO, DECODE(USU.ESTADO,'ACT','ACTIVO','CER','CERRADO','BLQ','BLOQUEADO') ESTADO, DECODE(USU.ACTIVO,1,'SI',0,'NO') DACTIVO, USU.DIRECCION,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003) CIUDAD,USU.TELEFONO FROM MASCOTAS.TUSUARIO USU  WHERE USU.CUSUARIO=? ";
-    private static final String SQL_SELECTRESUMEN = "SELECT USU.CUSUARIO,USU.NOMBRES,USU.APELLIDOS,USU.DIRECCION,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM MASCOTAS.TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003),USU.CORREO,USU.TELEFONO FROM MASCOTAS.TUSUARIO USU  WHERE USU.USUARIO=? ";
-    private static final String SQL_INSERT = "INSERT INTO MASCOTAS.TUSUARIO (CUSUARIO,IDENTIFICACION,NOMBRES,APELLIDOS,USUARIO,PASSWORD,ESTADO,CORREO,GENERO,CEMPRESA,ACTIVO) VALUES ((SELECT NVL(MAX(CUSUARIO),0)+1 FROM MASCOTAS.TUSUARIO),?,?,?,?,?,?,?,?,?,?)) ";
-    private static final String SQL_UPDATE = "UPDATE MASCOTAS.TUSUARIO SET IDENTIFICACION=?,NOMBRES=?,APELLIDOS=?,USUARIO=?,PASSWORD=?,ESTADO=?,CORREO=?,GENERO=?,ACTIVO=? WHERE CUSUARIO=? ";
-    private static final String SQL_DELETE_DEP = "DELETE MASCOTAS.TROLUSUARIO WHERE CUSUARIO=? ";
-    private static final String SQL_DELETE_PRE = "DELETE MASCOTAS.TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
-    private static final String SQL_DELETE = "DELETE MASCOTAS.TUSUARIO WHERE CUSUARIO=? ";
+    private static final String  SQL_SELECTCUSUARIO = "SELECT MAX(CUSUARIO) FROM TUSUARIO WHERE USUARIO=? ";
+    private static final String SQL_SELECT = "SELECT USU.CUSUARIO,USU.IDENTIFICACION,USU.NOMBRES,USU.APELLIDOS,USU.USUARIO,USU.PASSWORD,USU.CORREO,USU.GENERO,USU.ACTIVO,USU.ESTADO CESTADO, (SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.ESTADO AND CCATALOGO=5010), (SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.ACTIVO AND CCATALOGO=5005), USU.DIRECCION,(SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003) CIUDAD,USU.TELEFONO FROM TUSUARIO USU  WHERE USU.CUSUARIO=? ";
+    private static final String SQL_SELECTRESUMEN = "SELECT USU.CUSUARIO,USU.NOMBRES,USU.APELLIDOS,USU.DIRECCION,(SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.PROVINCIA AND CCATALOGO=5002) PROVINCIA,(SELECT NOMBRE FROM TITEM WHERE CODIGO=USU.CIUDAD AND CODIGOPADRE=USU.PROVINCIA AND CCATALOGO=5003),USU.CORREO,USU.TELEFONO FROM TUSUARIO USU  WHERE USU.USUARIO=? ";
+    private static final String SQL_INSERT = "INSERT INTO TUSUARIO (CUSUARIO,IDENTIFICACION,NOMBRES,APELLIDOS,USUARIO,PASSWORD,ESTADO,CORREO,GENERO,ACTIVO,DIRECCION,TELEFONO,PROVINCIA,CIUDAD) VALUES ((SELECT NVL(MAX(CUSUARIO),0)+1 FROM TUSUARIO),?,?,?,?,?,(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5010),?,?,(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5005),?,?,(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5002),(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5003)) ";
+    private static final String SQL_UPDATE = "UPDATE TUSUARIO SET IDENTIFICACION=?,NOMBRES=?,APELLIDOS=?,USUARIO=?,PASSWORD=?,ESTADO=(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5010),CORREO=?,GENERO=?,ACTIVO=(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5005),DIRECCION=?,TELEFONO=?,PROVINCIA=(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5002),CIUDAD=(SELECT CODIGO FROM TITEM WHERE NOMBRE=? AND CCATALOGO=5003) WHERE CUSUARIO=? ";
+    private static final String SQL_DELETE_DEP = "DELETE TROLUSUARIO WHERE CUSUARIO=? ";
+    private static final String SQL_DELETE_PRE = "DELETE TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
+    private static final String SQL_DELETE = "DELETE TUSUARIO WHERE CUSUARIO=? ";
     
-    private static final String SQL_SELECT_PREGUNTAS = "SELECT CPREGUNTA,PREGUNTA FROM MASCOTAS.TPREGUNTA WHERE ACTIVO=? ";
-    private static final String SQL_SELECT_PREGUNTASUSUARIO = "SELECT CPREGUNTA, RESPUESTA FROM MASCOTAS.TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
-    private static final String SQL_INSERT_PREGUNTASUSUARIO = "INSERT INTO MASCOTAS.TPREGUNTASUSUARIO(CPREGUNTA,CUSUARIO,RESPUESTA,FMODIFICACION,ACTIVO) VALUES (?,?,?,SYSDATE,1) ";
-    private static final String SQL_UPDATE_PREGUNTASUSUARIO = "UPDATE MASCOTAS.TPREGUNTASUSUARIO SET RESPUESTA=?,FMODIFICACION=SYSDATE WHERE CPREGUNTA=? AND CUSUARIO=? ";
+    private static final String SQL_SELECT_PREGUNTAS = "SELECT CPREGUNTA,PREGUNTA FROM TPREGUNTA WHERE ACTIVO=? ";
+    private static final String SQL_SELECT_PREGUNTASUSUARIO = "SELECT CPREGUNTA, RESPUESTA FROM TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
+    private static final String SQL_INSERT_PREGUNTASUSUARIO = "INSERT INTO TPREGUNTASUSUARIO(CPREGUNTA,CUSUARIO,RESPUESTA,FMODIFICACION,ACTIVO) VALUES (?,?,?,SYSDATE,1) ";
+    private static final String SQL_UPDATE_PREGUNTASUSUARIO = "UPDATE TPREGUNTASUSUARIO SET RESPUESTA=?,FMODIFICACION=SYSDATE WHERE CPREGUNTA=? AND CUSUARIO=? ";
     
-    private static final String SQL_INSERT_ROLES = "MERGE INTO MASCOTAS.TROLUSUARIO A USING (SELECT CROL, ? CUSUARIO, 1 ACTIVO FROM MASCOTAS.TROL WHERE DESCRIPCION=?) B ON (A.CROL=B.CROL AND A.CUSUARIO=B.CUSUARIO) WHEN NOT MATCHED THEN INSERT (CROL,CUSUARIO,ACTIVO) VALUES (B.CROL, B.CUSUARIO, B.ACTIVO)";
+    private static final String SQL_INSERT_ROLES = "MERGE INTO TROLUSUARIO A USING (SELECT CROL, ? CUSUARIO, 1 ACTIVO FROM TROL WHERE DESCRIPCION=?) B ON (A.CROL=B.CROL AND A.CUSUARIO=B.CUSUARIO) WHEN NOT MATCHED THEN INSERT (CROL,CUSUARIO,ACTIVO) VALUES (B.CROL, B.CUSUARIO, B.ACTIVO)";
     
     
     public Usuario(Integer sesionId) {
@@ -346,25 +347,43 @@ public class Usuario implements Serializable {
         }
     }
     
+    public void setNewCusuario(String usuario) throws Exception{
+        
+        Cliente cliente = new Cliente();
+        this.cusuario = cliente.queryUnique(SQL_SELECTCUSUARIO, usuario);
+    }
+    
     public boolean newUsuario() throws Exception{
         
         CifradoAes aes = new CifradoAes();
-        String tipo= "MODIFICACION";
-        String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("CREACION USUARIO - %s:%s:%s %s", cusuario, identificacion, nombres, apellidos);
         
         Cliente cliente = new Cliente();
-        int registros = cliente.execute(SQL_INSERT, identificacion, nombres, apellidos, usuario, aes.encriptar(password), cestado, correo, genero, activo);
+        int registros = cliente.execute(SQL_INSERT, identificacion, nombres, apellidos, usuario, aes.encriptar(password), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad);
         
-        cliente.execute(SQL_INSERT_PREGUNTASUSUARIO, 1, cusuario, aes.encriptar(respuesta1));
-        cliente.execute(SQL_INSERT_PREGUNTASUSUARIO, 2, cusuario, aes.encriptar(respuesta2));
-        cliente.execute(SQL_INSERT_PREGUNTASUSUARIO, 3, cusuario, aes.encriptar(respuesta3));
-        cliente.execute(SQL_INSERT_PREGUNTASUSUARIO, 4, cusuario, aes.encriptar(respuesta4));
         if(registros > 0){
-            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
-            return true;
+            
+            setNewCusuario(usuario);
+            if(cusuario!=null){
+                Cliente cliente0 = new Cliente();
+                cliente0.execute(SQL_INSERT_ROLES, cusuario, "Usuario de Adopciones");
+                
+                Cliente cliente1 = new Cliente();
+                cliente1.execute(SQL_INSERT_PREGUNTASUSUARIO, 1, cusuario, aes.encriptar(respuesta1));
+        
+                Cliente cliente2 = new Cliente();
+                cliente2.execute(SQL_INSERT_PREGUNTASUSUARIO, 2, cusuario, aes.encriptar(respuesta2));
+        
+                Cliente cliente3 = new Cliente();
+                cliente3.execute(SQL_INSERT_PREGUNTASUSUARIO, 3, cusuario, aes.encriptar(respuesta3));
+        
+                Cliente cliente4 = new Cliente();
+                cliente4.execute(SQL_INSERT_PREGUNTASUSUARIO, 4, cusuario, aes.encriptar(respuesta4));
+            
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "ERROR");
             return false;
         }
     }
@@ -377,7 +396,7 @@ public class Usuario implements Serializable {
         String detalle = String.format("ACTUALIZACION USUARIO - %s:%s:%s %s", cusuario, identificacion, nombres, apellidos);
         
         Cliente cliente = new Cliente();
-        int registros = cliente.execute(SQL_UPDATE, identificacion, nombres, apellidos, usuario, aes.encriptar(password), cestado, correo, genero, activo, cusuario);
+        int registros = cliente.execute(SQL_UPDATE, identificacion, nombres, apellidos, usuario, aes.encriptar(password), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad, cusuario);
         
         Cliente cliente1 = new Cliente();
         cliente1.execute(SQL_UPDATE_PREGUNTASUSUARIO, aes.encriptar(respuesta1), 1, cusuario);

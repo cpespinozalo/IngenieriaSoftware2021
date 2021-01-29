@@ -24,14 +24,13 @@ public class ControladorBienvenida implements Serializable {
 
     
     private static final String SQL_SELECT_SESION = "SELECT USU.NOMBRES || ' ' || USU.APELLIDOS NOMBRELEGAL, USU.GENERO "
-            + "FROM MASCOTAS.TUSUARIO USU "
+            + "FROM TUSUARIO USU "
             + "WHERE USU.USUARIO=? ";
     
     private static final String SQL_SELECT_ROLES = "SELECT ROL.CROL, ROL.NOMBRE, ROL.DESCRIPCION "
-            + "FROM MASCOTAS.TROLUSUARIO TRU, MASCOTAS.TROL ROL "
+            + "FROM TROLUSUARIO TRU, TROL ROL "
             + "WHERE TRU.CUSUARIO=? "
-            + "AND TRU.CROL=ROL.CROL "
-            + "AND TRU.ACTIVO=1 ";
+            + "AND TRU.CROL=ROL.CROL";
 
     public ControladorBienvenida(Sesion sesion, Integer cusuario, String usuario) {
 

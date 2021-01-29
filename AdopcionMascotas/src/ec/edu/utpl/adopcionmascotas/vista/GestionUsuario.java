@@ -3,15 +3,13 @@ package ec.edu.utpl.adopcionmascotas.vista;
 import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
-import ec.edu.utpl.adopcionmascotas.modelo.pojo.Estado;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
 import java.util.List;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Interfaz de Gestión de Usuario
@@ -25,8 +23,6 @@ public class GestionUsuario extends javax.swing.JFrame {
     private Sesion sesion;
     private Usuario usuario;
     private Validacion validacion;
-    private Estado estado;
-    private Estado activo;
     private Integer cusuario;
     private String cambio;
     private static final String ACCION_NUEVO = "NUEVO";
@@ -35,7 +31,7 @@ public class GestionUsuario extends javax.swing.JFrame {
     private static final String CLASS_NAME = GestionUsuario.class.getName();
     
     
-    public GestionUsuario(Sesion sesion, Integer cusuario, String cambio) throws Exception{
+    public GestionUsuario(Sesion sesion, Integer cusuario, String cambio){
 
         try {
             this.sesion = sesion;
@@ -48,7 +44,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             setLocationRelativeTo(null);
             loadUsuario();
             setTitulos();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+        } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this.rootPane, "Imposible modificar el tema visual", "Lookandfeel inválido.", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -58,25 +54,23 @@ public class GestionUsuario extends javax.swing.JFrame {
            lblSubtituloUsuario.setText("Creación de usuario en el Sistema");
            lblDatoUsuario.setText("Nuevo Usuario");
            lblInfoUsuario.setText("Ingrese la información del nuevo usuario:");
-           btnAceptarEmpresa.setText("CREAR");
+           btnAceptarUsuario.setText("CREAR");
        } else if(ACCION_EDITAR.equals(cambio)) {
            lblSubtituloUsuario.setText("Editar Usuario del Sistema");
            lblDatoUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
            lblInfoUsuario.setText("Modifique la información que se desea cambiar:");
-           btnAceptarEmpresa.setText("ACTUALIZAR");
+           btnAceptarUsuario.setText("ACTUALIZAR");
        } else if(ACCION_ELIMINAR.equals(cambio)) {
            lblSubtituloUsuario.setText("Eliminar Usuario del Sistema");
            lblDatoUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
            lblInfoUsuario.setText("Información del usuario que se desea eliminar:");
-           btnAceptarEmpresa.setText("ELIMINAR");
+           btnAceptarUsuario.setText("ELIMINAR");
        }  
     }
     
     private void loadUsuario() throws Exception{
         
-        setComboEstados(cmbEstadoUsuario);
-        setComboActivo(cmbActivo);
-        setComboCiudadProvincia();
+        loadCatalogo();
         if(ACCION_EDITAR.equals(cambio) || ACCION_ELIMINAR.equals(cambio)) {
            getInfoUsuario();
        } 
@@ -138,8 +132,8 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblPregunta4 = new javax.swing.JLabel();
         txtPregunta4 = new javax.swing.JPasswordField();
         panInferior = new javax.swing.JPanel();
-        btnAceptarEmpresa = new javax.swing.JButton();
-        btnRegresarEmpresa = new javax.swing.JButton();
+        btnAceptarUsuario = new javax.swing.JButton();
+        btnRegresarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de Usuarios");
@@ -353,11 +347,6 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblActivoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 390, 150, 30));
 
         cmbActivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cmbActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbActivoActionPerformed(evt);
-            }
-        });
         panCentral.add(cmbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 30));
 
         cmbEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -391,7 +380,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 505, 240, 30));
 
         txtPregunta1.setBackground(new java.awt.Color(255, 255, 204));
-        panCentral.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 505, 370, 30));
+        panCentral.add(txtPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 505, 325, 30));
 
         lblPregunta2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta2.setForeground(new java.awt.Color(255, 255, 255));
@@ -399,7 +388,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 240, 30));
 
         txtPregunta2.setBackground(new java.awt.Color(255, 255, 204));
-        panCentral.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 370, 30));
+        panCentral.add(txtPregunta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 325, 30));
 
         lblPregunta3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta3.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,7 +396,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 575, 240, 30));
 
         txtPregunta3.setBackground(new java.awt.Color(255, 255, 204));
-        panCentral.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 575, 370, 30));
+        panCentral.add(txtPregunta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 575, 325, 30));
 
         lblPregunta4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPregunta4.setForeground(new java.awt.Color(255, 255, 255));
@@ -415,39 +404,39 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 240, 30));
 
         txtPregunta4.setBackground(new java.awt.Color(255, 255, 204));
-        panCentral.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 370, 30));
+        panCentral.add(txtPregunta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 325, 30));
 
         getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 930, 650));
 
         panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAceptarEmpresa.setText("GUARDAR");
-        btnAceptarEmpresa.setToolTipText("Gestionar Roles de Usuario");
-        btnAceptarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptarUsuario.setText("GUARDAR");
+        btnAceptarUsuario.setToolTipText("Gestionar Roles de Usuario");
+        btnAceptarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarEmpresaActionPerformed(evt);
+                btnAceptarUsuarioActionPerformed(evt);
             }
         });
-        panInferior.add(btnAceptarEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 15, 100, 40));
-        btnAceptarEmpresa.getAccessibleContext().setAccessibleDescription("Nuevo");
+        panInferior.add(btnAceptarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 15, 100, 40));
+        btnAceptarUsuario.getAccessibleContext().setAccessibleDescription("Nuevo");
 
-        btnRegresarEmpresa.setText("CANCELAR");
-        btnRegresarEmpresa.setToolTipText("Gestionar Roles de Usuario");
-        btnRegresarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresarUsuario.setText("CANCELAR");
+        btnRegresarUsuario.setToolTipText("Gestionar Roles de Usuario");
+        btnRegresarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarEmpresaActionPerformed(evt);
+                btnRegresarUsuarioActionPerformed(evt);
             }
         });
-        panInferior.add(btnRegresarEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 15, 100, 40));
-        btnRegresarEmpresa.getAccessibleContext().setAccessibleDescription("Editar");
+        panInferior.add(btnRegresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 15, 100, 40));
+        btnRegresarUsuario.getAccessibleContext().setAccessibleDescription("Editar");
 
         getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 930, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEmpresaActionPerformed
+    private void btnAceptarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarUsuarioActionPerformed
        
         try {
             if(ACCION_NUEVO.equals(cambio)) {
@@ -476,11 +465,12 @@ public class GestionUsuario extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_btnAceptarEmpresaActionPerformed
+    }//GEN-LAST:event_btnAceptarUsuarioActionPerformed
 
-    private void btnRegresarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarEmpresaActionPerformed
-        volver(sesion, false);
-    }//GEN-LAST:event_btnRegresarEmpresaActionPerformed
+    private void btnRegresarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarUsuarioActionPerformed
+
+        volver(sesion, ACCION_EDITAR.equals(cambio));
+    }//GEN-LAST:event_btnRegresarUsuarioActionPerformed
 
     private void radMujerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radMujerActionPerformed
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMujer.png")));
@@ -494,10 +484,6 @@ public class GestionUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCiudadUsuarioActionPerformed
 
-    private void cmbActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbActivoActionPerformed
-
     private void cmbProvinciaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvinciaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProvinciaUsuarioActionPerformed
@@ -507,21 +493,31 @@ public class GestionUsuario extends javax.swing.JFrame {
 
         char clave[] = txtPassword.getPassword();
         String password = new String(clave);
+        if(sesion==null){
+            sesion = new Sesion("invitado", 0);
+            sesion.setIdeSesion();
+        }
+        if(usuario==null){
+            usuario = new Usuario(sesion.getIdSesion());
+        }
+        System.out.println(">>Sesion: " + sesion + " - Usuario: " + usuario);
         usuario.setIdentificacion(txtIdentificacionUsuario.getText());
         usuario.setNombres(txtNombreUsuario.getText());
         usuario.setApellidos(txtApellidosUsuario.getText());
-        usuario.setUsuario(txtUsuario.getText());
-        usuario.setPassword(password);
-        usuario.setCorreo(txtUsuarioUsuario.getText());
+        usuario.setDireccion(txtDireccionUsuario.getText());
+        usuario.setProvincia(cmbProvinciaUsuario.getSelectedItem().toString());
+        usuario.setCiudad(cmbCiudadUsuario.getSelectedItem().toString());
+        usuario.setCorreo(txtEmailUsuario.getText());
         if(radMujer.isSelected()){
-            usuario.setGenero("M");
+            usuario.setGenero("F");
         } else {
-            usuario.setGenero("H");
+            usuario.setGenero("M");
         }
-        estado = (Estado) cmbEstadoUsuario.getSelectedItem();
-        activo = (Estado) cmbCiudadUsuario.getSelectedItem();
-        usuario.setCestado(estado.getCestado() != null ? estado.getCestado() : null);
-        usuario.setActivo(activo.getCestado() != null ? activo.getCestado() : null);
+        usuario.setTelefono(txtTelefonoUsuario.getText());
+        usuario.setUsuario(txtUsuarioUsuario.getText());
+        usuario.setEstado(cmbEstadoUsuario.getSelectedItem().toString());
+        usuario.setDactivo(cmbActivo.getSelectedItem().toString());
+        usuario.setPassword(password);
         setIcon();
         
         char resp1[] = txtPregunta1.getPassword();
@@ -541,25 +537,28 @@ public class GestionUsuario extends javax.swing.JFrame {
     private void getInfoUsuario() throws Exception {
         if(this.usuario != null){
             usuario.getUsuario(this.cusuario);
-            txtUsuario.setText(this.cusuario.toString());
+            txtUsuario.setText(usuario.getCusuario().toString());
             txtIdentificacionUsuario.setText(usuario.getIdentificacion());
-            txtUsuarioUsuario.setText(usuario.getCorreo());
             txtNombreUsuario.setText(usuario.getNombres());
             txtApellidosUsuario.setText(usuario.getApellidos());
-            txtUsuario.setText(usuario.getUsuario());
+            txtDireccionUsuario.setText(usuario.getDireccion());
+            cmbProvinciaUsuario.setSelectedItem(usuario.getProvincia());
+            cmbCiudadUsuario.setSelectedItem(usuario.getCiudad());
+            txtEmailUsuario.setText(usuario.getCorreo());
+            txtTelefonoUsuario.setText(usuario.getTelefono());
+            txtUsuarioUsuario.setText(usuario.getUsuario());
             txtPassword.setText(usuario.getPassword());
             txtPasswordConf.setText(usuario.getPassword());            
-            if("M".equals(usuario.getGenero())){
+            if("F".equals(usuario.getGenero())){
                 radMujer.setSelected(true);
                 radHombre.setSelected(false);
             } else {
                 radMujer.setSelected(false);
                 radHombre.setSelected(true);
             }  
-            activo = new Estado(usuario.getActivo(),usuario.getDactivo());
-            cmbCiudadUsuario.getModel().setSelectedItem(activo);
-            estado = new Estado(usuario.getCestado(),usuario.getEstado());
-            cmbEstadoUsuario.getModel().setSelectedItem(estado);
+            setIcon();
+            cmbActivo.setSelectedItem(usuario.getDactivo());
+            cmbEstadoUsuario.setSelectedItem(usuario.getEstado());
             setIcon();        
             txtPregunta1.setText(usuario.getRespuesta1());
             txtPregunta2.setText(usuario.getRespuesta2());
@@ -577,10 +576,16 @@ public class GestionUsuario extends javax.swing.JFrame {
        
     public void setListRoles(JPanel panel, Integer cusuario, String usuario) {
         
-        Integer coordenadaY = 445;
+        Integer coordenadaY = 505;
+        JLabel rolesUsuario = new JLabel();
+        rolesUsuario.setFont(new java.awt.Font("Tahoma", 1, 14));
+        rolesUsuario.setText("Roles del usuario: ");
+        rolesUsuario.setForeground(new java.awt.Color(255, 204, 0));
+        panel.add(rolesUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, 300, 30));
+        
         List<Object> lista;
         Cliente cliente = new Cliente();
-        lista = cliente.query("SELECT NVL2(RU.CROL,1,0) ACTIVO, RO.DESCRIPCION, RO.NOMBRE FROM MASCOTAS.TROLUSUARIO RU, MASCOTAS.TROL RO WHERE RO.CROL=RU.CROL(+) AND RU.ACTIVO(+)=1 AND RO.ACTIVO=1 AND RU.CUSUARIO(+)=? ", cusuario);
+        lista = cliente.query("SELECT NVL2(RU.CROL,1,0) ACTIVO, RO.DESCRIPCION, RO.NOMBRE FROM TROLUSUARIO RU, TROL RO WHERE RO.CROL=RU.CROL(+) AND RU.ACTIVO(+)=1 AND RO.ACTIVO=1 AND RU.CUSUARIO(+)=? ", cusuario);
         for(Object dato : lista){
             Object [] arreglo;
             arreglo = (Object [])dato;
@@ -597,28 +602,18 @@ public class GestionUsuario extends javax.swing.JFrame {
             if("admin".equals(usuario) && "administrador".equals(arreglo[2].toString())){
                 chkRol.setEnabled(false);
             }
-            panel.add(chkRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, coordenadaY, 220, 20));
-            coordenadaY=coordenadaY+25;
+            panel.add(chkRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, coordenadaY, 300, 30));
+            coordenadaY=coordenadaY+30;
         }
     }
     
-    public void setComboEstados(JComboBox combo){      
-        combo.removeAllItems();       
-        Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("ESTADOUSUARIO", null, combo);
-    }
-    
-     public void setComboActivo(JComboBox combo){
+    private void loadCatalogo(){
         
-        combo.removeAllItems();       
-        Catalogo catalogo = new Catalogo();
-        catalogo.setComboCatalogo("ACTIVO", null, combo);
-    }
-     
-    private void setComboCiudadProvincia(){
-        Catalogo catalogo = new Catalogo();
+        Catalogo catalogo = new Catalogo();  
         catalogo.setComboCatalogo("PROVINCIAS", null, cmbProvinciaUsuario);
         catalogo.setComboCatalogo("CIUDADES", "01", cmbCiudadUsuario);
+        catalogo.setComboCatalogo("ACTIVO", null, cmbActivo);
+        catalogo.setComboCatalogo("ESTADOUSUARIO", null, cmbEstadoUsuario);
     }
     
     private void setIcon(){
@@ -644,8 +639,8 @@ public class GestionUsuario extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptarEmpresa;
-    private javax.swing.JButton btnRegresarEmpresa;
+    private javax.swing.JButton btnAceptarUsuario;
+    private javax.swing.JButton btnRegresarUsuario;
     private javax.swing.JComboBox<String> cmbActivo;
     private javax.swing.JComboBox<String> cmbCiudadUsuario;
     private javax.swing.JComboBox<String> cmbEstadoUsuario;

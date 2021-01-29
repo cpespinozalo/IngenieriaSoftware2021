@@ -641,9 +641,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbActivoActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -768,7 +765,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="300" y="505" width="370" height="30"/>
+              <AbsoluteConstraints x="300" y="505" width="325" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -796,7 +793,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="300" y="540" width="370" height="30"/>
+              <AbsoluteConstraints x="300" y="540" width="325" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -824,7 +821,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="300" y="575" width="370" height="30"/>
+              <AbsoluteConstraints x="300" y="575" width="325" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -852,7 +849,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="300" y="610" width="370" height="30"/>
+              <AbsoluteConstraints x="300" y="610" width="325" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -874,7 +871,7 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnAceptarEmpresa">
+        <Component class="javax.swing.JButton" name="btnAceptarUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="GUARDAR"/>
             <Property name="toolTipText" type="java.lang.String" value="Gestionar Roles de Usuario"/>
@@ -883,7 +880,7 @@
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Nuevo"/>
           </AccessibilityProperties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarEmpresaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarUsuarioActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -891,7 +888,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegresarEmpresa">
+        <Component class="javax.swing.JButton" name="btnRegresarUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="CANCELAR"/>
             <Property name="toolTipText" type="java.lang.String" value="Gestionar Roles de Usuario"/>
@@ -900,7 +897,7 @@
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Editar"/>
           </AccessibilityProperties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarEmpresaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarUsuarioActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Auditoria  implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    private static final String SQL_INSERT = "INSERT INTO MASCOTAS.TAUDITORIA (CAUDITORIA,FREAL,TIPO,ACCIONUSUARIO,DETALLEACCION,RESULTADO,IDSESION) VALUES ((SELECT NVL(MAX(CAUDITORIA),0)+1 FROM MASCOTAS.TAUDITORIA),SYSTIMESTAMP,?,?,?,?,?) ";
+    private static final String SQL_INSERT = "INSERT INTO TAUDITORIA (CAUDITORIA,FREAL,TIPO,ACCIONUSUARIO,DETALLEACCION,RESULTADO,IDSESION) VALUES ((SELECT NVL(MAX(CAUDITORIA),0)+1 FROM TAUDITORIA),SYSTIMESTAMP,?,?,?,?,?) ";
 
     
     public Auditoria() {
