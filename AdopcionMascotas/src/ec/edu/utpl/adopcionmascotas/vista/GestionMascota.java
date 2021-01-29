@@ -31,7 +31,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private String accion;
     private static final String ACCION_NUEVO = "PUBLICAR";
     private static final String ACCION_EDITAR = "EDITAR";
-    private static final String ACCION_ELIMINAR = "ELIMINAR";
+    private static final String ACCION_CONSULTAR = "CONSULTAR";
     
     public GestionMascota(Sesion sesion, Mascota mascota, String accion) {
 
@@ -59,6 +59,7 @@ public class GestionMascota extends javax.swing.JFrame {
         catalogo.setComboCatalogo("UNIDADES", null, cmbUnidadMascota);
         catalogo.setComboCatalogo("ESTADOMASCOTA", null, cmbEstadoMascota);
         catalogo.setComboCatalogo("GENEROMASCOTA", null, cmbGenero);
+        catalogo.setComboCatalogo("ESTADOADOPCION", null, cmbEstadoAdopcion);
     }
     
     private void setData(){
@@ -71,24 +72,47 @@ public class GestionMascota extends javax.swing.JFrame {
            lblAdopcion.setText("");
            lblFechaAdopcion.setText("");
            btnAceptarMascota.setText("PUBLICAR");
+           btnCancelarMascota.setText("CANCELAR");
            cmbEstadoMascota.setSelectedItem("DISPONIBLE");
            cmbEstadoMascota.setEnabled(false);  
+           btnEliminarMascota.setEnabled(false);
+           txtPersonaAdopcion.setEnabled(false); 
+           cmbEstadoAdopcion.setEnabled(false); 
+           btnAceptarMascota.setEnabled(false);
+           btnAgregarFoto.setEnabled(true);
            getInfoUsuario();
        } else if(ACCION_EDITAR.equals(accion)) {
            lblSubtituloAdopcion.setText("Gestionar una Mascota");
            lblDatosMascota.setText("Edición de Mascota");
            lblInfoMascota.setText("Modifique la información de la mascota:");
-           btnAceptarMascota.setText("ACTUALIZAR");
+           btnAceptarMascota.setText("EDITAR");
+           btnCancelarMascota.setText("CANCELAR");
            cmbEstadoMascota.setEnabled(true);  
+           btnAgregarFoto.setEnabled(true);
+           txtPersonaAdopcion.setEnabled(false); 
+           cmbEstadoAdopcion.setEnabled(false); 
+           btnAceptarMascota.setEnabled(true);
            getInfoMascota();
-       } else if(ACCION_ELIMINAR.equals(accion)) {
-           lblSubtituloAdopcion.setText("Eliminar una Mascota");
-           lblDatosMascota.setText("Eliminación de Mascota");
-           lblInfoMascota.setText("Modifique la información de la mascota:");
-           btnAceptarMascota.setText("ELIMINAR");
-           cmbEstadoMascota.setEnabled(true);  
+       } else if(ACCION_CONSULTAR.equals(accion)) {
+           lblSubtituloAdopcion.setText("Ver una Mascota");
+           lblDatosMascota.setText("Consulta de Mascota");
+           lblInfoMascota.setText("Consulte la información de la mascota:");
+           btnAceptarMascota.setText("EDITAR");
+           btnCancelarMascota.setText("REGRESAR");
+           txtNombreMascota.setEnabled(false);
+           cmbTipoMascota.setEnabled(false);
+           txtEdadMascota.setEnabled(false);
+           cmbUnidadMascota.setEnabled(false);
+           cmbGenero.setEnabled(false);
+           txtObservacionesMascota.setEnabled(false);
+           cmbEstadoMascota.setEnabled(false);  
+           txtPersonaAdopcion.setEnabled(false); 
+           cmbEstadoAdopcion.setEnabled(false); 
+           btnAceptarMascota.setEnabled(false);
+           btnEliminarMascota.setEnabled(false);
+           btnAgregarFoto.setEnabled(false);
            getInfoMascota();
-       }  
+       }
     }
     
     @SuppressWarnings("unchecked")
@@ -135,11 +159,17 @@ public class GestionMascota extends javax.swing.JFrame {
         txtCorreoMascota = new javax.swing.JTextField();
         lblEstadoMascota = new javax.swing.JLabel();
         cmbEstadoMascota = new javax.swing.JComboBox<>();
+        lblInfoAdopcion = new javax.swing.JLabel();
+        lblPersonaAdopcion = new javax.swing.JLabel();
+        txtPersonaAdopcion = new javax.swing.JTextField();
         lblAdopcion = new javax.swing.JLabel();
         lblFechaAdopcion = new javax.swing.JLabel();
+        lblEstadoAdopcion = new javax.swing.JLabel();
+        cmbEstadoAdopcion = new javax.swing.JComboBox<>();
         panInferior = new javax.swing.JPanel();
         btnAceptarMascota = new javax.swing.JButton();
         btnCancelarMascota = new javax.swing.JButton();
+        btnEliminarMascota = new javax.swing.JButton();
         scrFotosMascota = new javax.swing.JScrollPane();
         panFotosMascota = new javax.swing.JPanel();
         lblLogoEmpresa1 = new javax.swing.JLabel();
@@ -206,8 +236,8 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblCodigoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 115, 30));
 
         txtCodigoMascota.setBackground(new java.awt.Color(255, 255, 204));
-        txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMascota.setToolTipText("Nombre del Usuario");
         txtCodigoMascota.setEnabled(false);
         panCentral.add(txtCodigoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 150, 30));
@@ -345,23 +375,50 @@ public class GestionMascota extends javax.swing.JFrame {
         lblEstadoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblEstadoMascota.setForeground(new java.awt.Color(255, 255, 255));
         lblEstadoMascota.setText("Estado de Mascota:");
-        panCentral.add(lblEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 115, 30));
+        panCentral.add(lblEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 115, 30));
 
         cmbEstadoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmbEstadoMascota.setEnabled(false);
-        panCentral.add(cmbEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 230, 30));
+        panCentral.add(cmbEstadoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 230, 30));
+
+        lblInfoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblInfoAdopcion.setForeground(new java.awt.Color(255, 204, 0));
+        lblInfoAdopcion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblInfoAdopcion.setText("Información de adopción:");
+        panCentral.add(lblInfoAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 680, 20));
+
+        lblPersonaAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblPersonaAdopcion.setForeground(new java.awt.Color(255, 255, 255));
+        lblPersonaAdopcion.setText("Persona Adopcion:");
+        panCentral.add(lblPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 115, 30));
+
+        txtPersonaAdopcion.setBackground(new java.awt.Color(255, 255, 204));
+        txtPersonaAdopcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPersonaAdopcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPersonaAdopcion.setToolTipText("Nombre del Usuario");
+        txtPersonaAdopcion.setEnabled(false);
+        panCentral.add(txtPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 320, 30));
 
         lblAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblAdopcion.setForeground(new java.awt.Color(255, 255, 255));
         lblAdopcion.setText("Fecha Adopción:");
-        panCentral.add(lblAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 110, 30));
+        panCentral.add(lblAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 110, 30));
 
         lblFechaAdopcion.setForeground(new java.awt.Color(255, 204, 0));
         lblFechaAdopcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaAdopcion.setText("01/06/2020 11:32:14");
-        panCentral.add(lblFechaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 120, 30));
+        panCentral.add(lblFechaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 120, 30));
 
-        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 750, 490));
+        lblEstadoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblEstadoAdopcion.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstadoAdopcion.setText("Estado de Adopcion:");
+        panCentral.add(lblEstadoAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 115, 30));
+
+        cmbEstadoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbEstadoAdopcion.setEnabled(false);
+        panCentral.add(cmbEstadoAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 230, 30));
+
+        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 750, 600));
 
         panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -373,7 +430,7 @@ public class GestionMascota extends javax.swing.JFrame {
                 btnAceptarMascotaActionPerformed(evt);
             }
         });
-        panInferior.add(btnAceptarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 100, 40));
+        panInferior.add(btnAceptarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 20, 100, 40));
         btnAceptarMascota.getAccessibleContext().setAccessibleDescription("Nuevo");
 
         btnCancelarMascota.setText("CANCELAR");
@@ -383,10 +440,18 @@ public class GestionMascota extends javax.swing.JFrame {
                 btnCancelarMascotaActionPerformed(evt);
             }
         });
-        panInferior.add(btnCancelarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 100, 40));
+        panInferior.add(btnCancelarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 20, 100, 40));
         btnCancelarMascota.getAccessibleContext().setAccessibleDescription("Editar");
 
-        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 780, 750, 70));
+        btnEliminarMascota.setText("ELIMINAR");
+        btnEliminarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMascotaActionPerformed(evt);
+            }
+        });
+        panInferior.add(btnEliminarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 20, 100, 40));
+
+        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 750, 70));
 
         scrFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
 
@@ -402,7 +467,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         scrFotosMascota.setViewportView(panFotosMascota);
 
-        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 600, 170));
+        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 720, 600, 170));
 
         panBoton.setBackground(new java.awt.Color(41, 41, 41));
         panBoton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -415,7 +480,7 @@ public class GestionMascota extends javax.swing.JFrame {
         });
         panBoton.add(btnAgregarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 70, 120, 30));
 
-        getContentPane().add(panBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 150, 170));
+        getContentPane().add(panBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 720, 150, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -445,15 +510,11 @@ public class GestionMascota extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this.rootPane,"Los campos Nombre Mascota, Edad y Observaciones son obligatorios","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
             }
-       } else if(ACCION_ELIMINAR.equals(accion)) {
-           if(mascota.deleteMascota()){
-                JOptionPane.showMessageDialog(rootPane,"Se ha eliminado correctamente la mascota.","Eliminación de Mascotas",JOptionPane.INFORMATION_MESSAGE);
-                volver(sesion);
-            } 
-       }       
+       } 
     }//GEN-LAST:event_btnAceptarMascotaActionPerformed
 
     private void btnCancelarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarMascotaActionPerformed
+        
         volver(sesion);
     }//GEN-LAST:event_btnCancelarMascotaActionPerformed
 
@@ -473,6 +534,14 @@ public class GestionMascota extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
+
+    private void btnEliminarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMascotaActionPerformed
+        
+        if(mascota.deleteMascota()){
+            JOptionPane.showMessageDialog(rootPane,"Se ha eliminado correctamente la mascota.","Eliminación de Mascotas",JOptionPane.INFORMATION_MESSAGE);
+            volver(sesion);
+        }
+    }//GEN-LAST:event_btnEliminarMascotaActionPerformed
 
     
     private void setInfoMascota(){
@@ -513,6 +582,8 @@ public class GestionMascota extends javax.swing.JFrame {
                 txtCorreoMascota.setText(mascota.getCorreo());
                 cmbEstadoMascota.setSelectedItem(mascota.getEstadomascota());
                 lblFechaAdopcion.setText(mascota.getFadopcion());
+                cmbEstadoAdopcion.setSelectedItem(mascota.getDesestadoadopcion());
+                txtPersonaAdopcion.setText(mascota.getNombreusuarioadopcion());
             }
         } catch (Exception ex) {
             Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -536,7 +607,7 @@ public class GestionMascota extends javax.swing.JFrame {
         }
     }
     
-    public void volver(Sesion sesion){
+    private void volver(Sesion sesion){
         
         Inicio inicio = new Inicio();
         inicio.setIsLogged(true);
@@ -550,7 +621,9 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarMascota;
     private javax.swing.JButton btnAgregarFoto;
     private javax.swing.JButton btnCancelarMascota;
+    private javax.swing.JButton btnEliminarMascota;
     private javax.swing.JComboBox<String> cmbCiudadMascota;
+    private javax.swing.JComboBox<String> cmbEstadoAdopcion;
     private javax.swing.JComboBox<String> cmbEstadoMascota;
     private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JComboBox<String> cmbProvinciaMascota;
@@ -563,17 +636,20 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JLabel lblDatosMascota;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblEstadoAdopcion;
     private javax.swing.JLabel lblEstadoMascota;
     private javax.swing.JLabel lblFechaAdopcion;
     private javax.swing.JLabel lblFechaIngreso;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblInfo1;
+    private javax.swing.JLabel lblInfoAdopcion;
     private javax.swing.JLabel lblInfoMascota;
     private javax.swing.JLabel lblInfoPropietario;
     private javax.swing.JLabel lblLogoEmpresa1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblObservaciones;
+    private javax.swing.JLabel lblPersonaAdopcion;
     private javax.swing.JLabel lblPropietario;
     private javax.swing.JLabel lblProvincia;
     private javax.swing.JLabel lblPublicacion;
@@ -596,6 +672,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JTextField txtEdadMascota;
     private javax.swing.JTextField txtNombreMascota;
     private javax.swing.JTextPane txtObservacionesMascota;
+    private javax.swing.JTextField txtPersonaAdopcion;
     private javax.swing.JTextField txtPropietarioMascota;
     private javax.swing.JTextField txtTelefonoMascota;
     // End of variables declaration//GEN-END:variables

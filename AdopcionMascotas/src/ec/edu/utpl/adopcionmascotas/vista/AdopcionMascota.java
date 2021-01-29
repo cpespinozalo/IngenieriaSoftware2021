@@ -140,8 +140,8 @@ public class AdopcionMascota extends javax.swing.JFrame {
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCodigoMascota.setBackground(new java.awt.Color(255, 255, 204));
-        txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMascota.setToolTipText("Nombre del Usuario");
         txtCodigoMascota.setEnabled(false);
         panCentral.add(txtCodigoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 150, 30));
