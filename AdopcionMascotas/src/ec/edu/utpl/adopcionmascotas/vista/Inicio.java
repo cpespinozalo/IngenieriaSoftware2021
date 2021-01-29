@@ -130,7 +130,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnPublicarMascotaActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnPublicarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 485, 185, 60));
+        panInicioLateral.add(btnPublicarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 185, 60));
 
         btnMisMascotas.setText("Mis mascotas");
         btnMisMascotas.setToolTipText("Ver mis mascotas publicadas.");
@@ -141,7 +141,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnMisMascotasActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnMisMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 605, 185, 60));
+        panInicioLateral.add(btnMisMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 185, 60));
 
         btnMisAdopciones.setText("Mis adopciones");
         btnMisAdopciones.setToolTipText("Ver mis mascotas adoptadas.");
@@ -153,7 +153,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnMisAdopcionesActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 725, 185, 60));
+        panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 185, 60));
 
         btnGestionarUsuario.setText("Gestionar usuario");
         btnGestionarUsuario.setToolTipText("Gestionar mi usuario.");
@@ -165,7 +165,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnGestionarUsuarioActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnGestionarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 845, 185, 60));
+        panInicioLateral.add(btnGestionarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 185, 60));
 
         lblHora.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblHora.setForeground(new java.awt.Color(255, 255, 255));
