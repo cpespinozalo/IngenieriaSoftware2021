@@ -23,7 +23,7 @@ public class ControladorBienvenida implements Serializable {
     private String usuario;
 
     
-    private static final String SQL_SELECT_SESION = "SELECT USU.NOMBRES || ' ' || USU.APELLIDOS NOMBRELEGAL, USU.GENERO "
+    private static final String SQL_SELECT_SESION = "SELECT INITCAP(USU.NOMBRES || ' ' || USU.APELLIDOS) NOMBRELEGAL, USU.GENERO "
             + "FROM TUSUARIO USU "
             + "WHERE USU.USUARIO=? ";
     

@@ -78,8 +78,10 @@ public class GestionMascota extends javax.swing.JFrame {
            btnEliminarMascota.setEnabled(false);
            txtPersonaAdopcion.setEnabled(false); 
            cmbEstadoAdopcion.setEnabled(false); 
-           btnAceptarMascota.setEnabled(false);
+           btnAceptarMascota.setEnabled(true);
            btnAgregarFoto.setEnabled(true);
+           lblFechaIngreso.setText(util.tiempoSistema("dd-MM-yyyy HH:mm:ss"));
+           cmbEstadoAdopcion.setSelectedItem("SIN ADOPCION");
            getInfoUsuario();
        } else if(ACCION_EDITAR.equals(accion)) {
            lblSubtituloAdopcion.setText("Gestionar una Mascota");
@@ -222,7 +224,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDatosMascota.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        lblDatosMascota.setForeground(new java.awt.Color(255, 255, 255));
+        lblDatosMascota.setForeground(new java.awt.Color(255, 204, 0));
         lblDatosMascota.setText("Publicar una Mascota");
         panCentral.add(lblDatosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, 440, 25));
 
@@ -235,7 +237,6 @@ public class GestionMascota extends javax.swing.JFrame {
         lblCodigoMascota.setText("Codigo Mascota:");
         panCentral.add(lblCodigoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 115, 30));
 
-        txtCodigoMascota.setBackground(new java.awt.Color(255, 255, 204));
         txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMascota.setToolTipText("Nombre del Usuario");
@@ -249,7 +250,6 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblFechaIngreso.setForeground(new java.awt.Color(255, 204, 0));
         lblFechaIngreso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFechaIngreso.setText("15/05/2020 17:25:36");
         panCentral.add(lblFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 120, 30));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -278,7 +278,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         txtEdadMascota.setBackground(new java.awt.Color(255, 255, 204));
         txtEdadMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtEdadMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEdadMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEdadMascota.setToolTipText("Nombre del Usuario");
         panCentral.add(txtEdadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
 
@@ -397,7 +397,7 @@ public class GestionMascota extends javax.swing.JFrame {
         txtPersonaAdopcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtPersonaAdopcion.setToolTipText("Nombre del Usuario");
         txtPersonaAdopcion.setEnabled(false);
-        panCentral.add(txtPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 320, 30));
+        panCentral.add(txtPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 310, 30));
 
         lblAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblAdopcion.setForeground(new java.awt.Color(255, 255, 255));
@@ -406,7 +406,6 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblFechaAdopcion.setForeground(new java.awt.Color(255, 204, 0));
         lblFechaAdopcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFechaAdopcion.setText("01/06/2020 11:32:14");
         panCentral.add(lblFechaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 120, 30));
 
         lblEstadoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -451,7 +450,7 @@ public class GestionMascota extends javax.swing.JFrame {
         });
         panInferior.add(btnEliminarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 20, 100, 40));
 
-        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 750, 70));
+        getContentPane().add(panInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 750, 80));
 
         scrFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
 

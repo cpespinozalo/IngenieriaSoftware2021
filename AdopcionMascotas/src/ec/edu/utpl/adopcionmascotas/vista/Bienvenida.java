@@ -87,13 +87,13 @@ public class Bienvenida extends javax.swing.JFrame {
         lblIconoUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPequeño.png"))); // NOI18N
         panTituloBienvenida.add(lblIconoUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 94, 50));
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Bienvenido,");
         panTituloBienvenida.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 350, 20));
 
-        lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblNombreUsuario.setForeground(new java.awt.Color(255, 204, 0));
         lblNombreUsuario.setText("Nombre Usuario");
         panTituloBienvenida.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 350, 30));
 

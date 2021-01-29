@@ -1,10 +1,11 @@
 package ec.edu.utpl.adopcionmascotas.vista;
 
+import ec.edu.utpl.adopcionmascotas.controlador.ThreadSistema;
+import ec.edu.utpl.adopcionmascotas.controlador.Utilitarios;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.ColorUIResource;
 
 /**
@@ -27,6 +27,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private Sesion sesion;
     private Mascota mascota;
+    private Utilitarios util;
     private Inicio ini;
     private boolean isLogged = false;
 
@@ -36,14 +37,17 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         
         try {
+            this.util = new Utilitarios();
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
             javax.swing.UIManager.put("OptionPane.background",new ColorUIResource(41,41,41));
             javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
             javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
             initComponents(); 
             setLocationRelativeTo(null);
-            ini = this;
-        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
+            ini = this;        
+            Thread reloj = new ThreadSistema(true, "HH:mm:ss", "EEEE',' dd 'de' MMMMM 'de' yyyy", lblHora, lblFecha, lblFotoPortadaA, lblFotoPortadaB, lblFotoPortadaC);
+            reloj.start();
+        }catch(Exception e){
             javax.swing.JOptionPane.showMessageDialog(this.rootPane,"Imposible modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -65,6 +69,8 @@ public class Inicio extends javax.swing.JFrame {
         btnMisMascotas = new javax.swing.JButton();
         btnMisAdopciones = new javax.swing.JButton();
         btnGestionarUsuario = new javax.swing.JButton();
+        lblHora = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         panInicioSuperior = new javax.swing.JPanel();
         lblInicioPortada = new javax.swing.JLabel();
         lblInicioSubtitulo = new javax.swing.JLabel();
@@ -79,6 +85,9 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioUniversidad = new javax.swing.JLabel();
         lblInicioAutores = new javax.swing.JLabel();
         lblIncioUtpl = new javax.swing.JLabel();
+        lblInicio = new javax.swing.JLabel();
+        lblInicioSesion = new javax.swing.JLabel();
+        lblInfoSistema = new javax.swing.JLabel();
         panInicioIntro = new javax.swing.JPanel();
         lblInicioTituloIntro = new javax.swing.JLabel();
         lblFotoPortadaA = new javax.swing.JLabel();
@@ -103,7 +112,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
 
         btnVerMascotas.setText("Ver mascotas");
-        btnVerMascotas.setToolTipText("Conoce las mascotas disponibles.");
+        btnVerMascotas.setToolTipText("Ver las mascotas disponibles.");
         btnVerMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerMascotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +122,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.add(btnVerMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 365, 185, 60));
 
         btnPublicarMascota.setText("Publicar mascota");
-        btnPublicarMascota.setToolTipText("Inicia una adopción.");
+        btnPublicarMascota.setToolTipText("Publicar una mascota.");
         btnPublicarMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicarMascota.setOpaque(false);
         btnPublicarMascota.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +133,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.add(btnPublicarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 485, 185, 60));
 
         btnMisMascotas.setText("Mis mascotas");
-        btnMisMascotas.setToolTipText("Conoce nuestros usuarios.");
+        btnMisMascotas.setToolTipText("Ver mis mascotas publicadas.");
         btnMisMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMisMascotas.setOpaque(false);
         btnMisMascotas.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +144,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.add(btnMisMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 605, 185, 60));
 
         btnMisAdopciones.setText("Mis adopciones");
-        btnMisAdopciones.setToolTipText("Visita la veterinaria.");
+        btnMisAdopciones.setToolTipText("Ver mis mascotas adoptadas.");
         btnMisAdopciones.setBorder(null);
         btnMisAdopciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMisAdopciones.setOpaque(false);
@@ -147,7 +156,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 725, 185, 60));
 
         btnGestionarUsuario.setText("Gestionar usuario");
-        btnGestionarUsuario.setToolTipText("Visita la veterinaria.");
+        btnGestionarUsuario.setToolTipText("Gestionar mi usuario.");
         btnGestionarUsuario.setBorder(null);
         btnGestionarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionarUsuario.setOpaque(false);
@@ -157,6 +166,17 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         panInicioLateral.add(btnGestionarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 845, 185, 60));
+
+        lblHora.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHora.setText("00:00:00");
+        panInicioLateral.add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 970, 245, 30));
+
+        lblFecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panInicioLateral.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1000, 245, 20));
 
         getContentPane().add(panInicioLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 245, 1040));
 
@@ -216,10 +236,10 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         panInicioSuperior.add(lblInicioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 20, 180, 20));
 
-        lblInicioNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblInicioNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblInicioNombre.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+        lblInicioNombre.setForeground(new java.awt.Color(255, 204, 0));
         lblInicioNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        panInicioSuperior.add(lblInicioNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 40, 330, 20));
+        panInicioSuperior.add(lblInicioNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 40, 370, 20));
 
         getContentPane().add(panInicioSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 0, 1675, 150));
 
@@ -228,21 +248,36 @@ public class Inicio extends javax.swing.JFrame {
         panInicioInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblInicioUniversidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblInicioUniversidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblInicioUniversidad.setForeground(new java.awt.Color(255, 204, 0));
         lblInicioUniversidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblInicioUniversidad.setText("Universidad Técnica Pasticular de Loja");
-        panInicioInferior.add(lblInicioUniversidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, 400, 32));
+        panInicioInferior.add(lblInicioUniversidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, 400, 20));
 
-        lblInicioAutores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblInicioAutores.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lblInicioAutores.setForeground(new java.awt.Color(255, 255, 255));
         lblInicioAutores.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblInicioAutores.setText("[ ESPINOZA - CONTRERAS - GÓMEZ - CEDEÑO - REA ]");
-        panInicioInferior.add(lblInicioAutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 52, 400, 32));
+        panInicioInferior.add(lblInicioAutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, 400, 20));
 
         lblIncioUtpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoUtplGrande.png"))); // NOI18N
-        panInicioInferior.add(lblIncioUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1454, 20, 160, 64));
+        panInicioInferior.add(lblIncioUtpl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1454, 10, 160, 64));
 
-        getContentPane().add(panInicioInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 940, 1675, 100));
+        lblInicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblInicio.setForeground(new java.awt.Color(255, 255, 255));
+        lblInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        panInicioInferior.add(lblInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 20));
+
+        lblInicioSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblInicioSesion.setForeground(new java.awt.Color(255, 204, 0));
+        lblInicioSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        panInicioInferior.add(lblInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 500, 20));
+
+        lblInfoSistema.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblInfoSistema.setForeground(new java.awt.Color(255, 204, 0));
+        lblInfoSistema.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        panInicioInferior.add(lblInfoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 500, 20));
+
+        getContentPane().add(panInicioInferior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 960, 1675, 80));
 
         panInicioIntro.setBackground(new java.awt.Color(255, 255, 255));
         panInicioIntro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -255,15 +290,15 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioTituloIntro.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         panInicioIntro.add(lblInicioTituloIntro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 650, 30));
 
-        lblFotoPortadaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria1.png"))); // NOI18N
+        lblFotoPortadaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria4.png"))); // NOI18N
         lblFotoPortadaA.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 260, 140));
 
-        lblFotoPortadaB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria2.png"))); // NOI18N
+        lblFotoPortadaB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria8.png"))); // NOI18N
         lblFotoPortadaB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 260, 140));
 
-        lblFotoPortadaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria3.png"))); // NOI18N
+        lblFotoPortadaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgFotoGaleria12.png"))); // NOI18N
         lblFotoPortadaC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panInicioIntro.add(lblFotoPortadaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 260, 140));
 
@@ -290,7 +325,7 @@ public class Inicio extends javax.swing.JFrame {
         panInicioListadoMascotas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         scrInicioMascotas.setViewportView(panInicioListadoMascotas);
 
-        getContentPane().add(scrInicioMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 1640, 590));
+        getContentPane().add(scrInicioMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 1640, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,15 +342,18 @@ public class Inicio extends javax.swing.JFrame {
         Integer id = sesion != null ? sesion.getIdSesion() : null;
         mascota = new Mascota(id);
         List<Mascota> listadomascotas = mascota.getListadoMascota(id, "D", null, 1);
+        if(listadomascotas.isEmpty()){
+            scrInicioMascotas.updateUI();
+        }
         for(Mascota mas : listadomascotas){
             if(reg % 2 == 0) {
-                posX = 810;
+                posX = 815;
             } else {
                 posX = 10;
             }
             crearPanelMascota(mas, false, posX, posY);
             if(reg >1 && reg % 2 == 0){
-                    posY = posY + 130; 
+                    posY = posY + 135; 
             }
             reg++;
         }
@@ -328,7 +366,7 @@ public class Inicio extends javax.swing.JFrame {
         titulomascotaSec.setForeground(new java.awt.Color(255, 54, 54));
         titulomascotaSec.setText(titulo);
         panel.add(titulomascotaSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 5, 690, 30));
-        
+        panel.repaint();
         JLabel subtitulomascotaSec = new JLabel();
         subtitulomascotaSec.setFont(new java.awt.Font("Tahoma", 0, 12));
         subtitulomascotaSec.setText(subtitulo);
@@ -339,7 +377,7 @@ public class Inicio extends javax.swing.JFrame {
         
         try {
             JPanel panMascota = new JPanel();
-            panMascota.setBackground(new java.awt.Color(255, 255, 255));
+            panMascota.setBackground(new java.awt.Color(41, 41, 41));
             panMascota.setBorder(javax.swing.BorderFactory.createEtchedBorder());
             panMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
             
@@ -356,27 +394,31 @@ public class Inicio extends javax.swing.JFrame {
             JLabel fechaMascota = new JLabel();
             fechaMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
             fechaMascota.setText("Publicación: " + mascota.getFpublicacion());
+            fechaMascota.setForeground(new java.awt.Color(255, 255, 255));
             panMascota.add(fechaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 55, 220, 20));
             
             JLabel ciudadMascota = new JLabel();
             ciudadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
             ciudadMascota.setText("Lugar: " + mascota.getProvincia() + ", " + mascota.getCiudad());
+            ciudadMascota.setForeground(new java.awt.Color(255, 255, 255));
             panMascota.add(ciudadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 75, 220, 20));
             
             JLabel edadMascota = new JLabel();
             edadMascota.setFont(new java.awt.Font("Tahoma", 0, 14));
             edadMascota.setText("Edad: " + mascota.getEdad() + " " + mascota.getUnidadedad());
+            edadMascota.setForeground(new java.awt.Color(255, 255, 255));
             panMascota.add(edadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 95, 220, 20));
             
             if(adopcion){
                 JLabel usuarioAdoopcion = new JLabel();
                 usuarioAdoopcion.setFont(new java.awt.Font("Tahoma", 1, 14));
                 if(mascota.getUsuarioadopcion()!=null && !"".equals(mascota.getUsuarioadopcion())){
-                    usuarioAdoopcion.setText("Adoptado por: " + mascota.getNombreusuarioadopcion() + " - " + mascota.getFadopcion());
+                    usuarioAdoopcion.setText("Adoptado: " + mascota.getNombreusuarioadopcion());
                 } else {
                     usuarioAdoopcion.setText("Pendiente de Adopción");
                 }
                 usuarioAdoopcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                usuarioAdoopcion.setForeground(new java.awt.Color(255, 255, 255));
                 panMascota.add(usuarioAdoopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 15, 380, 30)); 
             }
             JButton btnVerMascota = new JButton();
@@ -414,21 +456,21 @@ public class Inicio extends javax.swing.JFrame {
             scrObservaciones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
             scrObservaciones.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
             scrObservaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
-            
+                        
             JTextPane observaciones = new JTextPane();
             observaciones.setEditable(false);
             observaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
             observaciones.setFont(new java.awt.Font("Tahoma", 0, 12));
             observaciones.setText(mascota.getDescripcion());
             observaciones.setAutoscrolls(false);
-            observaciones.setCaretColor(new java.awt.Color(255, 255, 255));
+            observaciones.setBackground(new java.awt.Color(41, 41, 41));
+            observaciones.setForeground(new java.awt.Color(255, 204, 0));
             scrObservaciones.setViewportView(observaciones);
             panMascota.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 55, 340, 60));
             
             panInicioListadoMascotas.add(panMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 800, 130));
             panInicioListadoMascotas.updateUI();
-            Thread.sleep(0);
-        } catch (InterruptedException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -465,15 +507,18 @@ public class Inicio extends javax.swing.JFrame {
             Integer id = sesion != null ? sesion.getIdSesion() : null;
             mascota = new Mascota(id);
             List<Mascota> listadomascotas = mascota.getListadoMascota(id, "A", sesion.getUsuario(), 2);
+            if(listadomascotas.isEmpty()){
+                scrInicioMascotas.updateUI();
+            }
             for(Mascota mas : listadomascotas){
                 if(reg % 2 == 0) {
-                    posX = 810;
+                    posX = 815;
                 } else {
                     posX = 10;
                 }
                 crearPanelMascota(mas, true, posX, posY);
                 if(reg >1 && reg % 2 == 0){
-                        posY = posY + 130; 
+                        posY = posY + 135; 
                 }
                 reg++;
             }          
@@ -507,15 +552,18 @@ public class Inicio extends javax.swing.JFrame {
             Integer id = sesion != null ? sesion.getIdSesion() : null;
             mascota = new Mascota(id);
             List<Mascota> listadomascotas = mascota.getListadoMascota(id, null, sesion.getUsuario(), 3);
+            if(listadomascotas.isEmpty()){
+                scrInicioMascotas.updateUI();
+            }
             for(Mascota mas : listadomascotas){
                 if(reg % 2 == 0) {
-                    posX = 810;
+                    posX = 815;
                 } else {
                     posX = 10;
                 }
                 crearPanelMascota(mas, true, posX, posY);
                 if(reg >1 && reg % 2 == 0){
-                        posY = posY + 130; 
+                        posY = posY + 135; 
                 }
                 reg++;
             }
@@ -574,6 +622,7 @@ public class Inicio extends javax.swing.JFrame {
         lblInicioNombre.setText(this.sesion.getNombreUsuario());
         final String avatar = "H".equals(this.sesion.getGenero()) ? "Hombre" : "Mujer";    
         lblInicioAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource(String.format("/images/img%s.png", avatar))));
+        setDatosUsuario();
     }
 
     public boolean isIsLogged() {
@@ -592,6 +641,13 @@ public class Inicio extends javax.swing.JFrame {
         btnInicioLogin.setEnabled(false);
     }
 
+    private void setDatosUsuario(){
+        
+        lblInicio.setText("Inicio de Sesión:");
+        lblInicioSesion.setText(sesion.getFinicio());
+        lblInfoSistema.setText(sesion.getSistema());   
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestionarUsuario;
     private javax.swing.JButton btnInicioLogin;
@@ -602,15 +658,20 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnPublicarMascota;
     private javax.swing.JButton btnVerMascotas;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFotoPortadaA;
     private javax.swing.JLabel lblFotoPortadaB;
     private javax.swing.JLabel lblFotoPortadaC;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblIncioUtpl;
+    private javax.swing.JLabel lblInfoSistema;
+    private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblInicioAutores;
     private javax.swing.JLabel lblInicioAvatar;
     private javax.swing.JLabel lblInicioBienvenida;
     private javax.swing.JLabel lblInicioNombre;
     private javax.swing.JLabel lblInicioPortada;
+    private javax.swing.JLabel lblInicioSesion;
     private javax.swing.JLabel lblInicioSubtitulo;
     private javax.swing.JLabel lblInicioTitulo;
     private javax.swing.JLabel lblInicioTituloIntro;

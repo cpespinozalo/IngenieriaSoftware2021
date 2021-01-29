@@ -181,7 +181,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDatoUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblDatoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblDatoUsuario.setForeground(new java.awt.Color(255, 204, 0));
         lblDatoUsuario.setText("Nuevo Usuario");
         panCentral.add(lblDatoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 440, 25));
 
@@ -197,8 +197,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblCodigoUsuario.setText("Codigo Usuario:");
         panCentral.add(lblCodigoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 115, 30));
 
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 204));
-        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setToolTipText("Nombre del Usuario");
         txtUsuario.setEnabled(false);
@@ -591,17 +590,11 @@ public class GestionUsuario extends javax.swing.JFrame {
             arreglo = (Object [])dato;
             JCheckBox chkRol = new JCheckBox(arreglo[1].toString());
             chkRol.setBackground(new java.awt.Color(255, 255, 255));
-            chkRol.setFont(new java.awt.Font("Dialog", 1, 14));
-            chkRol.setForeground(new java.awt.Color(255, 153, 0));
+            chkRol.setFont(new java.awt.Font("Tahoma", 0, 14));
+            chkRol.setForeground(new java.awt.Color(255, 255, 255));
             chkRol.setOpaque(false);
-            chkRol.setSelected(false);
-            chkRol.setEnabled(true);
-            if("1".equals(arreglo[0].toString())){
-                chkRol.setSelected(true);
-            }
-            if("admin".equals(usuario) && "administrador".equals(arreglo[2].toString())){
-                chkRol.setEnabled(false);
-            }
+            chkRol.setSelected(true);
+            chkRol.setEnabled(false);
             panel.add(chkRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, coordenadaY, 300, 30));
             coordenadaY=coordenadaY+30;
         }

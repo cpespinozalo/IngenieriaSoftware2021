@@ -139,7 +139,6 @@ public class AdopcionMascota extends javax.swing.JFrame {
         panCentral.setBackground(new java.awt.Color(41, 41, 41));
         panCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCodigoMascota.setBackground(new java.awt.Color(255, 255, 204));
         txtCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtCodigoMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMascota.setToolTipText("Nombre del Usuario");
@@ -162,7 +161,7 @@ public class AdopcionMascota extends javax.swing.JFrame {
 
         txtEdadMascota.setBackground(new java.awt.Color(255, 255, 204));
         txtEdadMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtEdadMascota.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEdadMascota.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEdadMascota.setToolTipText("Nombre del Usuario");
         txtEdadMascota.setEnabled(false);
         panCentral.add(txtEdadMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 150, 30));
@@ -214,7 +213,7 @@ public class AdopcionMascota extends javax.swing.JFrame {
         panCentral.add(cmbProvinciaMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 230, 30));
 
         lblDatosMascota.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        lblDatosMascota.setForeground(new java.awt.Color(255, 255, 255));
+        lblDatosMascota.setForeground(new java.awt.Color(255, 204, 0));
         lblDatosMascota.setText("Adoptar Mascota");
         panCentral.add(lblDatosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, 440, 25));
 

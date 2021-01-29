@@ -86,7 +86,7 @@ public class Login extends javax.swing.JFrame {
         panLogin.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 145, 80, 25));
 
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtUsuario.setToolTipText("Nombre de usuario");
+        txtUsuario.setToolTipText("Nombre de usuario.");
         panLogin.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 145, 210, 25));
 
         lblPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -95,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         panLogin.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 80, 25));
 
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPassword.setToolTipText("Contraseña del usuario");
+        txtPassword.setToolTipText("Contraseña del usuario.");
         panLogin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 210, 25));
 
         lblPregunta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -115,11 +115,11 @@ public class Login extends javax.swing.JFrame {
         btnRefresh.getAccessibleContext().setAccessibleName("btnRefresh");
 
         txtRespuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtRespuesta.setToolTipText("Nombre de usuario");
+        txtRespuesta.setToolTipText("Respuesta a la pregunta de seguridad.");
         panLogin.add(txtRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 265, 300, 25));
 
         btnAceptar.setText("Entrar");
-        btnAceptar.setToolTipText("Ingresar a la Aplicación");
+        btnAceptar.setToolTipText("Loguearse en el sistema.");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
         panLogin.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 315, 70, 20));
 
         btnCancelar.setText("Salir");
-        btnCancelar.setToolTipText("Salir de la Aplicación");
+        btnCancelar.setToolTipText("Volver a la pantalla principal.");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -178,6 +178,7 @@ public class Login extends javax.swing.JFrame {
                     if(login.validarRespuesta(respuesta)){
                         
                         if(login.loginUsuario(password)){
+                            System.out.println(">>LOGIN:" + login.cusuario + " - " + user);
                             Bienvenida mensaje = new Bienvenida(login.cusuario, user);
                             mensaje.setVisible(true);
                             this.dispose();
