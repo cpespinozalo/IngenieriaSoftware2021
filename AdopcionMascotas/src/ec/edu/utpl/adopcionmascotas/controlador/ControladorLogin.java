@@ -28,16 +28,7 @@ public class ControladorLogin {
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
     
-    private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
-        
-        List<Object> resultado;
-        Cliente cliente = new Cliente();
-        resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
-        return resultado;
-    }
-    
     public boolean existeUsuario(String usuario, Integer cpregunta){
-        
         boolean existe = false;
         this.datos =  getDatosUsuario(usuario, cpregunta);
         if(!datos.isEmpty()){
@@ -46,8 +37,14 @@ public class ControladorLogin {
         return existe;
     }
     
+    private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
+        List<Object> resultado;
+        Cliente cliente = new Cliente();
+        resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
+        return resultado;
+    }
+    
     public boolean loginUsuario(String password) throws Exception{
-        
         CifradoAes aes = new CifradoAes();
         String clavecifrada = aes.encriptar(password);
         boolean login = false;
@@ -63,7 +60,6 @@ public class ControladorLogin {
     }
     
     public boolean validarRespuesta(String respuesta) throws Exception{
-        
         CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(respuesta);
         boolean resp = false;
@@ -78,7 +74,6 @@ public class ControladorLogin {
     }
     
     public String getPregunta(Integer cpregunta){
-        
         String preguntaDes = "";
         List<Object> resultado;
         Cliente cliente = new Cliente();
