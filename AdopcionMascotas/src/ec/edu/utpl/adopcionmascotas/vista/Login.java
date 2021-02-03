@@ -139,7 +139,7 @@ public class Login extends javax.swing.JFrame {
         lblOlvidoCon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblOlvidoCon.setForeground(new java.awt.Color(255, 255, 255));
         lblOlvidoCon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblOlvidoCon.setText("¿Olvidó su contraseña?");
+        lblOlvidoCon.setText("¿Olvidaste tu contraseña?");
         lblOlvidoCon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblOlvidoCon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
