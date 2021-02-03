@@ -128,7 +128,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Publicar una Mascota"/>
+            <Property name="text" type="java.lang.String" value="Presentanos una nueva Mascota"/>
             <Property name="alignmentX" type="float" value="0.5"/>
           </Properties>
           <Constraints>
@@ -163,7 +163,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="cc" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Publicar una Mascota"/>
+            <Property name="text" type="java.lang.String" value="Presentar una Mascota"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -176,7 +176,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n de la mascota en adopci&#xf3;n:"/>
+            <Property name="text" type="java.lang.String" value="Ingresa la informaci&#xf3;n de la mascota en adopci&#xf3;n:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -442,7 +442,7 @@
               <Color blue="0" green="cc" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del propietario:"/>
+            <Property name="text" type="java.lang.String" value="Cuentanos sobre el propietario:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -711,11 +711,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Persona Adopcion:"/>
+            <Property name="text" type="java.lang.String" value="Persona que adopto:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="510" width="115" height="30"/>
+              <AbsoluteConstraints x="20" y="510" width="130" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -774,7 +774,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Estado de Adopcion:"/>
+            <Property name="text" type="java.lang.String" value="Estado de Adopci&#xf3;n:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -821,7 +821,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnAceptarMascota">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PUBLICAR"/>
+            <Property name="text" type="java.lang.String" value="COMPARTIR"/>
             <Property name="toolTipText" type="java.lang.String" value="Gestionar Roles de Usuario"/>
           </Properties>
           <AccessibilityProperties>
@@ -940,7 +940,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnAgregarFoto">
           <Properties>
-            <Property name="text" type="java.lang.String" value="AGREGAR FOTOS"/>
+            <Property name="text" type="java.lang.String" value="AGREGA FOTOS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarFotoActionPerformed"/>

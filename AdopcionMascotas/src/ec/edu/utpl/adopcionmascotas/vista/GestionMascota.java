@@ -214,7 +214,7 @@ public class GestionMascota extends javax.swing.JFrame {
         lblSubtituloAdopcion.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblSubtituloAdopcion.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtituloAdopcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSubtituloAdopcion.setText("Publicar una Mascota");
+        lblSubtituloAdopcion.setText("Presentanos una nueva Mascota");
         lblSubtituloAdopcion.setAlignmentX(0.5F);
         panSubtitulo.add(lblSubtituloAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 390, -1));
 
@@ -225,11 +225,11 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblDatosMascota.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblDatosMascota.setForeground(new java.awt.Color(255, 204, 0));
-        lblDatosMascota.setText("Publicar una Mascota");
+        lblDatosMascota.setText("Presentar una Mascota");
         panCentral.add(lblDatosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, 440, 25));
 
         lblInfoMascota.setForeground(new java.awt.Color(255, 255, 255));
-        lblInfoMascota.setText("Ingrese la información de la mascota en adopción:");
+        lblInfoMascota.setText("Ingresa la información de la mascota en adopción:");
         panCentral.add(lblInfoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
 
         lblCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -306,7 +306,7 @@ public class GestionMascota extends javax.swing.JFrame {
         lblInfoPropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblInfoPropietario.setForeground(new java.awt.Color(255, 204, 0));
         lblInfoPropietario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblInfoPropietario.setText("Información del propietario:");
+        lblInfoPropietario.setText("Cuentanos sobre el propietario:");
         panCentral.add(lblInfoPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 680, 20));
 
         lblPropietario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -389,8 +389,8 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblPersonaAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPersonaAdopcion.setForeground(new java.awt.Color(255, 255, 255));
-        lblPersonaAdopcion.setText("Persona Adopcion:");
-        panCentral.add(lblPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 115, 30));
+        lblPersonaAdopcion.setText("Persona que adopto:");
+        panCentral.add(lblPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 130, 30));
 
         txtPersonaAdopcion.setBackground(new java.awt.Color(255, 255, 204));
         txtPersonaAdopcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -410,7 +410,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblEstadoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblEstadoAdopcion.setForeground(new java.awt.Color(255, 255, 255));
-        lblEstadoAdopcion.setText("Estado de Adopcion:");
+        lblEstadoAdopcion.setText("Estado de Adopción:");
         panCentral.add(lblEstadoAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 115, 30));
 
         cmbEstadoAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -422,7 +422,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAceptarMascota.setText("PUBLICAR");
+        btnAceptarMascota.setText("COMPARTIR");
         btnAceptarMascota.setToolTipText("Gestionar Roles de Usuario");
         btnAceptarMascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -471,7 +471,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panBoton.setBackground(new java.awt.Color(41, 41, 41));
         panBoton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAgregarFoto.setText("AGREGAR FOTOS");
+        btnAgregarFoto.setText("AGREGA FOTOS");
         btnAgregarFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarFotoActionPerformed(evt);
