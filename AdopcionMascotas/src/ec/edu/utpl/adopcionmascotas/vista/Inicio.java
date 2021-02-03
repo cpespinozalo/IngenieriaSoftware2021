@@ -112,7 +112,7 @@ public class Inicio extends javax.swing.JFrame {
         lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
         panInicioLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 245, 140));
 
-        btnVerMascotas.setText("Ver mascotas");
+        btnVerMascotas.setText("Conoce Nuevas Mascotas");
         btnVerMascotas.setToolTipText("Ver las mascotas disponibles.");
         btnVerMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerMascotas.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioLateral.add(btnVerMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 185, 60));
 
-        btnPublicarMascota.setText("Publicar mascota");
+        btnPublicarMascota.setText("Presentanos una Mascota");
         btnPublicarMascota.setToolTipText("Publicar una mascota.");
         btnPublicarMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicarMascota.setOpaque(false);
@@ -156,7 +156,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 185, 60));
 
-        btnGestionarUsuario.setText("Gestionar usuario");
+        btnGestionarUsuario.setText("Mi usuario");
         btnGestionarUsuario.setToolTipText("Gestionar mi usuario.");
         btnGestionarUsuario.setBorder(null);
         btnGestionarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -192,12 +192,12 @@ public class Inicio extends javax.swing.JFrame {
 
         lblInicioSubtitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblInicioSubtitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblInicioSubtitulo.setText("plataforma");
+        lblInicioSubtitulo.setText("Plataforma");
         panInicioSuperior.add(lblInicioSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 200, 30));
 
         lblInicioTitulo.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
         lblInicioTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblInicioTitulo.setText("adopción de mascotas");
+        lblInicioTitulo.setText("Adopción de Mascotas");
         panInicioSuperior.add(lblInicioTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 800, 120));
 
         btnInicioLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogin.png"))); // NOI18N

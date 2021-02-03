@@ -74,7 +74,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnVerMascotas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver mascotas"/>
+            <Property name="text" type="java.lang.String" value="Conoce Nuevas Mascotas"/>
             <Property name="toolTipText" type="java.lang.String" value="Ver las mascotas disponibles."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -91,7 +91,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPublicarMascota">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Publicar mascota"/>
+            <Property name="text" type="java.lang.String" value="Presentanos una Mascota"/>
             <Property name="toolTipText" type="java.lang.String" value="Publicar una mascota."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -148,7 +148,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnGestionarUsuario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestionar usuario"/>
+            <Property name="text" type="java.lang.String" value="Mi usuario"/>
             <Property name="toolTipText" type="java.lang.String" value="Gestionar mi usuario."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -245,7 +245,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="plataforma"/>
+            <Property name="text" type="java.lang.String" value="Plataforma"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -261,7 +261,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="adopci&#xf3;n de mascotas"/>
+            <Property name="text" type="java.lang.String" value="Adopci&#xf3;n de Mascotas"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
