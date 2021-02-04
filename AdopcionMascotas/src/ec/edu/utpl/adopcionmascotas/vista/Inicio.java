@@ -68,6 +68,7 @@ public class Inicio extends javax.swing.JFrame {
         btnMisMascotas = new javax.swing.JButton();
         btnMisAdopciones = new javax.swing.JButton();
         btnGestionarUsuario = new javax.swing.JButton();
+        btnAdministracion = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         panInicioSuperior = new javax.swing.JPanel();
@@ -110,7 +111,7 @@ public class Inicio extends javax.swing.JFrame {
         lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
         panInicioLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
 
-        btnVerMascotas.setText("Ver mascotas");
+        btnVerMascotas.setText("Mascotas Disponibles");
         btnVerMascotas.setToolTipText("Ver las mascotas disponibles.");
         btnVerMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerMascotas.addActionListener(new java.awt.event.ActionListener() {
@@ -129,9 +130,9 @@ public class Inicio extends javax.swing.JFrame {
                 btnPublicarMascotaActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnPublicarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 485, 185, 60));
+        panInicioLateral.add(btnPublicarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 465, 185, 60));
 
-        btnMisMascotas.setText("Mis mascotas");
+        btnMisMascotas.setText("Mis Mascotas Publicadas");
         btnMisMascotas.setToolTipText("Ver mis mascotas publicadas.");
         btnMisMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMisMascotas.setOpaque(false);
@@ -140,9 +141,9 @@ public class Inicio extends javax.swing.JFrame {
                 btnMisMascotasActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnMisMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 605, 185, 60));
+        panInicioLateral.add(btnMisMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 565, 185, 60));
 
-        btnMisAdopciones.setText("Mis adopciones");
+        btnMisAdopciones.setText("Mis Mascotas Adoptadas");
         btnMisAdopciones.setToolTipText("Ver mis mascotas adoptadas.");
         btnMisAdopciones.setBorder(null);
         btnMisAdopciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,7 +153,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnMisAdopcionesActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 725, 185, 60));
+        panInicioLateral.add(btnMisAdopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 665, 185, 60));
 
         btnGestionarUsuario.setText("Gestionar usuario");
         btnGestionarUsuario.setToolTipText("Gestionar mi usuario.");
@@ -164,7 +165,19 @@ public class Inicio extends javax.swing.JFrame {
                 btnGestionarUsuarioActionPerformed(evt);
             }
         });
-        panInicioLateral.add(btnGestionarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 845, 185, 60));
+        panInicioLateral.add(btnGestionarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 765, 185, 60));
+
+        btnAdministracion.setText("Administración");
+        btnAdministracion.setToolTipText("Gestionar mi usuario.");
+        btnAdministracion.setBorder(null);
+        btnAdministracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdministracion.setOpaque(false);
+        btnAdministracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministracionActionPerformed(evt);
+            }
+        });
+        panInicioLateral.add(btnAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 865, 185, 60));
 
         lblHora.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblHora.setForeground(new java.awt.Color(255, 255, 255));
@@ -578,6 +591,10 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGestionarUsuarioActionPerformed
 
+    private void btnAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdministracionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -644,6 +661,7 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdministracion;
     private javax.swing.JButton btnGestionarUsuario;
     private javax.swing.JButton btnInicioLogin;
     private javax.swing.JButton btnInicioRegistrar;

@@ -71,7 +71,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnVerMascotas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver mascotas"/>
+            <Property name="text" type="java.lang.String" value="Mascotas Disponibles"/>
             <Property name="toolTipText" type="java.lang.String" value="Ver las mascotas disponibles."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -100,13 +100,13 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="485" width="185" height="60"/>
+              <AbsoluteConstraints x="30" y="465" width="185" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="btnMisMascotas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mis mascotas"/>
+            <Property name="text" type="java.lang.String" value="Mis Mascotas Publicadas"/>
             <Property name="toolTipText" type="java.lang.String" value="Ver mis mascotas publicadas."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -118,13 +118,13 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="605" width="185" height="60"/>
+              <AbsoluteConstraints x="30" y="565" width="185" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="btnMisAdopciones">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mis adopciones"/>
+            <Property name="text" type="java.lang.String" value="Mis Mascotas Adoptadas"/>
             <Property name="toolTipText" type="java.lang.String" value="Ver mis mascotas adoptadas."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -139,7 +139,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="725" width="185" height="60"/>
+              <AbsoluteConstraints x="30" y="665" width="185" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -160,7 +160,28 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="845" width="185" height="60"/>
+              <AbsoluteConstraints x="30" y="765" width="185" height="60"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAdministracion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n"/>
+            <Property name="toolTipText" type="java.lang.String" value="Gestionar mi usuario."/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdministracionActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="30" y="865" width="185" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
