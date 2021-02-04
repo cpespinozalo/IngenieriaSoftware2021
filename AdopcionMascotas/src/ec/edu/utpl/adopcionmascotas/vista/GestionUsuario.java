@@ -56,7 +56,7 @@ public class GestionUsuario extends javax.swing.JFrame {
            lblInfoUsuario.setText("Ingrese la información del nuevo usuario:");
            btnAceptarUsuario.setText("CREAR");
        } else if(ACCION_EDITAR.equals(cambio)) {
-           lblSubtituloUsuario.setText("Editar Usuario del Sistema");
+           lblSubtituloUsuario.setText("Editar el Usuario '"+ usuario.getUsuario() +"' del Sistema");
            lblDatoUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
            lblInfoUsuario.setText("Modifique la información que se desea cambiar:");
            btnAceptarUsuario.setText("ACTUALIZAR");
