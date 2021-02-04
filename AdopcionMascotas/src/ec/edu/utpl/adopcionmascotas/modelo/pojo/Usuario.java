@@ -353,6 +353,24 @@ public class Usuario implements Serializable {
         this.cusuario = cliente.queryUnique(SQL_SELECTCUSUARIO, usuario);
     }
     
+    public boolean deleteUsuario(){
+        
+        String tipo= "MODIFICACION";
+        String accion= "CAMBIOS EN EL SISTEMA";
+        String detalle = String.format("ELIMINACION USUARIO - %s:%s:%s %s", cusuario, identificacion, nombres, apellidos);
+        
+        
+        Cliente cliente = new Cliente();
+        int registros = cliente.executeMultiple(SQL_DELETE_DEP, SQL_DELETE_PRE, SQL_DELETE, cusuario);
+        if(registros > 0){
+            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
+            return true;
+        } else {
+            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "ERROR");
+            return false;
+        }
+    }
+    
     public boolean newUsuario() throws Exception{
         
         CifradoAes aes = new CifradoAes();
@@ -422,23 +440,7 @@ public class Usuario implements Serializable {
         }
     }
     
-    public boolean deleteUsuario(){
-        
-        String tipo= "MODIFICACION";
-        String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ELIMINACION USUARIO - %s:%s:%s %s", cusuario, identificacion, nombres, apellidos);
-        
-        
-        Cliente cliente = new Cliente();
-        int registros = cliente.executeMultiple(SQL_DELETE_DEP, SQL_DELETE_PRE, SQL_DELETE, cusuario);
-        if(registros > 0){
-            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
-            return true;
-        } else {
-            auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "ERROR");
-            return false;
-        }
-    }
+    
 
 }
        
