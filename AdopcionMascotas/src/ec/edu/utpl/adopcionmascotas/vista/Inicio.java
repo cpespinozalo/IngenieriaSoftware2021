@@ -592,7 +592,13 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionarUsuarioActionPerformed
 
     private void btnAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministracionActionPerformed
-        // TODO add your handling code here:
+        if(isLogged){
+            Administracion administracion = new Administracion(sesion);
+            administracion.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane,"Debe ingresar al sistema para ingresar a la adminsitracion.","Administracion",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnAdministracionActionPerformed
 
     /**
@@ -632,7 +638,7 @@ public class Inicio extends javax.swing.JFrame {
         this.sesion = sesion;
         lblInicioBienvenida.setText("Bienvenido,");
         lblInicioNombre.setText(this.sesion.getNombreUsuario());
-        final String avatar = "H".equals(this.sesion.getGenero()) ? "Hombre" : "Mujer";    
+        final String avatar = "M".equals(this.sesion.getGenero()) ? "Hombre" : "Mujer";    
         lblInicioAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource(String.format("/images/img%s.png", avatar))));
         setDatosUsuario();
     }
