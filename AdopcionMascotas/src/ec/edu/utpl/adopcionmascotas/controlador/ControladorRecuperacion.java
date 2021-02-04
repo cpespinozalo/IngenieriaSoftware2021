@@ -3,6 +3,7 @@ package ec.edu.utpl.adopcionmascotas.controlador;
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import java.util.List;
 
+
 /**
  * Clase Controlador de Recuperacion de Contraseña de la Aplicacion
  * 
@@ -51,7 +52,7 @@ public class ControladorRecuperacion {
         return resultado;
     }
     
-    public boolean existeUsuario(String usuario) throws Exception{
+    public boolean existeUsuario(String usuario) {
         
         boolean existe = false;
         this.datos =  getDatosUsuario(usuario);
@@ -62,27 +63,27 @@ public class ControladorRecuperacion {
         return existe;
     }
     
-    public boolean savePassword(String password) throws Exception{
-        
+    public boolean savePassword(String password) {
+       
         CifradoAes aes = new CifradoAes();
         String passwordCifrada = aes.encriptar(password);
         Cliente cliente = new Cliente();
         return cliente.execute(UPDATE_TUSUARIO, passwordCifrada, this.cusuario) > 0;
     }
     
-    public boolean validarIdentificacion(String id) throws Exception{
+    public boolean validarIdentificacion(String id) {
         
         return identificacion.equals(id);
     }
 
-    public boolean validarRespuesta(String resp) throws Exception{
+    public boolean validarRespuesta(String resp) {
         
         CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(resp);
         return respuestacifrada.equals(this.respuesta);
     }
     
-    private void setUsuarioData(List<Object> dataList) throws Exception{
+    private void setUsuarioData(List<Object> dataList) {
         
         for(Object dato : dataList){
             Object [] arreglo;

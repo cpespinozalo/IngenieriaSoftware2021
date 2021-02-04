@@ -1,7 +1,6 @@
 package ec.edu.utpl.adopcionmascotas.controlador;
 
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +27,16 @@ public class ControladorLogin {
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
     
+    private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
+        
+        List<Object> resultado;
+        Cliente cliente = new Cliente();
+        resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
+        return resultado;
+    }
+    
     public boolean existeUsuario(String usuario, Integer cpregunta){
+        
         boolean existe = false;
         this.datos =  getDatosUsuario(usuario, cpregunta);
         if(!datos.isEmpty()){
@@ -37,17 +45,12 @@ public class ControladorLogin {
         return existe;
     }
     
-    private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
-        List<Object> resultado;
-        Cliente cliente = new Cliente();
-        resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
-        return resultado;
-    }
-    
-    public boolean loginUsuario(String password) throws Exception{
+    public boolean loginUsuario(String password) {
+        
+        boolean login = false;
         CifradoAes aes = new CifradoAes();
         String clavecifrada = aes.encriptar(password);
-        boolean login = false;
+
         for(Object dato : this.datos){
             Object [] arreglo;
             arreglo = (Object [])dato;
@@ -59,10 +62,12 @@ public class ControladorLogin {
         return login;
     }
     
-    public boolean validarRespuesta(String respuesta) throws Exception{
+    public boolean validarRespuesta(String respuesta) {
+        
+        boolean resp = false;
         CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(respuesta);
-        boolean resp = false;
+
         for(Object dato : this.datos){
             Object [] arreglo;
             arreglo = (Object [])dato;
@@ -74,6 +79,7 @@ public class ControladorLogin {
     }
     
     public String getPregunta(Integer cpregunta){
+        
         String preguntaDes = "";
         List<Object> resultado;
         Cliente cliente = new Cliente();

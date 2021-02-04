@@ -3,7 +3,6 @@ package ec.edu.utpl.adopcionmascotas.controlador;
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 

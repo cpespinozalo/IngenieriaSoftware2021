@@ -3,6 +3,7 @@ package ec.edu.utpl.adopcionmascotas.modelo.pojo;
 import ec.edu.utpl.adopcionmascotas.controlador.CifradoAes;
 import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,7 +16,6 @@ import java.util.List;
 public class Usuario implements Serializable {
     
     private Auditoria auditoria;
-    
     private static final long serialVersionUID = 1L;
     private Integer sesionId;
     private Integer cusuario;
@@ -27,20 +27,17 @@ public class Usuario implements Serializable {
     private String ciudad;
     private String telefono;
     private String usuario;
-    private String password;
+    private String seguridad;
     private String cestado;
     private String correo;
     private String genero;
     private String activo;
-    
     private String estado;
     private String dactivo;
-    
     private String respuesta1;
     private String respuesta2;
     private String respuesta3;
-    private String respuesta4;
-    
+    private String respuesta4; 
     private String pregunta1;
     private String pregunta2;
     private String pregunta3;
@@ -54,7 +51,6 @@ public class Usuario implements Serializable {
     private static final String SQL_DELETE_DEP = "DELETE TROLUSUARIO WHERE CUSUARIO=? ";
     private static final String SQL_DELETE_PRE = "DELETE TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
     private static final String SQL_DELETE = "DELETE TUSUARIO WHERE CUSUARIO=? ";
-    
     private static final String SQL_SELECT_PREGUNTAS = "SELECT CPREGUNTA,PREGUNTA FROM TPREGUNTA WHERE ACTIVO=? ";
     private static final String SQL_SELECT_PREGUNTASUSUARIO = "SELECT CPREGUNTA, RESPUESTA FROM TPREGUNTASUSUARIO WHERE CUSUARIO=? ";
     private static final String SQL_INSERT_PREGUNTASUSUARIO = "INSERT INTO TPREGUNTASUSUARIO(CPREGUNTA,CUSUARIO,RESPUESTA,FMODIFICACION,ACTIVO) VALUES (?,?,?,SYSDATE,1) ";
@@ -140,12 +136,12 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSeguridad() {
+        return seguridad;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSeguridad(String seguridad) {
+        this.seguridad = seguridad;
     }
 
     public String getCestado() {
@@ -261,15 +257,17 @@ public class Usuario implements Serializable {
     }
 
     
-    public void getUsuario(Integer codigo) throws Exception{
+    public void getUsuario(Integer codigo) {
         
         CifradoAes aes = new CifradoAes();
-        List<Object> resultado;
+        List<Object> resultado = new ArrayList<>();
         List<Object> resultadoRes;
         List<Object> resultadoPre;
+        
         Cliente cliente = new Cliente();
         resultado = cliente.query(SQL_SELECT, codigo);
         for(Object dato : resultado){
+           
             Object [] arreglo;
             arreglo = (Object [])dato;
             this.cusuario = codigo;
@@ -277,18 +275,19 @@ public class Usuario implements Serializable {
             this.nombres = arreglo[2] != null ?  arreglo[2].toString() : "";
             this.apellidos = arreglo[3] != null ?  arreglo[3].toString() : "";
             this.usuario = arreglo[4] != null ?  arreglo[4].toString() : "";
-            this.password = arreglo[5] != null ?  aes.desencriptar(arreglo[5].toString()) : "";
+            this.seguridad = arreglo[5] != null ?  aes.desencriptar(arreglo[5].toString()) : "";
             this.correo = arreglo[6] != null ?  arreglo[6].toString() : "";
             this.genero = arreglo[7] != null ?  arreglo[7].toString() : "";
             this.activo = arreglo[8] != null ?  arreglo[8].toString() : "";
-            this.cestado = arreglo[9] != null ?  arreglo[9].toString() : ""; 
+            this.cestado = arreglo[9] != null ?  arreglo[9].toString() : "";
             this.estado = arreglo[10] != null ?  arreglo[10].toString() : "";
-            this.dactivo = arreglo[11] != null ?  arreglo[11].toString() : ""; 
+            this.dactivo = arreglo[11] != null ?  arreglo[11].toString() : "";
             this.direccion = arreglo[12] != null ?  arreglo[12].toString() : "";
             this.provincia = arreglo[13] != null ?  arreglo[13].toString() : "";
             this.ciudad = arreglo[14] != null ?  arreglo[14].toString() : "";
-            this.telefono = arreglo[15] != null ?  arreglo[15].toString() : "";
+            this.telefono = arreglo[15] != null ?  arreglo[15].toString() : "";  
         }
+
         Cliente clienteRes = new Cliente();
         resultadoRes = clienteRes.query(SQL_SELECT_PREGUNTASUSUARIO, codigo);
         for(Object dato : resultadoRes){
@@ -305,6 +304,7 @@ public class Usuario implements Serializable {
                 this.respuesta4 = arreglo[1] != null ?  aes.desencriptar(arreglo[1].toString()) : "";
             }
         }
+        
         Cliente clientePre = new Cliente();
         resultadoPre = clientePre.query(SQL_SELECT_PREGUNTAS, 1);
         for(Object dato : resultadoPre){
@@ -321,14 +321,14 @@ public class Usuario implements Serializable {
                 this.pregunta4 = arreglo[1] != null ?  arreglo[1].toString() : "";
             }
         }
-        
+
         String tipo= "CONSULTA";
         String accion= "OBTENCION DE INFORMACION";
         String detalle = String.format("CONSULTA USUARIOS: %s REGISTROS CONSULTADOS", resultado.size());
         auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
     }
       
-    public void getUsuario(String usuario) throws Exception{
+    public void getUsuario(String usuario) {
         
         List<Object> resultado;
         Cliente cliente = new Cliente();
@@ -347,72 +347,71 @@ public class Usuario implements Serializable {
         }
     }
     
-    public void setNewCusuario(String usuario) throws Exception{
+    public void setNewCusuario(String usuario) {
         
         Cliente cliente = new Cliente();
         this.cusuario = cliente.queryUnique(SQL_SELECTCUSUARIO, usuario);
     }
     
-    public boolean newUsuario() throws Exception{
+    public boolean newUsuario() {
         
-        CifradoAes aes = new CifradoAes();
-        
-        Cliente cliente = new Cliente();
-        int registros = cliente.execute(SQL_INSERT, identificacion, nombres, apellidos, usuario, aes.encriptar(password), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad);
-        
-        if(registros > 0){
-            
-            setNewCusuario(usuario);
-            if(cusuario!=null){
-                Cliente cliente0 = new Cliente();
-                cliente0.execute(SQL_INSERT_ROLES, cusuario, "Usuario de Adopciones");
-                
-                Cliente cliente1 = new Cliente();
-                cliente1.execute(SQL_INSERT_PREGUNTASUSUARIO, 1, cusuario, aes.encriptar(respuesta1));
-        
-                Cliente cliente2 = new Cliente();
-                cliente2.execute(SQL_INSERT_PREGUNTASUSUARIO, 2, cusuario, aes.encriptar(respuesta2));
-        
-                Cliente cliente3 = new Cliente();
-                cliente3.execute(SQL_INSERT_PREGUNTASUSUARIO, 3, cusuario, aes.encriptar(respuesta3));
-        
-                Cliente cliente4 = new Cliente();
-                cliente4.execute(SQL_INSERT_PREGUNTASUSUARIO, 4, cusuario, aes.encriptar(respuesta4));
-            
-                return true;
+        boolean creacion = false;
+            CifradoAes aes = new CifradoAes();
+
+            Cliente cliente = new Cliente();
+            int registros = cliente.execute(SQL_INSERT, identificacion, nombres, apellidos, usuario, aes.encriptar(seguridad), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad);
+
+            if(registros > 0){
+                setNewCusuario(usuario);
+                if(cusuario!=null){
+                    Cliente cliente0 = new Cliente();
+                    cliente0.execute(SQL_INSERT_ROLES, cusuario, "Usuario de Adopciones");
+
+                    Cliente cliente1 = new Cliente();
+                    cliente1.execute(SQL_INSERT_PREGUNTASUSUARIO, 1, cusuario, aes.encriptar(respuesta1));
+
+                    Cliente cliente2 = new Cliente();
+                    cliente2.execute(SQL_INSERT_PREGUNTASUSUARIO, 2, cusuario, aes.encriptar(respuesta2));
+
+                    Cliente cliente3 = new Cliente();
+                    cliente3.execute(SQL_INSERT_PREGUNTASUSUARIO, 3, cusuario, aes.encriptar(respuesta3));
+
+                    Cliente cliente4 = new Cliente();
+                    cliente4.execute(SQL_INSERT_PREGUNTASUSUARIO, 4, cusuario, aes.encriptar(respuesta4));
+
+                    creacion = true;
+                }
             } else {
                 return false;
             }
-        } else {
-            return false;
-        }
+        return creacion;
     }
     
-    public boolean updateUsuario() throws Exception{
+    public boolean updateUsuario() {
         
         CifradoAes aes = new CifradoAes();
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
         String detalle = String.format("ACTUALIZACION USUARIO - %s:%s:%s %s", cusuario, identificacion, nombres, apellidos);
-        
+
         Cliente cliente = new Cliente();
-        int registros = cliente.execute(SQL_UPDATE, identificacion, nombres, apellidos, usuario, aes.encriptar(password), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad, cusuario);
-        
+        int registros = cliente.execute(SQL_UPDATE, identificacion, nombres, apellidos, usuario, aes.encriptar(seguridad), estado, correo, genero, dactivo, direccion, telefono, provincia, ciudad, cusuario);
+
         Cliente cliente1 = new Cliente();
         cliente1.execute(SQL_UPDATE_PREGUNTASUSUARIO, aes.encriptar(respuesta1), 1, cusuario);
-        
+
         Cliente cliente2 = new Cliente();
         cliente2.execute(SQL_UPDATE_PREGUNTASUSUARIO, aes.encriptar(respuesta2), 2, cusuario);
-        
+
         Cliente cliente3 = new Cliente();
         cliente3.execute(SQL_UPDATE_PREGUNTASUSUARIO, aes.encriptar(respuesta3), 3, cusuario);
-        
+
         Cliente cliente4 = new Cliente();
         cliente4.execute(SQL_UPDATE_PREGUNTASUSUARIO, aes.encriptar(respuesta4), 4, cusuario);
-        
+
         Cliente cliente5 = new Cliente();
         cliente5.execute(SQL_DELETE_DEP, cusuario);
- 
+
         if(registros > 0){
             auditoria.registrarAuditoria(sesionId, tipo, accion, detalle, "OK");
             return true;

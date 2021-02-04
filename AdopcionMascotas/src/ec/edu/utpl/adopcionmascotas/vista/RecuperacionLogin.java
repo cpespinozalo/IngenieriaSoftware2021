@@ -29,9 +29,7 @@ public class RecuperacionLogin extends javax.swing.JFrame {
             javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
             javax.swing.UIManager.put("OptionPane.messageForeground",new ColorUIResource(255,255,255));
             javax.swing.UIManager.put("Panel.background",new ColorUIResource(41,41,41));
-            /*
             
-            */
             initComponents();
             setLocationRelativeTo(null);
             
@@ -48,7 +46,7 @@ public class RecuperacionLogin extends javax.swing.JFrame {
             this.recuperacion = new ControladorRecuperacion(pregunta); 
             this.lblPreguntaRec.setText(recuperacion.getPregunta());
         }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
-            javax.swing.JOptionPane.showMessageDialog(this.rootPane,"No se puede modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this.rootPane,"Imposible modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -84,7 +82,7 @@ public class RecuperacionLogin extends javax.swing.JFrame {
         btnAceptarRec = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Restablecer contraseña");
+        setTitle("Recuperar contraseña");
         setMinimumSize(new java.awt.Dimension(500, 460));
         setUndecorated(true);
         setResizable(false);
@@ -98,12 +96,12 @@ public class RecuperacionLogin extends javax.swing.JFrame {
 
         lblUsuarioRec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblUsuarioRec.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuarioRec.setText("Usuario de Sistema:");
+        lblUsuarioRec.setText("Usuario del Sistema:");
         panRecuperacion.add(lblUsuarioRec, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 65, 140, 25));
 
         lblIdentificacionRec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIdentificacionRec.setForeground(new java.awt.Color(255, 255, 255));
-        lblIdentificacionRec.setText("Por favor ingrese su Identificación:");
+        lblIdentificacionRec.setText("Ingrese Identificación:");
         panRecuperacion.add(lblIdentificacionRec, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 140, 25));
 
         lblPreguntaRec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -112,12 +110,12 @@ public class RecuperacionLogin extends javax.swing.JFrame {
 
         lblPasswordRec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPasswordRec.setForeground(new java.awt.Color(255, 255, 255));
-        lblPasswordRec.setText("Nueva Contraseña:");
+        lblPasswordRec.setText("Contraseña Nueva:");
         panRecuperacion.add(lblPasswordRec, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 140, 25));
 
         lblPasswordCon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPasswordCon.setForeground(new java.awt.Color(255, 255, 255));
-        lblPasswordCon.setText("Confirme Nueva Contraseña:");
+        lblPasswordCon.setText("Confirme Contraseña:");
         panRecuperacion.add(lblPasswordCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 285, 140, 25));
 
         txtUsuarioRec.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -169,7 +167,7 @@ public class RecuperacionLogin extends javax.swing.JFrame {
         lblSubtituloRecuperacion.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblSubtituloRecuperacion.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtituloRecuperacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSubtituloRecuperacion.setText("Restablecer Contraseña");
+        lblSubtituloRecuperacion.setText("Recuperación de Contraseña");
         lblSubtituloRecuperacion.setAlignmentX(0.5F);
         panTituloRec.add(lblSubtituloRecuperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 390, -1));
 
@@ -203,7 +201,6 @@ public class RecuperacionLogin extends javax.swing.JFrame {
 
     private void btnAceptarRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRecActionPerformed
         
-        try {
             String identificacion = this.txtIdentificacionRec.getText();
             String respuesta = this.txtPreguntaSeg.getText();
             this.usuario = this.txtUsuarioRec.getText();
@@ -220,7 +217,7 @@ public class RecuperacionLogin extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(this.rootPane,"La nueva contraseña se guardó correctamente.","Recuperación de Contraseña",JOptionPane.INFORMATION_MESSAGE);
                                     abrirLogin();
                                 } else {
-                                    JOptionPane.showMessageDialog(this.rootPane,"Error al guardar la Nueva Contraseña.","Recuperación de Contraseña",JOptionPane.ERROR_MESSAGE);
+                                    JOptionPane.showMessageDialog(this.rootPane,"Error al Guardar la Nueva Contraseña.","Recuperación de Contraseña",JOptionPane.ERROR_MESSAGE);
                                 }   
                             } else {
                                 JOptionPane.showMessageDialog(this.rootPane,"Las contraseñas ingresadas no coinciden.","Recuperación de Contraseña",JOptionPane.WARNING_MESSAGE);
@@ -239,10 +236,6 @@ public class RecuperacionLogin extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this.rootPane,"Existen campos obligatorios sin Ingresar","Recuperación de Contraseña",JOptionPane.WARNING_MESSAGE);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
     }//GEN-LAST:event_btnAceptarRecActionPerformed
 
     private void btnCancelarRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRecActionPerformed

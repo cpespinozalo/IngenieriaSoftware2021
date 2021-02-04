@@ -2,6 +2,7 @@ package ec.edu.utpl.adopcionmascotas.vista;
 
 import ec.edu.utpl.adopcionmascotas.controlador.ControladorBienvenida;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Interfaz de Bienvenida de la aplicacion
@@ -27,7 +28,7 @@ public class Bienvenida extends javax.swing.JFrame {
             initComponents();
             setLocationRelativeTo(null);
             setUsuarioInfo();
-        }catch(Exception e){
+        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e){
             javax.swing.JOptionPane.showMessageDialog(this.rootPane,"Imposible modificar el tema visual","Lookandfeel inválido.",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -116,16 +117,6 @@ public class Bienvenida extends javax.swing.JFrame {
         
         controladorSesion.getDatosCombo(cmbRol);
         lblNombreUsuario.setText(sesion.getNombreUsuario());
-    }
-    
-    private void setAdministrador(){
-        
-        boolean admin = false;
-        String combo = cmbRol.getSelectedItem().toString();
-        if(combo.contains("Administrador")){
-            admin = true;
-        }
-        sesion.setIsAdministrador(admin);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -48,37 +50,39 @@ public class CifradoAes {
      * Crea la clave de encriptacion usada internamente
      * @param clave Clave que se usara para encriptar
      * @return Clave de encriptacion
-     * @throws UnsupportedEncodingException
-     * @throws NoSuchAlgorithmException 
      */
-    private SecretKeySpec crearClave(String clave) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    private SecretKeySpec crearClave(String clave) {
         
-        byte[] claveEncriptacion = clave.getBytes(encoding);  
-        MessageDigest sha = MessageDigest.getInstance(key); 
-        claveEncriptacion = sha.digest(claveEncriptacion);
-        claveEncriptacion = Arrays.copyOf(claveEncriptacion, bits);
-        SecretKeySpec secretKey = new SecretKeySpec(claveEncriptacion, algoritmo);
+        SecretKeySpec secretKey = null;
+        try {
+            byte[] claveEncriptacion = clave.getBytes(encoding);  
+            MessageDigest sha = MessageDigest.getInstance(key); 
+            claveEncriptacion = sha.digest(claveEncriptacion);
+            claveEncriptacion = Arrays.copyOf(claveEncriptacion, bits);
+            secretKey = new SecretKeySpec(claveEncriptacion, algoritmo);
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            Logger.getLogger(ControladorRecuperacion.class.getName()).log(Level.SEVERE, null, e);
+        }
         return secretKey;
     }
     /**
      * Aplica la encriptacion AES a la cadena de texto usando la clave indicada
      * @param datos Cadena a encriptar
-     * @return Información encriptada
-     * @throws UnsupportedEncodingException
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeyException
-     * @throws NoSuchPaddingException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException 
+     * @return Información encriptada 
      */
-    public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+    public String encriptar(String datos)  {
         
-        SecretKeySpec secretKey = this.crearClave(salt); 
-        Cipher cipher = Cipher.getInstance(transformacion);        
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] datosEncriptar = datos.getBytes(encoding);
-        byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
-        String encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
+        String encriptado = null;
+        try{
+            SecretKeySpec secretKey = this.crearClave(salt); 
+            Cipher cipher = Cipher.getInstance(transformacion);        
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            byte[] datosEncriptar = datos.getBytes(encoding);
+            byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
+            encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
+        } catch(UnsupportedEncodingException | NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
+            Logger.getLogger(ControladorRecuperacion.class.getName()).log(Level.SEVERE, null, e);
+        }
         return encriptado;
     }
  
@@ -86,21 +90,20 @@ public class CifradoAes {
      * Desencripta la cadena de texto indicada usando la clave de encriptacion
      * @param datosEncriptados Datos encriptados
      * @return Informacion desencriptada
-     * @throws UnsupportedEncodingException
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeyException
-     * @throws NoSuchPaddingException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException 
      */
-    public String desencriptar(String datosEncriptados) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+    public String desencriptar(String datosEncriptados) {
         
-        SecretKeySpec secretKey = this.crearClave(salt);
-        Cipher cipher = Cipher.getInstance(transformacion);
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] bytesEncriptados = Base64.getDecoder().decode(datosEncriptados);
-        byte[] datosDesencriptados = cipher.doFinal(bytesEncriptados);
-        String datos = new String(datosDesencriptados);         
-        return datos;
+        String dato = null;
+        try {
+            SecretKeySpec secretKey = this.crearClave(salt);
+            Cipher cipher = Cipher.getInstance(transformacion);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            byte[] bytesEncriptados = Base64.getDecoder().decode(datosEncriptados);
+            byte[] datosDesencriptados = cipher.doFinal(bytesEncriptados);
+            dato = new String(datosDesencriptados);     
+        } catch(NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
+            Logger.getLogger(ControladorRecuperacion.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return dato;
     }
 }

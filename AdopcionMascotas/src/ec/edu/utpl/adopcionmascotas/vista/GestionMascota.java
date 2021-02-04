@@ -7,8 +7,6 @@ import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -563,47 +561,40 @@ public class GestionMascota extends javax.swing.JFrame {
     
     private void getInfoMascota(){
    
-        try {
-            if(this.mascota != null){
-                lblFechaIngreso.setText(mascota.getFpublicacion());
-                txtCodigoMascota.setText(mascota.getCmascota().toString());
-                txtNombreMascota.setText(mascota.getNombremascota());
-                cmbTipoMascota.setSelectedItem(mascota.getTipomascota());
-                txtEdadMascota.setText(mascota.getEdad());
-                cmbUnidadMascota.setSelectedItem(mascota.getUnidadedad());
-                cmbGenero.setSelectedItem(mascota.getGenero());
-                txtObservacionesMascota.setText(mascota.getDescripcion());
-                txtPropietarioMascota.setText(mascota.getNombremascota());
-                txtDireccionMascota.setText(mascota.getDireccion());
-                cmbCiudadMascota.setSelectedItem(mascota.getCiudad());
-                cmbProvinciaMascota.setSelectedItem(mascota.getProvincia());
-                txtTelefonoMascota.setText(mascota.getTelefono());
-                txtCorreoMascota.setText(mascota.getCorreo());
-                cmbEstadoMascota.setSelectedItem(mascota.getEstadomascota());
-                lblFechaAdopcion.setText(mascota.getFadopcion());
-                cmbEstadoAdopcion.setSelectedItem(mascota.getDesestadoadopcion());
-                txtPersonaAdopcion.setText(mascota.getNombreusuarioadopcion());
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
+        if(this.mascota != null){
+            lblFechaIngreso.setText(mascota.getFpublicacion());
+            txtCodigoMascota.setText(mascota.getCmascota().toString());
+            txtNombreMascota.setText(mascota.getNombremascota());
+            cmbTipoMascota.setSelectedItem(mascota.getTipomascota());
+            txtEdadMascota.setText(mascota.getEdad());
+            cmbUnidadMascota.setSelectedItem(mascota.getUnidadedad());
+            cmbGenero.setSelectedItem(mascota.getGenero());
+            txtObservacionesMascota.setText(mascota.getDescripcion());
+            txtPropietarioMascota.setText(mascota.getNombremascota());
+            txtDireccionMascota.setText(mascota.getDireccion());
+            cmbCiudadMascota.setSelectedItem(mascota.getCiudad());
+            cmbProvinciaMascota.setSelectedItem(mascota.getProvincia());
+            txtTelefonoMascota.setText(mascota.getTelefono());
+            txtCorreoMascota.setText(mascota.getCorreo());
+            cmbEstadoMascota.setSelectedItem(mascota.getEstadomascota());
+            lblFechaAdopcion.setText(mascota.getFadopcion());
+            cmbEstadoAdopcion.setSelectedItem(mascota.getDesestadoadopcion());
+            txtPersonaAdopcion.setText(mascota.getNombreusuarioadopcion());
         }
     }
     
     private void getInfoUsuario(){
    
-        try {
-            Usuario usuario = new Usuario(sesion.getIdSesion());
-            usuario.getUsuario(sesion.getUsuario());
+        Usuario usuario = new Usuario(sesion.getIdSesion());
+        usuario.getUsuario(sesion.getUsuario());
                 
-            txtPropietarioMascota.setText(usuario.getNombres() + " " + usuario.getApellidos());
-            txtDireccionMascota.setText(usuario.getDireccion());
-            cmbCiudadMascota.setSelectedItem(usuario.getCiudad());
-            cmbProvinciaMascota.setSelectedItem(usuario.getProvincia());
-            txtTelefonoMascota.setText(usuario.getTelefono());
-            txtCorreoMascota.setText(usuario.getCorreo());
-        } catch (Exception ex) {
-            Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        txtPropietarioMascota.setText(usuario.getNombres() + " " + usuario.getApellidos());
+        txtDireccionMascota.setText(usuario.getDireccion());
+        cmbCiudadMascota.setSelectedItem(usuario.getCiudad());
+        cmbProvinciaMascota.setSelectedItem(usuario.getProvincia());
+        txtTelefonoMascota.setText(usuario.getTelefono());
+        txtCorreoMascota.setText(usuario.getCorreo());
+
     }
     
     private void volver(Sesion sesion){

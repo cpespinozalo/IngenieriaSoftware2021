@@ -5,11 +5,13 @@ import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
+import java.awt.HeadlessException;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Interfaz de Gestión de Usuario
@@ -31,7 +33,7 @@ public class GestionUsuario extends javax.swing.JFrame {
     private static final String CLASS_NAME = GestionUsuario.class.getName();
     
     
-    public GestionUsuario(Sesion sesion, Integer cusuario, String cambio){
+    public GestionUsuario(Sesion sesion, Integer cusuario, String cambio) {
 
         try {
             this.sesion = sesion;
@@ -44,7 +46,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             setLocationRelativeTo(null);
             loadUsuario();
             setTitulos();
-        } catch (Exception e) {
+        } catch (UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             javax.swing.JOptionPane.showMessageDialog(this.rootPane, "Imposible modificar el tema visual", "Lookandfeel inválido.", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -68,7 +70,7 @@ public class GestionUsuario extends javax.swing.JFrame {
        }  
     }
     
-    private void loadUsuario() throws Exception{
+    private void loadUsuario() {
         
         loadCatalogo();
         if(ACCION_EDITAR.equals(cambio) || ACCION_ELIMINAR.equals(cambio)) {
@@ -253,11 +255,6 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblProvinciaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 115, 30));
 
         cmbProvinciaUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cmbProvinciaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbProvinciaUsuarioActionPerformed(evt);
-            }
-        });
         panCentral.add(cmbProvinciaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 220, 30));
 
         lblCiudadUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -266,11 +263,6 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblCiudadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 70, 30));
 
         cmbCiudadUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cmbCiudadUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCiudadUsuarioActionPerformed(evt);
-            }
-        });
         panCentral.add(cmbCiudadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 220, 30));
 
         lblCorreoUsuario1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -458,8 +450,7 @@ public class GestionUsuario extends javax.swing.JFrame {
                     volver(sesion, true);
                }   
            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(rootPane,"Error al gestionar el usuario.","Usuarios del Sistema",JOptionPane.ERROR_MESSAGE);
         }
         
@@ -478,14 +469,6 @@ public class GestionUsuario extends javax.swing.JFrame {
     private void radHombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radHombreActionPerformed
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgHombre.png")));
     }//GEN-LAST:event_radHombreActionPerformed
-
-    private void cmbCiudadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCiudadUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCiudadUsuarioActionPerformed
-
-    private void cmbProvinciaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvinciaUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbProvinciaUsuarioActionPerformed
 
     
     private void setInfoUsuario(){
@@ -516,7 +499,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         usuario.setUsuario(txtUsuarioUsuario.getText());
         usuario.setEstado(cmbEstadoUsuario.getSelectedItem().toString());
         usuario.setDactivo(cmbActivo.getSelectedItem().toString());
-        usuario.setPassword(password);
+        usuario.setSeguridad(password);
         setIcon();
         
         char resp1[] = txtPregunta1.getPassword();
@@ -533,7 +516,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         usuario.setRespuesta4(respuesta4);
     }
     
-    private void getInfoUsuario() throws Exception {
+    private void getInfoUsuario() {
         if(this.usuario != null){
             usuario.getUsuario(this.cusuario);
             txtUsuario.setText(usuario.getCusuario().toString());
@@ -546,8 +529,8 @@ public class GestionUsuario extends javax.swing.JFrame {
             txtEmailUsuario.setText(usuario.getCorreo());
             txtTelefonoUsuario.setText(usuario.getTelefono());
             txtUsuarioUsuario.setText(usuario.getUsuario());
-            txtPassword.setText(usuario.getPassword());
-            txtPasswordConf.setText(usuario.getPassword());            
+            txtPassword.setText(usuario.getSeguridad());
+            txtPasswordConf.setText(usuario.getSeguridad());            
             if("F".equals(usuario.getGenero())){
                 radMujer.setSelected(true);
                 radHombre.setSelected(false);

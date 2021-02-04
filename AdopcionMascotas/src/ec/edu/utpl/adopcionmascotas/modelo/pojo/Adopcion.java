@@ -1,9 +1,6 @@
 package ec.edu.utpl.adopcionmascotas.modelo.pojo;
 
-import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Adopcion implements Serializable{
     

@@ -168,36 +168,32 @@ public class Login extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
-        try {
-            String user = this.txtUsuario.getText().toLowerCase();
-            char clave[] = this.txtPassword.getPassword();
-            String password = new String(clave); 
-            String respuesta = this.txtRespuesta.getText().toUpperCase();
-            if(validacion.validarCamposVacios(user, password, respuesta)) {
-                if(login.existeUsuario(user, this.cpregunta)){
-                    if(login.validarRespuesta(respuesta)){
+        String user = this.txtUsuario.getText().toLowerCase();
+        char clave[] = this.txtPassword.getPassword();
+        String password = new String(clave); 
+        String respuesta = this.txtRespuesta.getText().toUpperCase();
+        if(validacion.validarCamposVacios(user, password, respuesta)) {
+            if(login.existeUsuario(user, this.cpregunta)){
+                if(login.validarRespuesta(respuesta)){
                         
-                        if(login.loginUsuario(password)){
-                            System.out.println(">>LOGIN:" + login.cusuario + " - " + user);
-                            Bienvenida mensaje = new Bienvenida(login.cusuario, user);
-                            mensaje.setVisible(true);
-                            this.dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(this.rootPane,"La contraseña ingresada no es válida","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
-                            txtPassword.setText("");
-                        }
+                    if(login.loginUsuario(password)){
+                        System.out.println(">>LOGIN:" + login.cusuario + " - " + user);
+                        Bienvenida mensaje = new Bienvenida(login.cusuario, user);
+                        mensaje.setVisible(true);
+                        this.dispose();
                     } else {
-                        JOptionPane.showMessageDialog(this.rootPane,"La respuesta a la pregunta de seguridad no es correcta","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
-                    }                  
+                        JOptionPane.showMessageDialog(this.rootPane,"La contraseña ingresada no es válida","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
+                        txtPassword.setText("");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this.rootPane,"El usuario [" + user + "] no existe en el sistema","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
-                    txtPassword.setText("");
-                }    
+                    JOptionPane.showMessageDialog(this.rootPane,"La respuesta a la pregunta de seguridad no es correcta","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
+                }                  
             } else {
-                JOptionPane.showMessageDialog(this.rootPane,"Los campos Usuario, Contraseña y Respuesta son obligatorios","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+                JOptionPane.showMessageDialog(this.rootPane,"El usuario [" + user + "] no existe en el sistema","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
+                txtPassword.setText("");
+            }    
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane,"Los campos Usuario, Contraseña y Respuesta son obligatorios","Ingreso al Sistema",JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed

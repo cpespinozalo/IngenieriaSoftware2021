@@ -1,6 +1,8 @@
 package ec.edu.utpl.adopcionmascotas.controlador;
 
 import javax.swing.JLabel;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Control del reloj de la aplicacion
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 public class ThreadSistema extends Thread {
  
     private Utilitarios util;
+    private Logger log;
     private JLabel reloj;
     private JLabel fecha;
     private JLabel fotoA;
@@ -59,7 +62,7 @@ public class ThreadSistema extends Thread {
                 registro++;
                 
             }catch(InterruptedException e) {
-                e.printStackTrace();
+                log.log(Level.SEVERE, String.format("Error de Hilo Temporizador: %s", e.getCause()));
             }
         }
     }  

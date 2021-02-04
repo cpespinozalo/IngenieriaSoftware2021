@@ -342,8 +342,8 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("CREACION MASCOTA - %s:%s:%s", nombremascota, tipomascota, edad);
-
+        String detalle = "CREACION MASCOTA";
+        
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_INSERT, nombremascota, tipomascota, edad, unidadedad, genero, descripcion, cusuariopublicacion, estadomascota);
         if(registros > 0){
@@ -359,7 +359,7 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ACTUALIZACION MASCOTA - %s:%s:%s", cmascota, nombremascota, tipomascota);
+        String detalle = "ACTUALIZACION MASCOTA";
         
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_UPDATE, nombremascota, tipomascota, edad, unidadedad, genero, descripcion, cusuariopublicacion, estadomascota, cmascota);
@@ -376,7 +376,7 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ELIMINACION MASCOTA - %s:%s:%s", cmascota, nombremascota, tipomascota);
+        String detalle = "ELIMINACION MASCOTA";
         
         Cliente cliente = new Cliente();
         int registros = cliente.executeMultiple(SQL_UPDATE_ADOPCION, SQL_DELETE, cmascota);
@@ -393,7 +393,7 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ADOPCION MASCOTA - %s:%s:%s", nombremascota, tipomascota, edad + " " + unidadedad);
+        String detalle = "ADOPCION MASCOTA";
 
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_INSERTADOPCION, cmascota, cusuarioadopcion, sesionId, "MASCOTA ADOPTADA");
@@ -412,7 +412,8 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ACTUALIZACION ADOPCION MASCOTA - %s:%s:%s", cadopcion, cmascota, nombremascota);
+        String detalle = "ACTUALIZACION ADOPCION MASCOTA";
+        
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_UPDATEADOPCION, cmascota, cusuarioadopcion, sesionId, estadoadopcion, cadopcion);
         if(registros > 0){
@@ -433,7 +434,7 @@ public class Mascota implements Serializable{
         
         String tipo= "MODIFICACION";
         String accion= "CAMBIOS EN EL SISTEMA";
-        String detalle = String.format("ELIMINACION ADOPCION MASCOTA - %s:%s:%s", cadopcion, cmascota, nombremascota);
+        String detalle = "ELIMINACION ADOPCION MASCOTA";
         
         Cliente cliente = new Cliente();
         int registros = cliente.execute(SQL_DELETEADOPCION, cadopcion);
