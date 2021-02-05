@@ -61,7 +61,7 @@ public class GestionUsuario extends javax.swing.JFrame {
            lblInfoUsuario.setText("Modifique la información que se desea cambiar:");
            btnAceptarUsuario.setText("ACTUALIZAR");
        } else if(ACCION_ELIMINAR.equals(cambio)) {
-           lblSubtituloUsuario.setText("Eliminar Usuario del Sistema");
+           lblSubtituloUsuario.setText("Eliminar Usuario '"+ usuario.getUsuario() +"'del Sistema");
            lblDatoUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
            lblInfoUsuario.setText("Información del usuario que se desea eliminar:");
            btnAceptarUsuario.setText("ELIMINAR");
