@@ -186,7 +186,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblDatoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 440, 25));
 
         lblInfoUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblInfoUsuario.setText("Ingrese la información del nuevo usuario:");
+        lblInfoUsuario.setText("Ingresa los datos del nuevo usuario:");
         panCentral.add(lblInfoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 20));
 
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMujer.png"))); // NOI18N
