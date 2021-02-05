@@ -112,7 +112,7 @@ public class Inicio extends javax.swing.JFrame {
         lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
         panInicioLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 245, 140));
 
-        btnVerMascotas.setText("Ver mascotas");
+        btnVerMascotas.setText("Mira nuevas mascotas");
         btnVerMascotas.setToolTipText("Ver las mascotas disponibles.");
         btnVerMascotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerMascotas.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         panInicioLateral.add(btnVerMascotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 185, 60));
 
-        btnPublicarMascota.setText("Publicar mascota");
+        btnPublicarMascota.setText("Presentanos una mascota");
         btnPublicarMascota.setToolTipText("Publicar una mascota.");
         btnPublicarMascota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicarMascota.setOpaque(false);

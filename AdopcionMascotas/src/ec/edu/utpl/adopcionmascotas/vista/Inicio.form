@@ -74,7 +74,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnVerMascotas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver mascotas"/>
+            <Property name="text" type="java.lang.String" value="Mira nuevas mascotas"/>
             <Property name="toolTipText" type="java.lang.String" value="Ver las mascotas disponibles."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -91,7 +91,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPublicarMascota">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Publicar mascota"/>
+            <Property name="text" type="java.lang.String" value="Presentanos una mascota"/>
             <Property name="toolTipText" type="java.lang.String" value="Publicar una mascota."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
