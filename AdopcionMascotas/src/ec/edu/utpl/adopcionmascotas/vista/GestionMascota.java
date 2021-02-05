@@ -229,7 +229,7 @@ public class GestionMascota extends javax.swing.JFrame {
         panCentral.add(lblDatosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 15, 440, 25));
 
         lblInfoMascota.setForeground(new java.awt.Color(255, 255, 255));
-        lblInfoMascota.setText("Ingresa la información de la mascota en adopción:");
+        lblInfoMascota.setText("Ingresa los datos de la mascota en adopción:");
         panCentral.add(lblInfoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
 
         lblCodigoMascota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -389,7 +389,7 @@ public class GestionMascota extends javax.swing.JFrame {
 
         lblPersonaAdopcion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPersonaAdopcion.setForeground(new java.awt.Color(255, 255, 255));
-        lblPersonaAdopcion.setText("Persona que adopto:");
+        lblPersonaAdopcion.setText("Persona que adopta:");
         panCentral.add(lblPersonaAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 130, 30));
 
         txtPersonaAdopcion.setBackground(new java.awt.Color(255, 255, 204));

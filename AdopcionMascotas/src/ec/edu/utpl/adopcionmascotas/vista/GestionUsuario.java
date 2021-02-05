@@ -30,7 +30,7 @@ public class GestionUsuario extends javax.swing.JFrame {
     private static final String ACCION_ELIMINAR = "ELIMINAR";
     private static final String CLASS_NAME = GestionUsuario.class.getName();
     
-    
+    /* metodo que prepara la sesión pantalla y variables*/
     public GestionUsuario(Sesion sesion, Integer cusuario, String cambio){
 
         try {
@@ -48,7 +48,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this.rootPane, "Imposible modificar el tema visual", "Lookandfeel inválido.", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
-
+/* metodo que distingue el tipo de modificación y prepara el texto y datos de usuario de ser necesario*/
     private void setTitulos(){
        if(ACCION_NUEVO.equals(cambio)) {
            lblSubtituloUsuario.setText("Creación de usuario en el Sistema");
@@ -67,7 +67,7 @@ public class GestionUsuario extends javax.swing.JFrame {
            btnAceptarUsuario.setText("ELIMINAR");
        }  
     }
-    
+    /* metodo que permite recuperar los datos de un usuario existente*/
     private void loadUsuario() throws Exception{
         
         loadCatalogo();
@@ -326,7 +326,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         lblDatosUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblDatosUsuario.setForeground(new java.awt.Color(255, 204, 0));
         lblDatosUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDatosUsuario.setText("Datos de Usuario:");
+        lblDatosUsuario.setText("Credenciales de Usuario:");
         panCentral.add(lblDatosUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 355, 880, 30));
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -434,7 +434,7 @@ public class GestionUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/* metodo que permite grabar un usuario nuevo o editar existente*/
     private void btnAceptarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarUsuarioActionPerformed
        
         try {
@@ -487,7 +487,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProvinciaUsuarioActionPerformed
 
-    
+/*metodo que graba los datos de usuario*/    
     private void setInfoUsuario(){
 
         char clave[] = txtPassword.getPassword();
@@ -532,7 +532,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         String respuesta4 = new String(resp4);
         usuario.setRespuesta4(respuesta4);
     }
-    
+    /*metodo que recupera los datos de usuario existente*/
     private void getInfoUsuario() throws Exception {
         if(this.usuario != null){
             usuario.getUsuario(this.cusuario);
@@ -572,7 +572,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             setListRoles(this.panCentral, this.cusuario, this.usuario.getUsuario());
         } 
     }
-       
+   /*metodo que despliega los roles existentes*/    
     public void setListRoles(JPanel panel, Integer cusuario, String usuario) {
         
         Integer coordenadaY = 505;
@@ -599,7 +599,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             coordenadaY=coordenadaY+30;
         }
     }
-    
+/*metodo que carga los catalofos provincia, ciudad, estado*/    
     private void loadCatalogo(){
         
         Catalogo catalogo = new Catalogo();  
@@ -619,7 +619,7 @@ public class GestionUsuario extends javax.swing.JFrame {
         }
         lblFotoPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource(icon)));
     }
-    
+ /*metodo que retorna o cierra la pantalla sin acciones*/   
     private void volver(Sesion sesion, boolean logged){
         Inicio inicio = new Inicio();
         inicio.setIsLogged(logged);
