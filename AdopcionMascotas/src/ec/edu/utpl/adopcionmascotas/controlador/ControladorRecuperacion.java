@@ -19,7 +19,7 @@ public class ControladorRecuperacion {
     public String estado;
     public Integer pregunta;
     public String respuesta;
-    
+    /*metodo que genera la cadena que recupera de BDD el usuario*/
     private static final String SQL_SELECT_USUARIO = "SELECT USU.IDENTIFICACION, USU.ESTADO, TPU.RESPUESTA, USU.CUSUARIO "
             + "FROM TUSUARIO USU, TPREGUNTASUSUARIO TPU "
             + "WHERE USU.CUSUARIO=TPU.CUSUARIO "
@@ -27,22 +27,22 @@ public class ControladorRecuperacion {
             + "AND TPU.CPREGUNTA=? "
             + "AND USU.ACTIVO=1 "
             + "AND TPU.ACTIVO=1 ";
-    
+    /*metodo que genera la cadena que recupera de BDD la pregunta de desafio*/
     private static final String SQL_SELECT_PREGUNTA = "SELECT PREGUNTA "
             + "FROM TPREGUNTA "
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
-    
+    /*metodo que genera la cadena graba o actualiza credenciales de usuario en BDD*/
     private static final String UPDATE_TUSUARIO = "UPDATE TUSUARIO "
             + "SET PASSWORD=? "
             + "WHERE CUSUARIO=? "
             + "AND ACTIVO=1 ";
-    
+    /*metodo que recupera pregunta*/
     public ControladorRecuperacion(Integer pregunta) {
 
         this.pregunta = pregunta;
     }
-    
+    /*metodo que recupera datos de usuario*/
     private List<Object> getDatosUsuario(String usuario){
         
         List<Object> resultado;
@@ -50,7 +50,7 @@ public class ControladorRecuperacion {
         resultado = cliente.query(SQL_SELECT_USUARIO, usuario, pregunta);
         return resultado;
     }
-    
+    /*metodo que valida la existencia de un usuario*/
     public boolean existeUsuario(String usuario) throws Exception{
         
         boolean existe = false;
@@ -61,7 +61,7 @@ public class ControladorRecuperacion {
         }
         return existe;
     }
-    
+    /*metodo que graba el password cifrado*/
     public boolean savePassword(String password) throws Exception{
         
         CifradoAes aes = new CifradoAes();
@@ -69,19 +69,19 @@ public class ControladorRecuperacion {
         Cliente cliente = new Cliente();
         return cliente.execute(UPDATE_TUSUARIO, passwordCifrada, this.cusuario) > 0;
     }
-    
+    /*metodo que valida digito verificador de CI*/
     public boolean validarIdentificacion(String id) throws Exception{
         
         return identificacion.equals(id);
     }
-
+/*metodo que valida la pregunta de desafio*/
     public boolean validarRespuesta(String resp) throws Exception{
         
         CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(resp);
         return respuestacifrada.equals(this.respuesta);
     }
-    
+    /*metodo que graba los datos de usuario en base*/
     private void setUsuarioData(List<Object> dataList) throws Exception{
         
         for(Object dato : dataList){
@@ -93,7 +93,7 @@ public class ControladorRecuperacion {
             this.cusuario = Integer.parseInt(arreglo[3].toString());
         }
     }
-    
+    /*metodo que recupera de BDD la pregunta de desafio*/
     public String getPregunta(){
         
         String preguntaDes = "";
