@@ -71,16 +71,7 @@ public class CifradoAes {
      * @throws IllegalBlockSizeException
      * @throws BadPaddingException 
      */
-    public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-        
-        SecretKeySpec secretKey = this.crearClave(salt); 
-        Cipher cipher = Cipher.getInstance(transformacion);        
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] datosEncriptar = datos.getBytes(encoding);
-        byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
-        String encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
-        return encriptado;
-    }
+    
  
     /**
      * Desencripta la cadena de texto indicada usando la clave de encriptacion
@@ -102,5 +93,16 @@ public class CifradoAes {
         byte[] datosDesencriptados = cipher.doFinal(bytesEncriptados);
         String datos = new String(datosDesencriptados);         
         return datos;
+    }
+    
+    public String encriptar(String datos) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+        
+        SecretKeySpec secretKey = this.crearClave(salt); 
+        Cipher cipher = Cipher.getInstance(transformacion);        
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] datosEncriptar = datos.getBytes(encoding);
+        byte[] bytesEncriptados = cipher.doFinal(datosEncriptar);
+        String encriptado = Base64.getEncoder().encodeToString(bytesEncriptados);
+        return encriptado;
     }
 }

@@ -441,7 +441,7 @@ public class GestionUsuario extends javax.swing.JFrame {
             if(ACCION_NUEVO.equals(cambio)) {
                setInfoUsuario();
                usuario.newUsuario();
-               JOptionPane.showMessageDialog(rootPane,"Se ha creado correctamente el usuario.","Usuarios del Sistema",JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(rootPane,"Los datos del usuario se ha creado correctamente.","Usuarios del Sistema",JOptionPane.INFORMATION_MESSAGE);
                volver(sesion, false);
            } else if(ACCION_EDITAR.equals(cambio)) {
                System.out.println("EDITAR " + usuario.getCusuario());
@@ -570,7 +570,8 @@ public class GestionUsuario extends javax.swing.JFrame {
             lblPregunta4.setText(usuario.getPregunta4());
             
             setListRoles(this.panCentral, this.cusuario, this.usuario.getUsuario());
-        } 
+        }else
+            JOptionPane.showMessageDialog(rootPane,"Error al recuperar los datos del usuario.","Usuarios del Sistema",JOptionPane.ERROR_MESSAGE);
     }
    /*metodo que despliega los roles existentes*/    
     public void setListRoles(JPanel panel, Integer cusuario, String usuario) {
