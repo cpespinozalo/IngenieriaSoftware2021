@@ -194,46 +194,33 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnUsuarios">
           <Properties>
-            <Property name="text" type="java.lang.String" value="USUARIOS"/>
+            <Property name="text" type="java.lang.String" value="Usuarios"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="150" width="150" height="40"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnModulos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="MODULOS"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModulosActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="200" width="150" height="40"/>
+              <AbsoluteConstraints x="50" y="225" width="150" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="btnFuncionalidades">
           <Properties>
-            <Property name="text" type="java.lang.String" value="FUNCIONALIDAD"/>
+            <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFuncionalidadesActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="250" width="150" height="40"/>
+              <AbsoluteConstraints x="50" y="275" width="150" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="btnCatalogos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CATALOGOS"/>
+            <Property name="text" type="java.lang.String" value="Catalogos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatalogosActionPerformed"/>
@@ -246,7 +233,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAuditoria">
           <Properties>
-            <Property name="text" type="java.lang.String" value="AUDITORIA"/>
+            <Property name="text" type="java.lang.String" value="Auditoria"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAuditoriaActionPerformed"/>
@@ -259,7 +246,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnLimpiar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LIMPIAR"/>
+            <Property name="text" type="java.lang.String" value="Limpiar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
@@ -272,7 +259,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCerrar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CERRAR"/>
+            <Property name="text" type="java.lang.String" value="Cerrar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
@@ -280,6 +267,18 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="500" width="150" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblLogoPrincipal">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/imgLogoPrincipal.png"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="25" width="245" height="140"/>
             </Constraint>
           </Constraints>
         </Component>

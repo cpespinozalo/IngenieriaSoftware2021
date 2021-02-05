@@ -85,12 +85,12 @@ public class Administracion extends javax.swing.JFrame {
         panLateral = new javax.swing.JPanel();
         btnRoles = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        btnModulos = new javax.swing.JButton();
         btnFuncionalidades = new javax.swing.JButton();
         btnCatalogos = new javax.swing.JButton();
         btnAuditoria = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        lblLogoPrincipal = new javax.swing.JLabel();
         panPrincipal = new javax.swing.JPanel();
         scrContenido = new javax.swing.JScrollPane();
         tblContenido = new javax.swing.JTable();
@@ -171,31 +171,23 @@ public class Administracion extends javax.swing.JFrame {
         });
         panLateral.add(btnRoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 150, 40));
 
-        btnUsuarios.setText("USUARIOS");
+        btnUsuarios.setText("Usuarios");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        panLateral.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 40));
+        panLateral.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 225, 150, 40));
 
-        btnModulos.setText("MODULOS");
-        btnModulos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModulosActionPerformed(evt);
-            }
-        });
-        panLateral.add(btnModulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 150, 40));
-
-        btnFuncionalidades.setText("FUNCIONALIDAD");
+        btnFuncionalidades.setText("Reportes");
         btnFuncionalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFuncionalidadesActionPerformed(evt);
             }
         });
-        panLateral.add(btnFuncionalidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 150, 40));
+        panLateral.add(btnFuncionalidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 275, 150, 40));
 
-        btnCatalogos.setText("CATALOGOS");
+        btnCatalogos.setText("Catalogos");
         btnCatalogos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCatalogosActionPerformed(evt);
@@ -203,7 +195,7 @@ public class Administracion extends javax.swing.JFrame {
         });
         panLateral.add(btnCatalogos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 325, 150, 40));
 
-        btnAuditoria.setText("AUDITORIA");
+        btnAuditoria.setText("Auditoria");
         btnAuditoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAuditoriaActionPerformed(evt);
@@ -211,7 +203,7 @@ public class Administracion extends javax.swing.JFrame {
         });
         panLateral.add(btnAuditoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 375, 150, 40));
 
-        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -219,13 +211,16 @@ public class Administracion extends javax.swing.JFrame {
         });
         panLateral.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 150, 40));
 
-        btnCerrar.setText("CERRAR");
+        btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
         panLateral.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 150, 40));
+
+        lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
+        panLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
 
         getContentPane().add(panLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 245, 670));
 
@@ -380,40 +375,6 @@ public class Administracion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
-    private void btnModulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModulosActionPerformed
-        try {
-            cambio = "MOD";
-            cmbEmpresa.removeAllItems();
-            lblTituloSeccion.setText(null);
-            lblNombreSeccion.setText(null);
-            subtitulo = "Módulo";
-            lblTituloContenido.setText("Módulos del Sistema");
-            administracion.fillTableModulos(tblContenido, modelo);
-            cmbEmpresa.addItem("Todos los Modulos");
-            btnCrear.setEnabled(true);
-            enableBotones(false);
-        } catch (IOException ex) {
-            Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnModulosActionPerformed
-
-    private void btnFuncionalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionalidadesActionPerformed
-        try {
-            cambio = "FUN";
-            cmbEmpresa.removeAllItems();
-            lblTituloSeccion.setText(null);
-            lblNombreSeccion.setText(null);
-            subtitulo = "Funcionalidad";
-            lblTituloContenido.setText("Funcionalidades del Sistema");
-            administracion.fillTableFuncionalidades(tblContenido, modelo);
-            cmbEmpresa.addItem("Todas las Funcionalidades");
-            btnCrear.setEnabled(true);
-            enableBotones(false);
-        } catch (IOException ex) {
-            Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnFuncionalidadesActionPerformed
-
     private void btnCatalogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogosActionPerformed
         try {
             cambio = "CAT";
@@ -541,6 +502,13 @@ public class Administracion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAuditoriaActionPerformed
 
+    private void btnFuncionalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionalidadesActionPerformed
+        
+        GeneracionReportes reportes = new GeneracionReportes(sesion);
+        reportes.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnFuncionalidadesActionPerformed
+
     private void enableBotones(Boolean enable){ 
         btnEditar.setEnabled(enable);
         btnEliminar.setEnabled(enable);   
@@ -564,7 +532,6 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnFuncionalidades;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnModulos;
     private javax.swing.JButton btnRoles;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JComboBox<String> cmbEmpresa;
@@ -575,6 +542,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoSistema;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblInicioSesion;
+    private javax.swing.JLabel lblLogoPrincipal;
     private javax.swing.JLabel lblNombreSeccion;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblSubTitulo;
