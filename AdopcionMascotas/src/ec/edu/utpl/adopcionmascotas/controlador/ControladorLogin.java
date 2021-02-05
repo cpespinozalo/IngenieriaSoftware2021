@@ -27,7 +27,7 @@ public class ControladorLogin {
             + "FROM TPREGUNTA "
             + "WHERE CPREGUNTA=? "
             + "AND ACTIVO=1 ";
-    
+/*metodo que valida la existencia del usuario*/    
     public boolean existeUsuario(String usuario, Integer cpregunta){
         boolean existe = false;
         this.datos =  getDatosUsuario(usuario, cpregunta);
@@ -36,14 +36,14 @@ public class ControladorLogin {
         }
         return existe;
     }
-    
+    /*metodo que devuelve los datos del usuario existente*/
     private List<Object> getDatosUsuario(String usuario, Integer cpregunta){
         List<Object> resultado;
         Cliente cliente = new Cliente();
         resultado = cliente.query(SQL_SELECT_USUARIO, usuario, cpregunta);
         return resultado;
     }
-    
+ /*metodo que cifra credenciales y compara para realizar login*/
     public boolean loginUsuario(String password) throws Exception{
         CifradoAes aes = new CifradoAes();
         String clavecifrada = aes.encriptar(password);
@@ -58,7 +58,7 @@ public class ControladorLogin {
         }
         return login;
     }
-    
+/*metodo que valida la respuesta de las preguntas desafio*/    
     public boolean validarRespuesta(String respuesta) throws Exception{
         CifradoAes aes = new CifradoAes();
         String respuestacifrada = aes.encriptar(respuesta);
@@ -72,7 +72,7 @@ public class ControladorLogin {
         }
         return resp;
     }
-    
+/*metodo que retorna las preguntas registradas*/    
     public String getPregunta(Integer cpregunta){
         String preguntaDes = "";
         List<Object> resultado;

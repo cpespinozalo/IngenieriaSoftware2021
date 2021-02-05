@@ -31,7 +31,7 @@ public class ControladorBienvenida implements Serializable {
             + "FROM TROLUSUARIO TRU, TROL ROL "
             + "WHERE TRU.CUSUARIO=? "
             + "AND TRU.CROL=ROL.CROL";
-
+/*metodo que inicia los datos de sesion en la bienvenida*/
     public ControladorBienvenida(Sesion sesion, Integer cusuario, String usuario) {
 
         this.sesion = sesion;
@@ -40,7 +40,7 @@ public class ControladorBienvenida implements Serializable {
         this.usuario = usuario;
         setSesion();
     }
-
+/*metodo que genera el id de sesión*/
     private void setSesion(){
         
         List<Object> datos =  getDatosSesion(usuario);
@@ -56,7 +56,7 @@ public class ControladorBienvenida implements Serializable {
         sesion.setResultado("LOGIN EXITOSO");
         sesion.newSesion();
     }
-    
+    /* metodo que despliega el combo de roles*/
     public void getDatosCombo(JComboBox<String> combo) {
        
         List<Object> datos =  getRolUsuario(cusuario);
@@ -69,7 +69,7 @@ public class ControladorBienvenida implements Serializable {
             combo.addItem(arreglo[2].toString());
         }
     }
-    
+    /*metodo que devuelve los datos de sesión*/
     public List<Object> getDatosSesion(String usuario){
         
         List<Object> resultado;
@@ -77,7 +77,7 @@ public class ControladorBienvenida implements Serializable {
         resultado = cliente.query(SQL_SELECT_SESION, usuario);
         return resultado;
     }
-    
+    /*metodo que devuelve el rol asignado al usuario*/
     public List<Object> getRolUsuario(Integer cusuario){
         
         List<Object> resultado;
