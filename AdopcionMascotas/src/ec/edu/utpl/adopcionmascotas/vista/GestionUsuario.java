@@ -338,9 +338,11 @@ public class GestionUsuario extends javax.swing.JFrame {
         panCentral.add(lblActivoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 390, 150, 30));
 
         cmbActivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbActivo.setEnabled(false);
         panCentral.add(cmbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 30));
 
         cmbEstadoUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbEstadoUsuario.setEnabled(false);
         panCentral.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 200, 30));
 
         lblIngresarPass.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

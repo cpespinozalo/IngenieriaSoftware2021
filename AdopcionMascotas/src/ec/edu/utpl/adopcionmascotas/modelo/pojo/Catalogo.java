@@ -160,6 +160,17 @@ public class Catalogo  implements Serializable {
         }
     }
     
+    public void setComboUsuarios(JComboBox combo){
+        
+        combo.removeAllItems();
+        Cliente cliente = new Cliente();
+        List<Object> resultado = cliente.query("SELECT ' ' FROM DUAL UNION SELECT UPPER(NOMBRES || ' ' || APELLIDOS) FROM TUSUARIO ");
+        
+        for(Object dato : resultado){
+            combo.addItem(dato != null ? dato.toString().trim() : "");
+        }
+    }
+    
     public void setListCatalogo(DefaultListModel modelo, JList<String> listaItems, Integer ccatalogo) {
         listaItems.removeAll();
         modelo= new DefaultListModel();

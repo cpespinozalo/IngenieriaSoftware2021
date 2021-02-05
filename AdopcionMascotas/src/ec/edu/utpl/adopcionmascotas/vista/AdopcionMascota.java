@@ -4,7 +4,10 @@ import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
+import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
@@ -41,6 +44,7 @@ public class AdopcionMascota extends javax.swing.JFrame {
         catalogo.setComboCatalogo("PROVINCIAS", null,cmbProvinciaMascota);
         catalogo.setComboCatalogo("CIUDADES", "01", cmbCiudadMascota);
         getInfoMascota();
+        setImagenGaleria(panFotosMascota);
     }
     
     @SuppressWarnings("unchecked")
@@ -84,16 +88,12 @@ public class AdopcionMascota extends javax.swing.JFrame {
         lblProvincia = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
+        lblInfo1 = new javax.swing.JLabel();
         panInferior = new javax.swing.JPanel();
         btnAdoptarMascota = new javax.swing.JButton();
         btnRegresarMascota = new javax.swing.JButton();
         scrFotosMascota = new javax.swing.JScrollPane();
         panFotosMascota = new javax.swing.JPanel();
-        lblLogoEmpresa = new javax.swing.JLabel();
-        lblLogoEmpresa1 = new javax.swing.JLabel();
-        lblLogoEmpresa2 = new javax.swing.JLabel();
-        lblLogoEmpresa3 = new javax.swing.JLabel();
-        lblInfo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -296,7 +296,12 @@ public class AdopcionMascota extends javax.swing.JFrame {
         lblCorreo.setText("Correo:");
         panCentral.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 385, 60, 30));
 
-        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 750, 430));
+        lblInfo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblInfo1.setForeground(new java.awt.Color(255, 204, 0));
+        lblInfo1.setText("Fotos de la mascota:");
+        panCentral.add(lblInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 435, -1, -1));
+
+        getContentPane().add(panCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 750, 455));
 
         panInferior.setBackground(new java.awt.Color(255, 54, 54));
         panInferior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -326,27 +331,9 @@ public class AdopcionMascota extends javax.swing.JFrame {
         scrFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
 
         panFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
-        panFotosMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblLogoEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png"))); // NOI18N
-        panFotosMascota.add(lblLogoEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, -1));
-
-        lblLogoEmpresa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png"))); // NOI18N
-        panFotosMascota.add(lblLogoEmpresa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-
-        lblLogoEmpresa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png"))); // NOI18N
-        panFotosMascota.add(lblLogoEmpresa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
-
-        lblLogoEmpresa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png"))); // NOI18N
-        panFotosMascota.add(lblLogoEmpresa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
-
-        lblInfo1.setForeground(new java.awt.Color(255, 255, 255));
-        lblInfo1.setText("Fotos de la mascota:");
-        panFotosMascota.add(lblInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 300, 20));
-
         scrFotosMascota.setViewportView(panFotosMascota);
 
-        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 750, 170));
+        getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 750, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -398,6 +385,22 @@ public class AdopcionMascota extends javax.swing.JFrame {
             inicio.setVisible(true);
             this.dispose();      
        }
+        
+    private void setImagenGaleria(JPanel panel){
+        
+        List<String> imagenes = mascota.getImagenesMascota(mascota.getCmascota());
+        for(String imagen : imagenes){
+            crearGaleria(panel, String.format("/fotos/%s", imagen));
+
+        }
+    }
+    
+    private void crearGaleria(JPanel panel, String imagen){
+    
+        JLabel foto = new JLabel();
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagen)));
+        panel.add(foto);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdoptarMascota;
@@ -415,10 +418,6 @@ public class AdopcionMascota extends javax.swing.JFrame {
     private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblInfo1;
     private javax.swing.JLabel lblInfoMascota;
-    private javax.swing.JLabel lblLogoEmpresa;
-    private javax.swing.JLabel lblLogoEmpresa1;
-    private javax.swing.JLabel lblLogoEmpresa2;
-    private javax.swing.JLabel lblLogoEmpresa3;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblObservaciones;
     private javax.swing.JLabel lblPropietario;

@@ -1,13 +1,20 @@
 package ec.edu.utpl.adopcionmascotas.vista;
 
+import ec.edu.utpl.adopcionmascotas.controlador.ImageResizer;
 import ec.edu.utpl.adopcionmascotas.controlador.Utilitarios;
 import ec.edu.utpl.adopcionmascotas.controlador.Validacion;
+import ec.edu.utpl.adopcionmascotas.modelo.bd.Cliente;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Catalogo;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Mascota;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Usuario;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -25,7 +32,7 @@ public class GestionMascota extends javax.swing.JFrame {
     private Mascota mascota;
     private Validacion validacion;
     private Utilitarios util;
-   
+    private List<String> listaImagenes; 
     private String accion;
     private static final String ACCION_NUEVO = "PUBLICAR";
     private static final String ACCION_EDITAR = "EDITAR";
@@ -39,6 +46,7 @@ public class GestionMascota extends javax.swing.JFrame {
             this.validacion = new Validacion();  
             this.util = new Utilitarios();  
             this.accion = accion;
+            this.listaImagenes = new ArrayList<>();
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
             initComponents();
             setLocationRelativeTo(null);
@@ -172,10 +180,9 @@ public class GestionMascota extends javax.swing.JFrame {
         btnEliminarMascota = new javax.swing.JButton();
         scrFotosMascota = new javax.swing.JScrollPane();
         panFotosMascota = new javax.swing.JPanel();
-        lblLogoEmpresa1 = new javax.swing.JLabel();
-        lblInfo1 = new javax.swing.JLabel();
         panBoton = new javax.swing.JPanel();
         btnAgregarFoto = new javax.swing.JButton();
+        lblInfo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -453,15 +460,6 @@ public class GestionMascota extends javax.swing.JFrame {
         scrFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
 
         panFotosMascota.setBackground(new java.awt.Color(41, 41, 41));
-        panFotosMascota.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblLogoEmpresa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgMascota01.png"))); // NOI18N
-        panFotosMascota.add(lblLogoEmpresa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-
-        lblInfo1.setForeground(new java.awt.Color(255, 255, 255));
-        lblInfo1.setText("Fotos de la mascota:");
-        panFotosMascota.add(lblInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 300, 20));
-
         scrFotosMascota.setViewportView(panFotosMascota);
 
         getContentPane().add(scrFotosMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 720, 600, 170));
@@ -477,6 +475,12 @@ public class GestionMascota extends javax.swing.JFrame {
         });
         panBoton.add(btnAgregarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 70, 120, 30));
 
+        lblInfo1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblInfo1.setForeground(new java.awt.Color(255, 204, 0));
+        lblInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblInfo1.setText("Fotos de la mascota:");
+        panBoton.add(lblInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 20));
+
         getContentPane().add(panBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 720, 150, 170));
 
         pack();
@@ -489,7 +493,7 @@ public class GestionMascota extends javax.swing.JFrame {
                 mascota = new Mascota(sesion.getIdSesion());
                 mascota.setEstadomascota("DISPONIBLE");
                 setInfoMascota();
-                if(mascota.newMascota()){
+                if(mascota.newMascota() && guardarImagenes(mascota)){
                     JOptionPane.showMessageDialog(rootPane,"Se ha publicado correctamente la mascota.","Publicación de Mascotas",JOptionPane.INFORMATION_MESSAGE);
                     volver(sesion);
                 }
@@ -526,8 +530,13 @@ public class GestionMascota extends javax.swing.JFrame {
             File fileName = fileChooser.getSelectedFile();
             if ((fileName == null) || (fileName.getName().equals(""))) {
                 System.out.println("...");
-            } else {
-                System.out.println(fileName.getAbsolutePath());
+            } else {  
+                listaImagenes.add(fileName.getAbsolutePath());
+                System.out.println(">>Datos imagen: " + fileName.getAbsolutePath());
+                JLabel foto = new JLabel();
+                foto.setIcon(new javax.swing.ImageIcon(fileName.getAbsolutePath()));        
+                panFotosMascota.add(foto);
+                panFotosMascota.updateUI();
             }
         }
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
@@ -607,6 +616,28 @@ public class GestionMascota extends javax.swing.JFrame {
         this.dispose();      
     }
     
+    private boolean guardarImagenes(Mascota mascota) {
+        
+        Boolean valido = false;
+        try {
+            ImageResizer resizer = new ImageResizer();
+            Integer cimagen = mascota.getCimagen();
+            for(String imagen : listaImagenes) {
+                cimagen++;
+                String archivo = getClass().getResource("/fotos/").getPath().replace("/C:", "C:") + cimagen + imagen.substring(imagen.length()-4, imagen.length());
+                System.out.println(">> Cimagen: " + cimagen + "  -  Cmascota: " + mascota.getCmascotanuevo() + "  -  Archivo: " + archivo + "  -  Archivo permanente: " + archivo.replace("build/classes", "src"));
+                resizer.copyImage(imagen, archivo);
+                resizer.copyImage(imagen, archivo.replace("build/classes", "src"));
+                mascota.newImagenMascota(cimagen, mascota.getCmascotanuevo(), cimagen + imagen.substring(imagen.length()-4, imagen.length()));
+            }
+            valido = true;
+        }catch(Exception e){
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return valido;
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarMascota;
     private javax.swing.JButton btnAgregarFoto;
@@ -636,7 +667,6 @@ public class GestionMascota extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoAdopcion;
     private javax.swing.JLabel lblInfoMascota;
     private javax.swing.JLabel lblInfoPropietario;
-    private javax.swing.JLabel lblLogoEmpresa1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblObservaciones;
     private javax.swing.JLabel lblPersonaAdopcion;
