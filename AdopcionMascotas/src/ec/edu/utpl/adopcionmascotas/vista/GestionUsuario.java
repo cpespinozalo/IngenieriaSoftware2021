@@ -140,10 +140,10 @@ public class GestionUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de Usuarios");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(1000, 860));
+        setMaximumSize(new java.awt.Dimension(2147483647, 930));
+        setMinimumSize(new java.awt.Dimension(930, 840));
         setName("fraInterfazGrafica"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 860));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

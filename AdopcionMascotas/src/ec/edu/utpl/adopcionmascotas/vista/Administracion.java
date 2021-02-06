@@ -3,7 +3,6 @@ package ec.edu.utpl.adopcionmascotas.vista;
 import ec.edu.utpl.adopcionmascotas.controlador.ControladorAdministracion;
 import ec.edu.utpl.adopcionmascotas.controlador.ThreadSistema;
 import ec.edu.utpl.adopcionmascotas.controlador.Utilitarios;
-import ec.edu.utpl.adopcionmascotas.modelo.pojo.Auditoria;
 import ec.edu.utpl.adopcionmascotas.modelo.pojo.Sesion;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -37,7 +36,6 @@ public class Administracion extends javax.swing.JFrame {
             initComponents();
             setLocationRelativeTo(null);
             setDatosUsuario();
-            setIcon();
             //Thread reloj = new ThreadSistema(lblHora, true);
             //reloj.start();
         }catch(Exception e){
@@ -48,22 +46,14 @@ public class Administracion extends javax.swing.JFrame {
 
     private void setDatosUsuario(){
         
-        lblUsuario.setText("[" + sesion.getUsuario() + "]");
-        lblNombreUsuario.setText(sesion.getNombreUsuario());
+        lblUsuario.setText(String.format("[%s]", sesion.getUsuario()));
+        lblInicioBienvenida.setText("Bienvenido,");
+        lblInicioNombre.setText(sesion.getNombreUsuario());
+        final String avatar = "M".equals(this.sesion.getGenero()) ? "Hombre" : "Mujer";    
+        lblInicioAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource(String.format("/images/img%s.png", avatar))));
         lblInicioSesion.setText(sesion.getFinicio());
         lblInfoSistema.setText(sesion.getSistema());
         lblFecha.setText(util.tiempoSistema("EEEE',' dd 'de' MMMMM 'de' yyyy"));   
-    }
-    
-    private void setIcon(){
-        
-        String icon = "";
-        if("MUJER".equals(sesion.getGenero())){
-            icon = "/images/imgMujerSmall.png";
-        } else {
-            icon = "/images/imgHombreSmall.png";
-        }
-        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource(icon)));
     }
     
     /**
@@ -76,41 +66,44 @@ public class Administracion extends javax.swing.JFrame {
     private void initComponents() {
 
         panSuperior = new javax.swing.JPanel();
-        lblIcono = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
-        lblNombreUsuario = new javax.swing.JLabel();
         lblSubTitulo = new javax.swing.JLabel();
         lblTituloPrincipal = new javax.swing.JLabel();
-        lblIcono1 = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        lblInicioNombre = new javax.swing.JLabel();
+        lblInicioAvatar = new javax.swing.JLabel();
+        lblInicioBienvenida = new javax.swing.JLabel();
         panLateral = new javax.swing.JPanel();
-        btnRoles = new javax.swing.JButton();
+        lblLogoPrincipal = new javax.swing.JLabel();
+        btnReportes = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        btnFuncionalidades = new javax.swing.JButton();
         btnCatalogos = new javax.swing.JButton();
         btnAuditoria = new javax.swing.JButton();
+        btnRoles = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        lblLogoPrincipal = new javax.swing.JLabel();
         panPrincipal = new javax.swing.JPanel();
-        scrContenido = new javax.swing.JScrollPane();
-        tblContenido = new javax.swing.JTable();
         lblTituloSeccion = new javax.swing.JLabel();
         lblNombreSeccion = new javax.swing.JLabel();
         lblTituloContenido = new javax.swing.JLabel();
+        cmbEmpresa = new javax.swing.JComboBox<>();
+        scrContenido = new javax.swing.JScrollPane();
+        tblContenido = new javax.swing.JTable();
         btnCrear = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        cmbEmpresa = new javax.swing.JComboBox<>();
         panInfoSistema = new javax.swing.JPanel();
         lblInicio = new javax.swing.JLabel();
         lblInicioSesion = new javax.swing.JLabel();
-        lblHora = new javax.swing.JLabel();
         lblInfoSistema = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
+        lblIcono1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administración del Sistema");
-        setMinimumSize(new java.awt.Dimension(1400, 860));
+        setMinimumSize(new java.awt.Dimension(1400, 670));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1400, 670));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -125,51 +118,50 @@ public class Administracion extends javax.swing.JFrame {
         panSuperior.setPreferredSize(new java.awt.Dimension(1400, 45));
         panSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIcono.setForeground(new java.awt.Color(255, 255, 255));
-        lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panSuperior.add(lblIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 5, 50, 50));
-
-        lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario.setText("[usuario]");
-        panSuperior.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 300, 25));
-
-        lblNombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNombreUsuario.setText("Nombre Completo Usuario");
-        panSuperior.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, 300, 25));
-
         lblSubTitulo.setBackground(new java.awt.Color(255, 153, 51));
-        lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSubTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubTitulo.setText("Sistema");
-        panSuperior.add(lblSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 400, 15));
+        panSuperior.add(lblSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 300, 20));
 
         lblTituloPrincipal.setBackground(new java.awt.Color(255, 153, 51));
-        lblTituloPrincipal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTituloPrincipal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTituloPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloPrincipal.setText("Contabilidad UTPL");
-        panSuperior.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 400, 25));
+        lblTituloPrincipal.setText("Adopción de Mascota");
+        panSuperior.add(lblTituloPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 460, 30));
 
-        lblIcono1.setForeground(new java.awt.Color(255, 255, 255));
-        lblIcono1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIcono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoUtpl.png"))); // NOI18N
-        panSuperior.add(lblIcono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 130, 50));
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        panSuperior.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 80, 180, 20));
 
-        getContentPane().add(panSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 0, 1155, 110));
+        lblInicioNombre.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+        lblInicioNombre.setForeground(new java.awt.Color(255, 204, 0));
+        lblInicioNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        panSuperior.add(lblInicioNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 370, 20));
+        panSuperior.add(lblInicioAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, 100, 125));
+
+        lblInicioBienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblInicioBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        lblInicioBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        panSuperior.add(lblInicioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 180, 20));
+
+        getContentPane().add(panSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 0, 1155, 150));
 
         panLateral.setBackground(new java.awt.Color(255, 54, 54));
+        panLateral.setMinimumSize(new java.awt.Dimension(245, 670));
         panLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnRoles.setText("ROLES");
-        btnRoles.addActionListener(new java.awt.event.ActionListener() {
+        lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
+        panLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
+
+        btnReportes.setText("Reportes");
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRolesActionPerformed(evt);
+                btnReportesActionPerformed(evt);
             }
         });
-        panLateral.add(btnRoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 150, 40));
+        panLateral.add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 150, 40));
 
         btnUsuarios.setText("Usuarios");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -177,15 +169,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        panLateral.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 225, 150, 40));
-
-        btnFuncionalidades.setText("Reportes");
-        btnFuncionalidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFuncionalidadesActionPerformed(evt);
-            }
-        });
-        panLateral.add(btnFuncionalidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 275, 150, 40));
+        panLateral.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 150, 40));
 
         btnCatalogos.setText("Catalogos");
         btnCatalogos.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +177,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnCatalogosActionPerformed(evt);
             }
         });
-        panLateral.add(btnCatalogos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 325, 150, 40));
+        panLateral.add(btnCatalogos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 150, 40));
 
         btnAuditoria.setText("Auditoria");
         btnAuditoria.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +185,15 @@ public class Administracion extends javax.swing.JFrame {
                 btnAuditoriaActionPerformed(evt);
             }
         });
-        panLateral.add(btnAuditoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 375, 150, 40));
+        panLateral.add(btnAuditoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 150, 40));
+
+        btnRoles.setText("Roles");
+        btnRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRolesActionPerformed(evt);
+            }
+        });
+        panLateral.add(btnRoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 150, 40));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +201,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        panLateral.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 150, 40));
+        panLateral.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 150, 40));
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,16 +209,25 @@ public class Administracion extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        panLateral.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 150, 40));
+        panLateral.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 150, 40));
 
-        lblLogoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoPrincipal.png"))); // NOI18N
-        panLateral.add(lblLogoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 245, 140));
-
-        getContentPane().add(panLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 245, 670));
+        getContentPane().add(panLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 245, 670));
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         panPrincipal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTituloSeccion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        panPrincipal.add(lblTituloSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 100, 30));
+
+        lblNombreSeccion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        panPrincipal.add(lblNombreSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 500, 30));
+
+        lblTituloContenido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTituloContenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panPrincipal.add(lblTituloContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 760, 30));
+
+        panPrincipal.add(cmbEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 170, 160, -1));
 
         tblContenido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -246,17 +247,7 @@ public class Administracion extends javax.swing.JFrame {
         });
         scrContenido.setViewportView(tblContenido);
 
-        panPrincipal.add(scrContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 1070, 310));
-
-        lblTituloSeccion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        panPrincipal.add(lblTituloSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, 20));
-
-        lblNombreSeccion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        panPrincipal.add(lblNombreSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 500, 30));
-
-        lblTituloContenido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTituloContenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panPrincipal.add(lblTituloContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 760, 30));
+        panPrincipal.add(scrContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 1070, 290));
 
         btnCrear.setText("Crear");
         btnCrear.setEnabled(false);
@@ -265,7 +256,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnCrearActionPerformed(evt);
             }
         });
-        panPrincipal.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, 100, 40));
+        panPrincipal.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 100, 40));
 
         btnEditar.setText("Editar");
         btnEditar.setEnabled(false);
@@ -274,7 +265,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        panPrincipal.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 550, 100, 40));
+        panPrincipal.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 550, 100, 40));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
@@ -283,9 +274,7 @@ public class Administracion extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        panPrincipal.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 100, 40));
-
-        panPrincipal.add(cmbEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 150, 160, -1));
+        panPrincipal.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 550, 100, 40));
 
         panInfoSistema.setBackground(new java.awt.Color(41, 41, 41));
         panInfoSistema.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,20 +288,25 @@ public class Administracion extends javax.swing.JFrame {
         lblInicioSesion.setForeground(new java.awt.Color(255, 255, 255));
         panInfoSistema.add(lblInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 300, 20));
 
-        lblHora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblHora.setForeground(new java.awt.Color(255, 255, 255));
-        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblHora.setText("00:00:00");
-        panInfoSistema.add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 80, 20));
-
         lblInfoSistema.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblInfoSistema.setForeground(new java.awt.Color(255, 255, 255));
         panInfoSistema.add(lblInfoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 400, 20));
 
+        lblHora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblHora.setText("00:00:00");
+        panInfoSistema.add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 80, 20));
+
         lblFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        panInfoSistema.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 260, 20));
+        panInfoSistema.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 260, 20));
+
+        lblIcono1.setForeground(new java.awt.Color(255, 255, 255));
+        lblIcono1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIcono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imgLogoUtpl.png"))); // NOI18N
+        panInfoSistema.add(lblIcono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 5, 130, 50));
 
         panPrincipal.add(panInfoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 610, 1155, 60));
 
@@ -410,25 +404,16 @@ public class Administracion extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         
         try {
-            /*if("EMP".equals(cambio)) {
-                GestionEmpresa empresa = new GestionEmpresa(sesion, null, "NUEVO");
-                empresa.setVisible(true);
-            } else if("ROL".equals(cambio)) {
+            if("ROL".equals(cambio)) {
                 GestionRol rol = new GestionRol(sesion, null, "NUEVO");
                 rol.setVisible(true);
             } else if("USU".equals(cambio)) {
                 GestionUsuario usuario = new GestionUsuario(sesion, null, "NUEVO");
                 usuario.setVisible(true);
-            } else if("MOD".equals(cambio)) {
-                GestionModulo modulo = new GestionModulo(sesion, null, "NUEVO");
-                modulo.setVisible(true);
-            } else if("FUN".equals(cambio)) {
-                GestionFuncionalidad funcionalidad = new GestionFuncionalidad(sesion, null, "NUEVO");
-                funcionalidad.setVisible(true);
             } else if("CAT".equals(cambio)) {
                 GestionCatalogo catalogo = new GestionCatalogo(sesion, null, "NUEVO");
                 catalogo.setVisible(true);
-            }*/
+            }
             this.dispose(); 
         }catch(Exception ex) {
              Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
@@ -439,25 +424,16 @@ public class Administracion extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        
         try {
-            /*if("EMP".equals(cambio)) {
-                GestionEmpresa empresa = new GestionEmpresa(sesion, codigo, "EDITAR");
-                empresa.setVisible(true);
-            } else if("ROL".equals(cambio)) {
+            if("ROL".equals(cambio)) {
                 GestionRol rol = new GestionRol(sesion, codigo, "EDITAR");
                 rol.setVisible(true);
             } else if("USU".equals(cambio)) {
                 GestionUsuario usuario = new GestionUsuario(sesion, codigo, "EDITAR");
                 usuario.setVisible(true);
-            } else if("MOD".equals(cambio)) {
-                GestionModulo modulo = new GestionModulo(sesion, codigo, "EDITAR");
-                modulo.setVisible(true);
-            } else if("FUN".equals(cambio)) {
-                GestionFuncionalidad funcionalidad = new GestionFuncionalidad(sesion, codigo, "EDITAR");
-                funcionalidad.setVisible(true);
             } else if("CAT".equals(cambio)) {
                 GestionCatalogo catalogo = new GestionCatalogo(sesion, codigo, "EDITAR");
                 catalogo.setVisible(true);
-            }*/
+            }
             this.dispose();
         }catch(Exception ex) {
              Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
@@ -467,25 +443,16 @@ public class Administracion extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
             
         try {
-            /*if("EMP".equals(cambio)) {
-                GestionEmpresa empresa = new GestionEmpresa(sesion, codigo, "ELIMINAR");
-                empresa.setVisible(true);
-            } else if("ROL".equals(cambio)) {
+            if("ROL".equals(cambio)) {
                 GestionRol rol = new GestionRol(sesion, codigo, "ELIMINAR");
                 rol.setVisible(true);
             } else if("USU".equals(cambio)) {
                 GestionUsuario usuario = new GestionUsuario(sesion, codigo, "ELIMINAR");
                 usuario.setVisible(true);
-            } else if("MOD".equals(cambio)) {
-                GestionModulo modulo = new GestionModulo(sesion, codigo, "ELIMINAR");
-                modulo.setVisible(true);
-            } else if("FUN".equals(cambio)) {
-                GestionFuncionalidad funcionalidad = new GestionFuncionalidad(sesion, codigo, "ELIMINAR");
-                funcionalidad.setVisible(true);
             } else if("CAT".equals(cambio)) {
                 GestionCatalogo catalogo = new GestionCatalogo(sesion, codigo, "ELIMINAR");
                 catalogo.setVisible(true);
-            }*/
+            }
             this.dispose();
         }catch(Exception ex) {
              Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
@@ -497,17 +464,17 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditoriaActionPerformed
-        /*Auditoria auditoria = new Auditoria(sesion);
-        auditoria.setVisible(true);*/
+        Auditoria auditoria = new Auditoria(sesion);
+        auditoria.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAuditoriaActionPerformed
 
-    private void btnFuncionalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionalidadesActionPerformed
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         
         GeneracionReportes reportes = new GeneracionReportes(sesion);
         reportes.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnFuncionalidadesActionPerformed
+    }//GEN-LAST:event_btnReportesActionPerformed
 
     private void enableBotones(Boolean enable){ 
         btnEditar.setEnabled(enable);
@@ -530,21 +497,22 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnFuncionalidades;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnRoles;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JComboBox<String> cmbEmpresa;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
-    private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblIcono1;
     private javax.swing.JLabel lblInfoSistema;
     private javax.swing.JLabel lblInicio;
+    private javax.swing.JLabel lblInicioAvatar;
+    private javax.swing.JLabel lblInicioBienvenida;
+    private javax.swing.JLabel lblInicioNombre;
     private javax.swing.JLabel lblInicioSesion;
     private javax.swing.JLabel lblLogoPrincipal;
     private javax.swing.JLabel lblNombreSeccion;
-    private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblSubTitulo;
     private javax.swing.JLabel lblTituloContenido;
     private javax.swing.JLabel lblTituloPrincipal;
